@@ -1,0 +1,115 @@
+<div class="userPage">
+  <navigation></navigation>
+
+  <main class="flex">
+    <div class="navigation">
+      <!-- <div class="user">
+        <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
+        <h4 class="user__name">Mikel</h4>
+      </div> -->
+
+      <div class="small">
+        <h2 class="small__p">Create your first playlist</h2>
+        <button [routerLink]="['/playlist/new']" class="small__btn">
+          Create playlist
+        </button>
+      </div>
+
+      <nav class="sidenav">
+        <ul class="nav">
+          <li class="nav__item nav__item--active" [routerLink]="['/playlist']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use
+                  xlink:href="/assets/img/sprite.svg#icon-music-playlist"
+                ></use>
+              </svg>
+              <span>Playlist</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-paperclip"></use>
+              </svg>
+              <span>category</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/liked-songs']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+              </svg>
+              <span>likes</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/history']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-reload"></use>
+              </svg>
+              <span>history</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
+              </svg>
+              <span>downloads</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-star"></use>
+              </svg>
+              <span>favourite</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-credit-card"></use>
+              </svg>
+              <span>subscription</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="legal">
+          <p>© Copyright by Saint.</p>
+        </div>
+      </nav>
+    </div>
+
+    <div class="home_">
+      <div>
+        <div>
+          <nav class="home__nav">
+            <div class="home__greeting">salutamos🤍</div>
+          </nav>
+          <div>
+            <h2 class="home__heading">Playlists</h2>
+            <div class="feature__grid">
+              <thumbnail
+                *ngFor="let playlist of playlists"
+                [playlist]="playlist"
+              ></thumbnail>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <player></player>
+  </main>
+</div>
+
+
