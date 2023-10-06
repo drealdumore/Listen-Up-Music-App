@@ -3,8 +3,6 @@ import { IPlaylist, ISongs } from './app.model';
 
 @Injectable()
 export class AppService {
-  private currentAudio: HTMLAudioElement | null = null;
-
   getSongs(): ISongs[] {
     const playlistSongs = playlists[0];
     return playlistSongs ? playlistSongs.songs : [];
@@ -17,23 +15,6 @@ export class AppService {
   getPlaylist(id: string) {
     return playlists.find((playlist) => playlist.id === id);
   }
-
-  // playSong(song: ISongs) {
-  //   // pause the currently playing audio, if any
-  //   this.pauseCurrentAudio();
-
-  //   // create new audio element for selected song
-  //   this.currentAudio = new Audio(song.path);
-  //   this.currentAudio.play();
-  // }
-
-  // pauseCurrentAudio() {
-  //   // pause the currently playing audio, if any
-  //   if (this.currentAudio) {
-  //     this.currentAudio.pause();
-  //     this.currentAudio = null;
-  //   }
-  // }
 }
 
 const playlists: IPlaylist[] = [

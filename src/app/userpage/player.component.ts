@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AudioService } from '../shared/audio-control.service';
 import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'player',
@@ -17,7 +18,7 @@ import { AppService } from '../shared/app.service';
           <p class="search__artist" id="playerArtist">
             {{ currentSong?.artist }}
           </p>
-          <span class="player__mov"></span>
+          <span [style.width.%]="movElement" class="player__mov"></span>
         </div>
       </div>
       <ul class="player__icons">
@@ -31,12 +32,12 @@ import { AppService } from '../shared/app.service';
             <use xlink:href="/assets/img/sprite.svg#icon-previous"></use>
           </svg>
         </li>
-        <li (click)="playAudio()">
-          <svg class="player__icon" id="play">
+        <li>
+          <svg *ngIf="!isplayed" (click)="playAudio()" class="player__icon">
             <use xlink:href="/assets/img/sprite.svg#icon-play2"></use>
           </svg>
 
-          <svg class="player__icon hidden" id="pause">
+          <svg *ngIf="isplayed" (click)="pauseAudio()" class="player__icon">
             <use xlink:href="/assets/img/sprite.svg#icon-pause"></use>
           </svg>
         </li>
@@ -45,11 +46,6 @@ import { AppService } from '../shared/app.service';
             <use xlink:href="/assets/img/sprite.svg#icon-next"></use>
           </svg>
         </li>
-        <!-- <li>
-          <svg class="player__icon">
-            <use xlink:href="assets/img/sprite.svg#icon-download"></use>
-          </svg>
-        </li> -->
       </ul>
     </div>
 
@@ -59,8 +55,14 @@ import { AppService } from '../shared/app.service';
 export class PlayerComponent implements OnInit {
   playerClicked: boolean = false;
   songs: ISongs[] = [];
-  currentSongIndex: number = 0;
+  currentSindex: number = 0;
   currentSong: ISongs | undefined;
+  isplayed: boolean = false;
+  movElement: any;
+  dur: any;
+  // @Input() playingSong() {
+  //   this.currentSong
+  // }
 
   constructor(
     private audioService: AudioService,
@@ -69,7 +71,12 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     this.songs = this.appService.getSongs();
+    this.dur = this.audioService.getDuration();
+    console.log(this.dur);
+
     this.loadCurrentSong();
+    this.movElement = this.audioService.getMov();
+    console.log(this.movElement);
   }
 
   isplayerClicked() {
@@ -79,24 +86,34 @@ export class PlayerComponent implements OnInit {
   playAudio() {
     if (this.currentSong) {
       this.audioService.playSong(this.currentSong);
-      console.log('Is Playing:', this.currentSong.title);
+      this.isplayed = true;
+      this.audioService.getDuration();
+    }
+    // if songplayed = display pause btn.
+    // that means that pause will be hidden unless song is played
+  }
+
+  pauseAudio() {
+    if (this.currentSong) {
+      this.audioService.pauseSong(this.currentSong);
+      this.isplayed = false;
     }
   }
 
   nextSong() {
-    this.currentSongIndex = (this.currentSongIndex + 1) % this.songs.length;
+    this.currentSindex = (this.currentSindex + 1) % this.songs.length;
     this.loadCurrentSong();
     this.playAudio();
   }
 
   previousSong() {
-    this.currentSongIndex =
-      (this.currentSongIndex - 1 + this.songs.length) % this.songs.length;
+    this.currentSindex =
+      (this.currentSindex - 1 + this.songs.length) % this.songs.length;
     this.loadCurrentSong();
+    this.playAudio();
   }
 
   private loadCurrentSong() {
-    this.currentSong = this.songs[this.currentSongIndex];
+    this.currentSong = this.songs[this.currentSindex];
   }
-
 }

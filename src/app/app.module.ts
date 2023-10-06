@@ -20,6 +20,7 @@ import { PlaylistRouteResolver } from './userpage/playlists/playlist-route-resol
 import { PlaylistList } from './userpage/playlists/playlist-list.component';
 import { ScrollDirective } from './nav/scroll.directive';
 import { AudioService } from './shared/audio-control.service';
+import { FormatTimePipe } from './shared/time-format.pipe';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +43,7 @@ import { PlayingComponent } from './userpage/player/playing.component';
     PlaylistList,
     ScrollDirective,
     PlayingComponent,
+    FormatTimePipe,
   ],
   imports: [
     BrowserModule,

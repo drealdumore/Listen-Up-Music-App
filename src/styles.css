@@ -60,20 +60,21 @@ button {
 .search__input {
   font-size: inherit;
   text-align: left;
-  color: #fff;
+  color: #d8d6d6;
   background-color: rgba(18, 18, 18, 0.605);
   border: none;
-  padding: 0.7rem 2.3rem;
+  padding: 0.7rem;
   border-radius: 10px;
-  width: 50%;
+  width: 70%;
   text-transform: capitalize;
   margin-left: -3.5rem;
   transition: all 0.2s;
+  caret-color: #a49999;
 }
 
 .search__input:focus {
   outline: #a49999 solid 1px;
-  width: 55%;
+  width: 75%;
 }
 
 .search__btn {
