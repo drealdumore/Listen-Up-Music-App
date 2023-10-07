@@ -52,7 +52,7 @@
       (mouseenter)="mouseoverLogin = true"
       (mouseleave)="mouseoverLogin = false"
     >
-      <button [disabled]="loginForm.invalid" class="input__btn">
+      <button [disabled]="!loginForm.valid" class="input__btn">
         Sign in ➡
       </button>
     </span>

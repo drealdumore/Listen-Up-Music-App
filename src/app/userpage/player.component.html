@@ -1,0 +1,126 @@
+<div class="player">
+  <div class="player-main" (click)="isplayerClicked()">
+    <figure class="player__fig">
+      <img
+        [src]="currentSong?.img"
+        class="player__img"
+        alt="{{ currentSong?.title }}"
+      />
+    </figure>
+
+    <div class="player__data">
+      <h4 class="search__name" id="playerName">{{ currentSong?.title }}</h4>
+      <p class="search__artist" id="playerArtist">
+        {{ currentSong?.artist }}
+      </p>
+      <span [style.width.%]="movElement" class="player__mov"></span>
+      <span class="player__mover"></span>
+    </div>
+  </div>
+  <ul class="player__icons">
+    <li>
+      <svg class="player__icon heart-icon2">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+      </svg>
+    </li>
+    <li (click)="previousSong()">
+      <svg class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-previous"></use>
+      </svg>
+    </li>
+    <li>
+      <svg *ngIf="!isplayed" (click)="playAudio()" class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-play2"></use>
+      </svg>
+
+      <svg *ngIf="isplayed" (click)="pauseAudio()" class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-pause"></use>
+      </svg>
+    </li>
+    <li (click)="nextSong()">
+      <svg class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-next"></use>
+      </svg>
+    </li>
+  </ul>
+</div>
+
+<div class="play-active" *ngIf="playerClicked">
+  <div class="playing">
+    <div class="playing__header">
+      <span class="playing_close" (click)="hidePlaying()">
+        <svg class="menu-icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+        </svg>
+      </span>
+      <figure>
+        <h4 class="search__name">Playing from Playlist</h4>
+        <p class="search__artist">{{ currentSong?.playlist_id }}</p>
+      </figure>
+      <span class="menu">
+        <svg class="menu-icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-music-playlist"></use>
+        </svg>
+      </span>
+    </div>
+
+    <div class="playing-view">
+      <img
+        [src]="currentSong?.img"
+        class="player__img"
+        alt="{{ currentSong?.title }}"
+        class="playing-img"
+      />
+    </div>
+    <div class="playing__body">
+      <div class="player__data">
+        <h4 class="playing__name">{{ currentSong?.title }}</h4>
+        <p class="playing__artist">{{ currentSong?.artist }}</p>
+      </div>
+      <svg class="heart-icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+      </svg>
+    </div>
+
+    <div class="movement">
+      <span class="playing__mover"></span>
+      <div  [style.width.%]="playingMov" class="movement__progress"></div>
+      <div class="time">
+        <span id="current">0:00</span>
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+    <ul class="playing__icons">
+      <li>
+        <svg class="playing__icon--small">
+          <use xlink:href="/assets/img/sprite.svg#icon-shuffle"></use>
+        </svg>
+      </li>
+      <li (click)="previousSong()">
+        <svg class="playing__icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-previous"></use>
+        </svg>
+      </li>
+      <li>
+        <svg *ngIf="!isplayed" class="playing__icon" (click)="playAudio()">
+          <use xlink:href="/assets/img/sprite.svg#icon-play2"></use>
+        </svg>
+        <svg *ngIf="isplayed" (click)="pauseAudio()" class="playing__icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-pause"></use>
+        </svg>
+      </li>
+      <li (click)="nextSong()">
+        <svg class="playing__icon" id="next">
+          <use xlink:href="/assets/img/sprite.svg#icon-next"></use>
+        </svg>
+      </li>
+      <li>
+        <svg class="playing__icon--small">
+          <use xlink:href="/assets/img/sprite.svg#icon-loop"></use>
+        </svg>
+      </li>
+    </ul>
+  </div>
+
+  <div class="playing-overlay"></div>
+</div>

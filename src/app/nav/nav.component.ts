@@ -58,7 +58,9 @@ export class NavComponent {
     this.router.navigate(['/auth']);
   }
 
-  goToSignIn() {}
+  goToSignIn() {
+    this.router.navigate(['/auth']);
+  }
 }
 
 

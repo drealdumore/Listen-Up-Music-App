@@ -650,10 +650,19 @@ span {
   bottom: 9px;
   left: 4px;
   height: 2px;
-  width: 30%;
+  z-index: 1;
   background: linear-gradient(to right, #a49999, #fff);
 }
 
+.player__mover {
+  position: absolute;
+  bottom: 9px;
+  left: 4px;
+  height: 2px;
+  width: 98%;
+  /* background: linear-gradient(to right, #a49999, #fff); */
+  background-color: #797373;
+}
 .playing {
   position: fixed;
   top: 50%;
@@ -763,12 +772,20 @@ span {
   border-radius: 0.7rem;
 }
 
+.playing__mover {
+  position: absolute;
+  height: 2px;
+  width: 86%;
+  background-color: #797373;
+}
+
 .movement__progress {
   position: absolute;
-  height: 1px;
-  max-width: 87%;
+  height: 2px;
+  max-width: 86%;
   width: 0;
   background: linear-gradient(to right, #a49999, #fff);
+  z-index: 1;
 }
 
 .time {

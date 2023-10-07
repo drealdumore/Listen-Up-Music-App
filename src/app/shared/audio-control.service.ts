@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
 import { ISongs } from './app.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AudioService {
   private currentAudio: HTMLAudioElement | null = null;
+  public playingSongCurrentTime: Subject<number> = new Subject();
+  public playerSongProgress = this.playingSongCurrentTime.pipe(
+    map((currentTime) => {
+      const currentAudio = this.currentAudio?.duration || 0;
+      return (currentTime / currentAudio) * 98;
+    })
+  );
 
-  current: number = 0;
-  duration: number = 0;
-  index: number = 0;
-  songs: ISongs[] = [];
+  public playingSongProgress = this.playingSongCurrentTime.pipe(
+    map((currentTime) => {
+      const currentAudio = this.currentAudio?.duration || 0;
+      return (currentTime / currentAudio) * 86;
+    })
+  );
 
+  public current: number = 0;
+  public duration: number = 0;
+  public index: number = 0;
+  public songs: ISongs[] = [];
+
+  
   playSong(song: ISongs) {
-    this.pauseSong(song);
+    this.pauseSong();
     this.currentAudio = new Audio(song.path);
     this.currentAudio.play();
+    this.startUpdatingSongCurrent();
   }
 
-  pauseSong(song: ISongs) {
+  pauseSong() {
     if (this.currentAudio) {
       this.currentAudio.pause();
       this.currentAudio = null;
@@ -50,15 +66,27 @@ export class AudioService {
         if (this.currentAudio) {
           let currentTime = +this.formatTime(this.currentAudio.currentTime);
           this.current = currentTime;
-          console.log('current time:', currentTime);
+          // console.log('current time:', currentTime);
 
           if (!isNaN(this.currentAudio.duration)) {
             let duration = +this.formatTime(this.currentAudio.duration);
             this.duration = duration;
-            console.log('duration time:', duration);
+            // console.log('duration time:', duration);
           }
         }
       });
+    }
+  }
+
+  /**
+   * startUpdatingSongCurrent
+   */
+  
+  public startUpdatingSongCurrent() {
+    if (this.currentAudio) {
+      this.currentAudio.ontimeupdate = (data) => {
+        this.playingSongCurrentTime.next(this.currentAudio?.currentTime || 0);
+      };
     }
   }
 

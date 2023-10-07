@@ -5,6 +5,11 @@
 /tmp
 /out-tsc
 /bazel-out
+/.angular
+/.vscode
+
+tsconfig.json
+tsconfig.spec.json
 
 # Node
 /node_modules
@@ -14,6 +19,8 @@ yarn-error.log
 # IDEs and editors
 .idea/
 .project
+.angular
+.vscode
 .classpath
 .c9/
 *.launch
@@ -27,6 +34,7 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+.editorconfig
 
 # Miscellaneous
 /.angular/cache
