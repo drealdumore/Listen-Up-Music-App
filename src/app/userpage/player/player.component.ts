@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AudioService } from '../shared/audio-control.service';
-import { ISongs } from '../shared/app.model';
-import { AppService } from '../shared/app.service';
+import { AudioService } from '../../shared/audio-control.service';
+import { ISongs } from '../../shared/app.model';
+import { AppService } from '../../shared/app.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,6 +17,8 @@ export class PlayerComponent implements OnInit {
   public isplayed: boolean = false;
   public movElement: number = 0;
   public playingMov: number = 0;
+  public current: number = 0;
+  public duration: number = 0;
 
   constructor(
     private audioService: AudioService,
@@ -27,9 +29,13 @@ export class PlayerComponent implements OnInit {
     this.songs = this.appService.getSongs();
     this.loadCurrentSong();
 
-    // this.audioService.playingSongCurrentTime.subscribe((playingSongCurrentTime) => {
-    //   console.log({ id: '❣💛 playingSongCurrentTime 🧡', playingSongCurrentTime });
-    // });
+    this.audioService.playingSongCurrentTime.subscribe((playingSongCurrentTime) => {
+      this.current = playingSongCurrentTime;
+    });
+
+    this.audioService.getDuration.subscribe((playingSongDuration) => {
+      this.duration = playingSongDuration;
+    });
 
     this.audioService.playerSongProgress.subscribe((playerSongProgress) => {
       this.movElement = playerSongProgress;

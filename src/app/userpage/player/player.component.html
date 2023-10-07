@@ -86,8 +86,8 @@
       <span class="playing__mover"></span>
       <div  [style.width.%]="playingMov" class="movement__progress"></div>
       <div class="time">
-        <span id="current">0:00</span>
-        <span id="duration">0:00</span>
+        <span id="current">{{current | formatTime}}</span>
+        <span id="duration">{{duration | formatTime}}</span>
       </div>
     </div>
     <ul class="playing__icons">

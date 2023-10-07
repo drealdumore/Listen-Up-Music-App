@@ -7,7 +7,7 @@ import { ModalComponent } from './modal/modal.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './404.component';
-import { PlayerComponent } from './userpage/player.component';
+import { PlayerComponent } from './userpage/player/player.component';
 import { LikesComponent } from './userpage/likes.component';
 import { HistoryComponent } from './userpage/history.component';
 import { AppService } from './shared/app.service';
