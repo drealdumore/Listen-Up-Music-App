@@ -24,7 +24,6 @@ import { FormatTimePipe } from './shared/time-format.pipe';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { PlayingComponent } from './userpage/player/playing.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreatePlaylist,
     PlaylistList,
     ScrollDirective,
-    // PlayingComponent,
     FormatTimePipe,
   ],
   imports: [
