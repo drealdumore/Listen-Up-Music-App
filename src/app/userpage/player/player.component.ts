@@ -29,9 +29,11 @@ export class PlayerComponent implements OnInit {
     this.songs = this.appService.getSongs();
     this.loadCurrentSong();
 
-    this.audioService.playingSongCurrentTime.subscribe((playingSongCurrentTime) => {
-      this.current = playingSongCurrentTime;
-    });
+    this.audioService.playingSongCurrentTime.subscribe(
+      (playingSongCurrentTime) => {
+        this.current = playingSongCurrentTime;
+      }
+    );
 
     this.audioService.getDuration.subscribe((playingSongDuration) => {
       this.duration = playingSongDuration;

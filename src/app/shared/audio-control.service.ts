@@ -47,23 +47,30 @@ export class AudioService {
 
   // if there's no song playing, start new song
   // else continue playing the old one
-  public playSong(song: ISongs) {
-    if (!this.currentAudio) {
-      this.currentAudio = new Audio(song.path);
-      this.currentAudio.play();
-      this.startUpdatingSongCurrent();
-    } else {
-      this.currentAudio.play();
+  playSong(song: ISongs) {
+    if (this.currentAudio) {
+      this.pauseSong();
     }
+    this.currentAudio = new Audio(song.path);
+    this.currentAudio.play();
+    this.startUpdatingSongCurrent();
+
+    // if (!this.currentAudio) {
+    //   this.currentAudio = new Audio(song.path);
+    //   this.currentAudio.play();
+    //   this.startUpdatingSongCurrent();
+    // } else {
+    //   this.currentAudio.play();
+    // }
   }
 
-  public pauseSong() {
+  pauseSong() {
     if (this.currentAudio) {
       this.currentAudio.pause();
     }
   }
 
-  public nextSong() {
+  nextSong() {
     if (this.index < this.songs.length - 1) {
       this.index++;
     } else {
@@ -72,7 +79,7 @@ export class AudioService {
     this.playSong(this.songs[this.index]);
   }
 
-  public prevSong() {
+  prevSong() {
     if (this.index > 0) {
       this.index--;
     } else {

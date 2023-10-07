@@ -23,13 +23,13 @@ export class PlaylistComponent implements OnInit {
     let salutation;
     if (hours >= 5 && hours < 12) {
       // salutation = `Good Morning, ${activeUser.user}`;
-      salutation = `Good Morning, Saint`;
+      salutation = `Good Morning`;
     } else if (hours > 12 && hours < 18) {
       // salutation = `Good afternoon, ${activeUser.user}`;
-      salutation = `Good afternoon, Saint`;
+      salutation = `Good afternoon`;
     } else {
       // salutation = `Good evening, ${activeUser.user}`;
-      salutation = `Good evening, Saint`;
+      salutation = `Good evening`;
     }
     return salutation;
   }
