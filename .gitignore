@@ -7,9 +7,9 @@
 /bazel-out
 /.angular
 /.vscode
+.git
 
-tsconfig.json
-tsconfig.spec.json
+
 
 # Node
 /node_modules
