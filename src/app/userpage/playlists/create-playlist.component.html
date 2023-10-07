@@ -1,122 +1,172 @@
 <div class="userPage">
-    <navigation></navigation>
-  
-    <main class="flex">
-      <div class="navigation">
-        <!-- <div class="user">
+  <navigation></navigation>
+
+  <main class="flex">
+    <div class="navigation">
+      <!-- <div class="user">
             <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
             <h4 class="user__name">Mikel</h4>
           </div> -->
-  
-        <div class="small">
-          <h2 class="small__p">Create your first playlist</h2>
-          <button class="small__btn">Create playlist</button>
-        </div>
-  
-        <nav class="sidenav">
-          <ul class="nav">
-            <li class="nav__item nav__item--active" [routerLink]="['/playlist']">
-              <a class="nav__link" routerLinkActive="navActive">
-                <svg class="nav__icon">
-                  <use
-                    xlink:href="/assets/img/sprite.svg#icon-music-playlist"
-                  ></use>
-                </svg>
-                <span>Playlist</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/404']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-paperclip"></use>
-                </svg>
-                <span>category</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/liked-songs']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
-                </svg>
-                <span>likes</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/history']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-reload"></use>
-                </svg>
-                <span>history</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/404']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
-                </svg>
-                <span>downloads</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/404']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-star"></use>
-                </svg>
-                <span>favourite</span>
-              </a>
-            </li>
-  
-            <li class="nav__item" [routerLink]="['/404']">
-              <a class="nav__link">
-                <svg class="nav__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-credit-card"></use>
-                </svg>
-                <span>subscription</span>
-              </a>
-            </li>
-          </ul>
-  
-          <div class="legal">
-            <p>© Copyright by Saint.</p>
-          </div>
-        </nav>
+
+      <div class="small">
+        <h2 class="small__p">Create your first playlist</h2>
+        <button class="small__btn">Create playlist</button>
       </div>
-  
-      <div class="home_">
-        <div>
-          <div>
-            <button class="close__btn" [routerLink]="['/playlist']">
-              <svg class="menu-icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+
+      <nav class="sidenav">
+        <ul class="nav">
+          <li class="nav__item nav__item--active" [routerLink]="['/playlist']">
+            <a class="nav__link" routerLinkActive="navActive">
+              <svg class="nav__icon">
+                <use
+                  xlink:href="/assets/img/sprite.svg#icon-music-playlist"
+                ></use>
               </svg>
+              <span>Playlist</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-paperclip"></use>
+              </svg>
+              <span>category</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/liked-songs']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+              </svg>
+              <span>likes</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/history']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-reload"></use>
+              </svg>
+              <span>history</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
+              </svg>
+              <span>downloads</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-star"></use>
+              </svg>
+              <span>favourite</span>
+            </a>
+          </li>
+
+          <li class="nav__item" [routerLink]="['/404']">
+            <a class="nav__link">
+              <svg class="nav__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-credit-card"></use>
+              </svg>
+              <span>subscription</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="legal">
+          <p>© Copyright by Saint.</p>
+        </div>
+      </nav>
+    </div>
+
+    <div class="home_">
+      <div>
+        <div>
+          <button class="close__btn" [routerLink]="['/playlist']">
+            <svg class="menu-icon">
+              <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+            </svg>
+          </button>
+          <div class="top__container">
+            <div class="top__fig--container">
+              <svg class="top__fig">
+                <use
+                  xlink:href="/assets/img/sprite.svg#icon-music-playlist"
+                ></use>
+              </svg>
+            </div>
+            <div class="header__container">
+              <p>Playlist</p>
+              <h4
+                class="header__heading"
+                [style.cursor]="'pointer'"
+                (click)="renamePlaylist()"
+              >
+                {{ name }}
+              </h4>
+              <p>{{ description }}</p>
+            </div>
+          </div>
+          <ul class="playlist__list" style="padding: 0">
+            <li></li>
+          </ul>
+        </div>
+
+        <div class="create__name--container" *ngIf="titleIsClicked">
+          <div class="create__name">
+            <h2 class="create__name--heading">Edit details</h2>
+            <button class="create__name--close" (click)="closeRenamePlaylist()">
+              &times;
             </button>
-            <div class="top__container">
-              <div class="top__fig--container">
-                <svg class="top__fig">
+            <div class="create__name--flex">
+              <div class="create__name---img-container">
+                <svg class="create__name---svg">
                   <use
                     xlink:href="/assets/img/sprite.svg#icon-music-playlist"
                   ></use>
                 </svg>
               </div>
-              <div class="header__container">
-                <p>Playlist</p>
-                <h4 class="header__heading">my playlist #1</h4>
-                <p>Playlist Description</p>
-              </div>
+
+              <form class="create__name---form" [formGroup]="changeName">
+                <label class="create__name---name-label">Name</label>
+
+                <input
+                  formControlName="name"
+                  maxlength="9"
+                  class="create__name---name-input"
+                  type="text"
+                  placeholder="My playlist #1"
+                />
+
+                <label class="create__name---description-label"
+                  >Description</label
+                >
+
+                <textarea
+                  placeholder="Add an optional description"
+                  formControlName="description"
+                >
+                </textarea>
+                <span> </span>
+              </form>
             </div>
-            <ul class="playlist__list" style="padding: 0">
-              <li></li>
-            </ul>
+            <button class="bn5" (click)="saveName(changeName.value)">
+              Save
+            </button>
           </div>
+          <div class="overlay"></div>
         </div>
       </div>
-  
-      <player></player>
-    </main>
-  </div>
-  
+    </div>
+
+    <player></player>
+  </main>
+</div>
