@@ -11,13 +11,25 @@ import { Router } from '@angular/router';
         <button class="search__btn">&rarr;</button>
       </form>
 
-      <nav *ngIf="isAuthenticated" class="user-nav">
-        <div class="user">
+      <nav class="user-nav">
+        <div class="user" (mouseenter)="visible()" (mouseleave)="notvisible()">
           <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
+
+          <div *ngIf="isVisible" class="display">
+            <h4 class="display__salute">Yo! Wazzup!</h4>
+            <ul class="display__links">
+              <li class="display__link">profile</li>
+              <li class="display__link">settings</li>
+              <li class="display__link">support</li>
+              <li class="display__link">download</li>
+            </ul>
+            <hr />
+            <button class="display__close">Log Out</button>
+          </div>
         </div>
       </nav>
 
-      <div class="navbtns">
+      <div *ngIf="isAuthenticated" class="navbtns">
         <button class="nb signupbtn" (click)="goToSignUp()">Sign Up</button>
         <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
       </div>
@@ -49,32 +61,44 @@ import { Router } from '@angular/router';
     `,
   ],
 })
-
 export class NavComponent {
   isAuthenticated: boolean = false;
+  isVisible: boolean = false;
   constructor(private router: Router) {}
 
   goToSignUp() {
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/auth/signup']);
   }
 
   goToSignIn() {
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/auth/login']);
+  }
+
+  // if mouseover on img, add visible class to display
+  // if mouse out, add notvisible
+
+  visible() {
+    setTimeout(() => {
+      this.isVisible = true;
+    }, 200);
+  }
+
+  notvisible() {
+    setTimeout(() => {
+      this.isVisible = false;
+    }, 200);
   }
 }
-
 
 class Likes {
   //         constructor() {
   //           this.likes = [];
   //         }
-        
   //         addLike(id, title, artist, img) {
   //           const like = { id, title, artist, img };
   //           this.likes.push(like);
   //           return like;
   //         }
-        
   //         deleteLike(id) {
   //           const index = this.likes.findIndex((el) => el.id === id);
   //           this.likes.splice(index, 1);
@@ -88,28 +112,20 @@ class Likes {
   //         //   return this.likes.length;
   //         // }
   //       }
-        
   //       // LIKE CONTROLLER
   //       const myLikes = new Likes();
-        
   //       const toggleLikeBtn = (songId) => {
   //         const iconString = myLikes.isLiked(songId) ? "icon-heart1" : "icon-heart";
   //         document
   //           .querySelector(".heart-icon use")
   //           .setAttribute("href", `img/sprite.svg#${iconString}`);
-        
   //         document
   //           .querySelector(".heart-icon2 use")
   //           .setAttribute("href", `img/sprite.svg#${iconString}`);
   //       };
-  
-  
-        
   // const controlLike = () => {
   //     const currentID = currentSong.id;
-    
   //     // console.log({id: '❤✔', currentID});
-    
   //     // user has not yet liked current song
   //     if (!myLikes.isLiked(currentID)) {
   //       // add like to array
@@ -119,26 +135,20 @@ class Likes {
   //         currentSong.artist,
   //         currentSong.img
   //       );
-    
   //       // toggle like button
   //       toggleLikeBtn(currentID);
-    
   //       // add like to ui
   //       renderLike(newLike);
-    
   //       // user has liked current song
   //     } else {
   //       // remove like from array
   //       myLikes.deleteLike(currentID);
-    
   //       // toggle like button
   //       toggleLikeBtn(currentID);
-    
   //       // remove like from ui
   //       deleteLike(currentID);
   //     }
   //   };
-    
   //   window.addEventListener("click", (e) => {
   //     if (
   //       e.target.matches(".heart-icon, .heart-icon *, .heart-icon2, .heart-icon2 *")
@@ -146,14 +156,12 @@ class Likes {
   //       controlLike();
   //     }
   //   });
-    
   //   const deleteLike = (id) => {
   //     const el = document.querySelector(
   //       `.likes__link[href*="${id}"]`
   //     ).parentElement;
   //     if (el) el.parentElement.removeChild(el);
   //   };
-    
   //   const renderLike = (currentSong) => {
   //     const markup = `
   //        <li rel="${currentSong.id}" class="likeli">
@@ -173,7 +181,6 @@ class Likes {
   //     `;
   //     likesList.insertAdjacentHTML("beforeend", markup);
   //   };
-    
   //   likesList.addEventListener("click", (e) => {
   //     if (e.target.matches(".likeli")) {
   //       e.preventDefault();
@@ -181,5 +188,4 @@ class Likes {
   //       active(songId);
   //     }
   //   });
-    
-}  
+}

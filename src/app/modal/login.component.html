@@ -1,7 +1,7 @@
-<div *ngIf="!hasAccount" class="modal">
+<div class="modal">
   <button (click)="closeModal()" class="btn--close-modal">&times;</button>
   <h2 class="modal__header">Sign in to listen for free</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()" class="modal__form">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="modal__form">
     <div>
       <label>Email Address</label>
       <em
@@ -35,7 +35,6 @@
         class="error"
         ><i>Required</i></em
       >
-      
     </div>
     <input
       [ngClass]="{
@@ -59,53 +58,6 @@
   </form>
   <button class="su" (click)="goToSignUp()">Don't have an account?</button>
 </div>
-
-<div *ngIf="hasAccount" class="modal">
-  <button (click)="closeModal()" class="btn--close-modal">&times;</button>
-  <h2 class="modal__header">Sign Up to get started</h2>
-  <form [formGroup]="signUpForm" (ngSubmit)="submit()" class="modal__form">
-    <div>
-      <label>Email Address</label>
-      <em
-        *ngIf="
-          signUpForm.controls['userMail']?.invalid &&
-          signUpForm.controls['userMail']?.touched
-        "
-        class="error"
-        ><i>*Required</i></em
-      >
-    </div>
-    <input formControlName="userMail" type="email" class="input__user" />
-
-    <div>
-      <label>What should we call you?</label>
-      <em
-        *ngIf="
-          signUpForm.controls['nickName']?.invalid &&
-          signUpForm.controls['nickName']?.touched
-        "
-        class="option"
-        ><i>*Optional</i></em
-      >
-    </div>
-    <input formControlName="nickName" type="text" class="input__user" />
-    <div>
-      <label>Password</label>
-      <em
-        *ngIf="
-          signUpForm.controls['userKey']?.invalid &&
-          signUpForm.controls['userKey']?.touched
-        "
-        class="error"
-        ><i>*Required</i></em
-      >
-    </div>
-    <input formControlName="userKey" type="password" class="input__pin" />
-    <button class="input__btn">Sign Up ➡</button>
-  </form>
-  <button class="su" (click)="goToLogin()">Already have an account?</button>
-</div>
-
 <div class="overlay">
   <img src="/assets/img/logo.png" alt="" class="logo" />
   <figure class="notification hidden">

@@ -52,6 +52,7 @@ export class AudioService {
       this.pauseSong();
     }
     this.currentAudio = new Audio(song.path);
+    
     this.currentAudio.play();
     this.startUpdatingSongCurrent();
 
@@ -86,5 +87,13 @@ export class AudioService {
       this.index = this.songs.length - 1;
     }
     this.playSong(this.songs[this.index]);
+  }
+
+  public seekTo(percentage: number) {
+    if (this.currentAudio) {
+      const newTime = (percentage / 100) * (this.currentAudio.duration || 0);
+      this.currentAudio.currentTime = newTime;
+      this.playingSongCurrentTime.next(newTime);
+    }
   }
 }

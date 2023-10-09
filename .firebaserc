@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "listen-up-2b3cf"
+  },
+  "targets": {
+    "listen-up-2b3cf": {
+      "hosting": {
+        "ANGULAR-PROJECT": [
+          "listen-up-2b3cf"
+        ]
+      }
+    }
+  }
+}
