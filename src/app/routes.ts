@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { PlaylistComponent } from './userpage/playlists/playlist.component';
 import { Error404Component } from './404.component';
 import { LikesComponent } from './userpage/likes.component';
@@ -11,7 +10,6 @@ import { LoginComponent } from './modal/login.component';
 import { SignupComponent } from './modal/signup.component';
 
 export const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'liked-songs', component: LikesComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/signup', component: SignupComponent },
