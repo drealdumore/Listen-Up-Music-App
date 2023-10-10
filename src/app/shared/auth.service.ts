@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private auth: Auth) {}
+  constructor(private router: Router, public auth: Auth) {}
 
   /// Login
   login(email: string, password: string) {
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   /// Register
-  reg(email: string, password: string) {
+  register(email: string, password: string) {
     createUserWithEmailAndPassword(this.auth, email, password)
       .then((response: any) => {
         // localStorage.setItem('token', 'true');
@@ -47,24 +47,6 @@ export class AuthService {
         alert(err.message);
       });
   }
-
-  public register(username: string, password: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      return createUserWithEmailAndPassword(this.auth, username, password)
-        .then((user) => resolve(user))
-        .catch((err) => reject(err));
-    });
-  }
-  // this.fireAuth.createUserWithEmailAndPassword(email, password).then(
-  //   () => {
-  //     alert('Registration Successful');
-  //     this.router.navigate(['/auth']);
-  //   },
-  //   (err) => {
-  //     alert(err.message);
-  //     this.router.navigate(['/auth']);
-  //   }
-  // );
 
   /// logout
   logout() {

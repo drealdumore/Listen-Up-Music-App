@@ -1,5 +1,6 @@
 <div class="player">
-  <div class="player-main" (click)="isplayerClicked()">
+  <!-- <div class="player-main" (click)="isplayerClicked()"> -->
+  <div class="player-main" (click)="numLikes()">
     <figure class="player__fig">
       <img
         [src]="currentSong?.img"
@@ -28,10 +29,13 @@
       <span class="player__mover"></span>
     </div>
   </div>
-  <ul class="player__icons">
+  <ul class="player__icons" (click)="getNumLikes()">
     <li>
-      <svg class="player__icon heart-icon2">
+      <svg *ngIf="!liked" class="player__icon" (like4toggle)="toggleLikes()" (click)="addLikes()" >
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+      </svg>
+      <svg *ngIf="liked" class="player__icon" (click)="deleteLikes()">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
       </svg>
     </li>
     <li (click)="previousSong()">
@@ -96,13 +100,7 @@
     <div class="movement">
       <!-- <span class="playing__mover"></span>
       <div [style.width.%]="playingMov" class="movement__progress"></div> -->
-      <input
-        [value]="movElement"
-        step="1"
-        type="range"
-        
-        class="move"
-      />
+      <input [value]="movElement" step="1" type="range" class="move" />
       <div class="time">
         <span id="current">{{ current | formatTime }}</span>
         <span id="duration">{{ duration | formatTime }}</span>

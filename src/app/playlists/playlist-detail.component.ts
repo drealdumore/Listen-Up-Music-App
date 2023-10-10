@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppService } from '../../shared/app.service';
+import { AppService } from '../shared/app.service';
 import { ActivatedRoute } from '@angular/router';
 import { ISongs } from 'src/app/shared/app.model';
 

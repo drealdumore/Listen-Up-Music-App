@@ -5,17 +5,17 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './404.component';
-import { PlayerComponent } from './userpage/player/player.component';
-import { LikesComponent } from './userpage/likes.component';
-import { HistoryComponent } from './userpage/history.component';
+import { PlayerComponent } from './player/player.component';
+import { LikesComponent } from './likes/likes.component';
+import { HistoryComponent } from './history/history.component';
 import { AppService } from './shared/app.service';
-import { PlaylistDetail } from './userpage/playlists/playlist-detail.component';
+import { PlaylistDetail } from './playlists/playlist-detail.component';
 import { NavComponent } from './nav/nav.component';
-import { PlaylistComponent } from './userpage/playlists/playlist.component';
+import { PlaylistComponent } from './playlists/playlist.component';
 import { ThumbnailComponent } from './userpage/thumbnail.component';
-import { CreatePlaylist } from './userpage/playlists/create-playlist.component';
-import { PlaylistRouteResolver } from './userpage/playlists/playlist-route-resolver.service';
-import { PlaylistList } from './userpage/playlists/playlist-list.component';
+import { CreatePlaylist } from './playlists/create-playlist.component';
+import { PlaylistRouteResolver } from './playlists/playlist-route-resolver.service';
+import { PlaylistList } from './playlists/playlist-list.component';
 import { ScrollDirective } from './nav/scroll.directive';
 import { AudioService } from './shared/audio-control.service';
 import { FormatTimePipe } from './shared/time-format.pipe';
@@ -30,6 +30,8 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ProfileComponent } from './user/profile.component';
 import { SettingsComponent } from './user/settings.component';
+import { LikesService } from './shared/likes.service';
+import { LikesList } from './likes/likes-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { SettingsComponent } from './user/settings.component';
     SignupComponent,
     ProfileComponent,
     SettingsComponent,
+    LikesList
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ import { SettingsComponent } from './user/settings.component';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [AppService, PlaylistRouteResolver, AudioService],
+  providers: [AppService, PlaylistRouteResolver, AudioService, LikesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

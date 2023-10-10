@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IPlaylist } from '../../shared/app.model';
-import { AppService } from '../../shared/app.service';
+import { IPlaylist } from '../shared/app.model';
+import { AppService } from '../shared/app.service';
 
 @Component({
   templateUrl: './playlist.component.html',

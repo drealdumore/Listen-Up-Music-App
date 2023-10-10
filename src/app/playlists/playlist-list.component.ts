@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ISongs } from 'src/app/shared/app.model';
-import { AppService } from 'src/app/shared/app.service';
 
 @Component({
   selector: 'song-list',
@@ -20,6 +19,4 @@ import { AppService } from 'src/app/shared/app.service';
 })
 export class PlaylistList {
   @Input() songs: ISongs[] = [];
-
-  constructor(private appService: AppService) {}
 }

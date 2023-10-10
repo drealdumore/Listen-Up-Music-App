@@ -4,7 +4,7 @@ import { IPlaylist, ISongs } from './app.model';
 @Injectable()
 export class AppService {
   getSongs(): ISongs[] {
-    const playlistSongs = playlists[5];
+    const playlistSongs = playlists[0];
     return playlistSongs ? playlistSongs.songs : [];
   }
 

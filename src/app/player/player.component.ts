@@ -1,19 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AudioService } from '../../shared/audio-control.service';
-import { ISongs } from '../../shared/app.model';
-import { AppService } from '../../shared/app.service';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { AudioService } from '../shared/audio-control.service';
+import { ISongs } from '../shared/app.model';
+import { AppService } from '../shared/app.service';
 import { Subscription } from 'rxjs';
+import { LikesService } from 'src/app/shared/likes.service';
 
 @Component({
   selector: 'player',
-
   templateUrl: './player.component.html',
 })
 export class PlayerComponent implements OnInit {
   public playerClicked: boolean = false;
   private songs: ISongs[] = [];
   private currentSindex: number = 0;
-  public currentSong: ISongs | undefined;
+  public currentSong: ISongs | any;
   public isplayed: boolean = false;
   public movElement: number = 0;
   // public progressEl: number = 0;
@@ -21,15 +21,23 @@ export class PlayerComponent implements OnInit {
   public current: number = 0;
   public duration: number = 0;
 
+  like4toggle = new EventEmitter() //  --togglelikes
+  liked: boolean = false; // song is liked --songisliked
+
   constructor(
     private audioService: AudioService,
-    private appService: AppService
+    private appService: AppService,
+    private likeService: LikesService
   ) {}
+
+onClick() {
+  this.like4toggle.emit({})
+}
 
   ngOnInit() {
     this.songs = this.appService.getSongs();
     this.loadCurrentSong();
-    this.setCurrentSong()
+    this.setCurrentSong();
 
     // to get song currents
     this.audioService.playingSongCurrentTime.subscribe(
@@ -87,7 +95,7 @@ export class PlayerComponent implements OnInit {
     this.currentSindex = (this.currentSindex + 1) % this.songs.length;
     this.loadCurrentSong();
     this.pauseAudio();
-    this.setCurrentSong()
+    this.setCurrentSong();
     this.playAudio();
   }
 
@@ -96,7 +104,7 @@ export class PlayerComponent implements OnInit {
       (this.currentSindex - 1 + this.songs.length) % this.songs.length;
     this.loadCurrentSong();
     this.pauseAudio();
-    this.setCurrentSong()
+    this.setCurrentSong();
     this.playAudio();
   }
 
@@ -121,5 +129,46 @@ export class PlayerComponent implements OnInit {
     } else {
       console.error('Audio duration not available. Unable to seek.');
     }
+  }
+
+  addLikes() {
+    const song: ISongs = this.currentSong;
+    this.likeService.newLike(song);
+    console.log('Added like:', song);
+    this.liked = true;
+  }
+  
+  deleteLikes() {
+    const song: ISongs = this.currentSong;
+    this.likeService.removeLike(song.id);
+    console.log('Deleted like:', song);
+    this.liked = false;
+  }
+
+  getNumLikes() {
+    this.likeService.getNumLikes();
+  }
+
+  // toggleLikes(song: ISongs) {
+  //   if (this.songIsLiked(song)) {
+  //     this.likeService.removeLike(song.id);
+  //   } else {
+  //     this.likeService.newLike(song);
+  //   }
+  // }
+
+
+  toggleLikes() {
+    const song: ISongs = this.currentSong;
+    this.likeService.toggleLikes(song);
+    console.log('toogling');
+    
+  }
+
+  songIsLiked(song: ISongs) {
+    return this.likeService.songIsLiked(song);
+  }
+  numLikes() {
+    this.likeService.getNumLikes()
   }
 }

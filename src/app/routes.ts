@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { PlaylistComponent } from './userpage/playlists/playlist.component';
+import { PlaylistComponent } from './playlists/playlist.component';
 import { Error404Component } from './404.component';
-import { LikesComponent } from './userpage/likes.component';
-import { HistoryComponent } from './userpage/history.component';
-import { PlaylistDetail } from './userpage/playlists/playlist-detail.component';
-import { CreatePlaylist } from './userpage/playlists/create-playlist.component';
-import { PlaylistRouteResolver } from './userpage/playlists/playlist-route-resolver.service';
+import { LikesComponent } from './likes/likes.component';
+import { HistoryComponent } from './history/history.component';
+import { PlaylistDetail } from './playlists/playlist-detail.component';
+import { CreatePlaylist } from './playlists/create-playlist.component';
+import { PlaylistRouteResolver } from './playlists/playlist-route-resolver.service';
 import { LoginComponent } from './modal/login.component';
 import { SignupComponent } from './modal/signup.component';
 import { SettingsComponent } from './user/settings.component';
