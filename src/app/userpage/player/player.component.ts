@@ -29,6 +29,7 @@ export class PlayerComponent implements OnInit {
   ngOnInit() {
     this.songs = this.appService.getSongs();
     this.loadCurrentSong();
+    this.setCurrentSong()
 
     // to get song currents
     this.audioService.playingSongCurrentTime.subscribe(
@@ -61,8 +62,17 @@ export class PlayerComponent implements OnInit {
   // That means that pause svg will be hidden unless song is played
   public playAudio() {
     if (this.currentSong) {
-      this.audioService.playSong(this.currentSong);
+      this.audioService.playSong();
       this.isplayed = true;
+    }
+  }
+
+  /**
+   * setCurrentSong
+   */
+  public setCurrentSong() {
+    if (this.currentSong) {
+      this.audioService.setCurrentSong(this.currentSong);
     }
   }
 
@@ -76,6 +86,8 @@ export class PlayerComponent implements OnInit {
   public nextSong() {
     this.currentSindex = (this.currentSindex + 1) % this.songs.length;
     this.loadCurrentSong();
+    this.pauseAudio();
+    this.setCurrentSong()
     this.playAudio();
   }
 
@@ -83,6 +95,8 @@ export class PlayerComponent implements OnInit {
     this.currentSindex =
       (this.currentSindex - 1 + this.songs.length) % this.songs.length;
     this.loadCurrentSong();
+    this.pauseAudio();
+    this.setCurrentSong()
     this.playAudio();
   }
 
@@ -93,20 +107,19 @@ export class PlayerComponent implements OnInit {
   public hidePlaying() {
     this.playerClicked = false;
   }
-  
+
   // seekTo(value: number) {
   //   let pct = value / 100;
   //   this.audioService.seekTo((this.duration || 0) * pct);
   // }
 
   seekTo(value: number) {
-  if (this.duration) {
-    const pct = value / 100;
-    const seekTime = this.duration * pct;
-    this.audioService.seekTo(seekTime);
-  } else {
-    console.error("Audio duration not available. Unable to seek.");
+    if (this.duration) {
+      const pct = value / 100;
+      const seekTime = this.duration * pct;
+      this.audioService.seekTo(seekTime);
+    } else {
+      console.error('Audio duration not available. Unable to seek.');
+    }
   }
-}
-
 }

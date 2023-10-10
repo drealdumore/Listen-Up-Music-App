@@ -19,18 +19,17 @@ import { PlaylistList } from './userpage/playlists/playlist-list.component';
 import { ScrollDirective } from './nav/scroll.directive';
 import { AudioService } from './shared/audio-control.service';
 import { FormatTimePipe } from './shared/time-format.pipe';
-import { MaterialModule } from './material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginComponent } from './modal/login.component';
 import { SignupComponent } from './modal/signup.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { ProfileComponent } from './user/profile.component';
+import { SettingsComponent } from './user/settings.component';
 
 @NgModule({
   declarations: [
@@ -48,20 +47,19 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     ScrollDirective,
     FormatTimePipe,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    MaterialModule,
-    BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
   ],
   providers: [AppService, PlaylistRouteResolver, AudioService],
   bootstrap: [AppComponent],

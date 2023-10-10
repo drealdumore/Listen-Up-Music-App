@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
       <nav class="user-nav">
         <div class="user" (mouseenter)="visible()" (mouseleave)="notvisible()">
           <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
-
+          <!-- *ngIf="isVisible" -->
           <div *ngIf="isVisible" class="display">
             <h4 class="display__salute">Yo! Wazzup!</h4>
             <ul class="display__links">
-              <li class="display__link">profile</li>
-              <li class="display__link">settings</li>
-              <li class="display__link">support</li>
-              <li class="display__link">download</li>
+              <li [routerLink]="'/user/profile'" class="display__link">profile</li>
+              <li [routerLink]="'/user/settings'" class="display__link">settings</li>
+              <li [routerLink]="'/404'" class="display__link">support</li>
+              <li [routerLink]="'/404'" class="display__link">download</li>
             </ul>
             <hr />
             <button class="display__close">Log Out</button>

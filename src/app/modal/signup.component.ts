@@ -48,6 +48,9 @@ export class SignupComponent implements OnInit {
 
   submit() {
     // this.router.navigate(['/auth/login']);
-    this.authService.register(this.signUpForm.value)
+    // this.authService.register(this.signUpForm.value)
+    this.authService.register(this.userKey.value, this.userMail.value)
+    console.log(this.userKey.value, this.userMail.value)
+  
   }
 }

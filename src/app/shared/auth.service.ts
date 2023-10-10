@@ -13,8 +13,8 @@ export class AuthService {
   constructor(private router: Router, private auth: Auth) {}
 
   /// Login
-  login(value: any) {
-    signInWithEmailAndPassword(this.auth, value.email, value.password)
+  login(email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password)
       .then((response: any) => {
         // localStorage.setItem('token', 'true');
         console.log(response.user);
@@ -37,8 +37,8 @@ export class AuthService {
   }
 
   /// Register
-  register(value: any) {
-    createUserWithEmailAndPassword(this.auth, value.email, value.password)
+  reg(email: string, password: string) {
+    createUserWithEmailAndPassword(this.auth, email, password)
       .then((response: any) => {
         // localStorage.setItem('token', 'true');
         console.log(response.user);
@@ -46,18 +46,25 @@ export class AuthService {
       .catch((err) => {
         alert(err.message);
       });
-
-    // this.fireAuth.createUserWithEmailAndPassword(email, password).then(
-    //   () => {
-    //     alert('Registration Successful');
-    //     this.router.navigate(['/auth']);
-    //   },
-    //   (err) => {
-    //     alert(err.message);
-    //     this.router.navigate(['/auth']);
-    //   }
-    // );
   }
+
+  public register(username: string, password: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      return createUserWithEmailAndPassword(this.auth, username, password)
+        .then((user) => resolve(user))
+        .catch((err) => reject(err));
+    });
+  }
+  // this.fireAuth.createUserWithEmailAndPassword(email, password).then(
+  //   () => {
+  //     alert('Registration Successful');
+  //     this.router.navigate(['/auth']);
+  //   },
+  //   (err) => {
+  //     alert(err.message);
+  //     this.router.navigate(['/auth']);
+  //   }
+  // );
 
   /// logout
   logout() {

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.loginForm.value);
+    this.authService.login(this.userName.value, this.password.value);
   }
 
   closeModal() {

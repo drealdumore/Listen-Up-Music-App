@@ -47,22 +47,17 @@ export class AudioService {
 
   // if there's no song playing, start new song
   // else continue playing the old one
-  playSong(song: ISongs) {
-    if (this.currentAudio) {
-      this.pauseSong();
-    }
+
+  setCurrentSong(song: ISongs) {
     this.currentAudio = new Audio(song.path);
-    
+  }
+
+  playSong() {
+    if (!this.currentAudio) {
+      return;
+    }
     this.currentAudio.play();
     this.startUpdatingSongCurrent();
-
-    // if (!this.currentAudio) {
-    //   this.currentAudio = new Audio(song.path);
-    //   this.currentAudio.play();
-    //   this.startUpdatingSongCurrent();
-    // } else {
-    //   this.currentAudio.play();
-    // }
   }
 
   pauseSong() {
@@ -77,7 +72,7 @@ export class AudioService {
     } else {
       this.index = 0;
     }
-    this.playSong(this.songs[this.index]);
+    this.playSong();
   }
 
   prevSong() {
@@ -86,7 +81,7 @@ export class AudioService {
     } else {
       this.index = this.songs.length - 1;
     }
-    this.playSong(this.songs[this.index]);
+    this.playSong();
   }
 
   public seekTo(percentage: number) {

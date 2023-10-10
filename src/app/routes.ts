@@ -8,6 +8,8 @@ import { CreatePlaylist } from './userpage/playlists/create-playlist.component';
 import { PlaylistRouteResolver } from './userpage/playlists/playlist-route-resolver.service';
 import { LoginComponent } from './modal/login.component';
 import { SignupComponent } from './modal/signup.component';
+import { SettingsComponent } from './user/settings.component';
+import { ProfileComponent } from './user/profile.component';
 
 export const appRoutes: Routes = [
   { path: 'liked-songs', component: LikesComponent },
@@ -15,6 +17,8 @@ export const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'playlist', component: PlaylistComponent },
+  { path: 'user/settings', component: SettingsComponent },
+  { path: 'user/profile', component: ProfileComponent },
   { path: 'playlist/new', component: CreatePlaylist },
   {
     path: 'playlist/:id',
