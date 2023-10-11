@@ -29,19 +29,16 @@
     </div>
   </div>
   <ul class="player__icons">
+    <!-- <li (click)="toggleLikes()"> -->
     <li>
-      <svg class="player__icon" (click)="toggleLikes(this.currentSong)">
-        <use [attr.xlink:href]="'/assets/img/sprite.svg#' + (isLiked ? 'icon-heart' : 'icon-heart1')"></use>
-        <!-- <use [attr.xlink:href]="'/assets/img/sprite.svg#' + icons"></use> -->
-        <!-- <use xlink:href="/assets/img/sprite.svg#['liked']"></use> -->
-      </svg>
-      <!-- <svg *ngIf="!liked" class="player__icon" (click)="addLikes()">
+      <svg *ngIf="!liked" class="player__icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
-      </svg> -->
-      <!-- <svg *ngIf="liked" class="player__icon" (click)="deleteLikes()">
+      </svg>
+      <svg *ngIf="liked" class="player__icon" (click)="deleteLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
-      </svg> -->
+      </svg>
     </li>
+
     <li (click)="previousSong()">
       <svg class="player__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-previous"></use>

@@ -9,7 +9,6 @@ import { ISongs } from '../shared/app.model';
 })
 export class LikesComponent {
   title: string = 'Liked Songs';
-  currentPlaylist: any;
   likedSongs: ISongs[] = [];
 
   constructor(
@@ -19,10 +18,6 @@ export class LikesComponent {
   ) {}
 
   ngOnInit() {
-    this.currentPlaylist = this.appService.getPlaylist(
-      this.route.snapshot.params['id']
-    );
-    // this.likedSongs = this.likeService.getLikes()
     this.likedSongs = this.likeService.getLikes()
   }
 }

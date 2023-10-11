@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './login.component.html',
@@ -12,7 +13,11 @@ export class LoginComponent implements OnInit {
   private userName!: FormControl;
   private password!: FormControl;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     //Login Form
@@ -42,9 +47,11 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(userData)
       .then((res: any) => {
+        this.toastr.success('Login Successful!');
         this.router.navigate(['/playlist']);
       })
       .catch((error: any) => {
+        this.toastr.error('error');
         console.error(error);
       });
   }

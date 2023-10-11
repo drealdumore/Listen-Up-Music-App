@@ -14,14 +14,14 @@ export class PlayerComponent implements OnInit {
   public playerClicked: boolean = false;
   private songs: ISongs[] = [];
   private currentSindex: number = 0;
-  public currentSong: ISongs | any;
+  public currentSong!: ISongs;
   public isplayed: boolean = false;
   public movElement: number = 0;
   // public progressEl: number = 0;
   public playingMov: number = 0;
   public current: number = 0;
   public duration: number = 0;
-
+  liked: boolean = false;
 
 
   constructor(
@@ -29,7 +29,6 @@ export class PlayerComponent implements OnInit {
     private appService: AppService,
     private likeService: LikesService
   ) {}
-
 
   ngOnInit() {
     this.songs = this.appService.getSongs();
@@ -110,68 +109,33 @@ export class PlayerComponent implements OnInit {
     this.playerClicked = false;
   }
 
-  // seekTo(value: number) {
-  //   let pct = value / 100;
-  //   this.audioService.seekTo((this.duration || 0) * pct);
-  // }
-
   seekTo(value: number) {
-    if (this.duration) {
-      const pct = value / 100;
-      const seekTime = this.duration * pct;
-      this.audioService.seekTo(seekTime);
-    } else {
-      console.error('Audio duration not available. Unable to seek.');
-    }
+    const pct = value / 100;
+    this.audioService.seekTo((this.duration || 0) * pct);
   }
 
-
-
-  set liked(val: boolean) {
-    this.icons = val ? 'icon-heart1' : 'icon-heart1';
-  } // song is liked --songisliked
-  isLiked: Boolean = false  
-  icons: string = '';
-
   addLikes() {
-    const song: ISongs = this.currentSong;
-    this.likeService.newLike(song);
-    console.log('Added like:', song);
+    this.likeService.newLike(this.currentSong);
     this.liked = true;
-    localStorage.setItem('token', 'true');
+    this.songIsLiked();
   }
 
   deleteLikes() {
-    const song: ISongs = this.currentSong;
     this.likeService.removeLike(this.currentSong.id);
-    console.log('Deleted like:', song);
     this.liked = false;
-    this.likeService.getNumLikes();
+    this.songIsLiked();
   }
 
-  getNumLikes() {
-    this.likeService.getNumLikes();
-  }
-
-  toggleLikes(song: ISongs) {
-    if (this.songIsLiked(song)) {
-      this.likeService.removeLike(song.id);
+  toggleLikes() {
+    if (!this.songIsLiked()) {
+      this.addLikes();
     } else {
-      this.likeService.newLike(song);
+      this.deleteLikes();
     }
   }
 
-  // toggleLikes() {
-  //   const song: ISongs = this.currentSong;
-  //   this.likeService.toggleLikes(song);
-  //   console.log('toogling');
-  // }
 
-  songIsLiked(song: ISongs) {
-    return this.likeService.songIsLiked(song);
-  }
-
-  numLikes() {
-    this.likeService.getNumLikes();
+  songIsLiked() {
+    return this.likeService.songIsLiked(this.currentSong);
   }
 }

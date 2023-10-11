@@ -39,15 +39,18 @@
       >
     </div>
     <input formControlName="userKey" type="password" class="input__pin" />
-    <button class="input__btn">Sign Up ➡</button>
+    <button>Sign Up ➡</button>
   </form>
-  <button class="su" (click)="goToLogin()">Already have an account?<span>Sign in</span></button>
+  <button class="su" (click)="goToLogin()">
+    Already have an account?<span>Sign in</span>
+  </button>
 </div>
 
 <div class="overlay">
   <img src="/assets/img/logo.png" alt="" class="logo" />
-  <figure class="notification hidden">
-    <div class="notification__body">Successfully Registered! &#128640;</div>
-    <div class="notification__progress"></div>
-  </figure>
 </div>
+
+<figure class="notification hidden">
+  <div class="notification__body">Successfully Registered! &#128640;</div>
+  <div class="notification__progress"></div>
+</figure>
