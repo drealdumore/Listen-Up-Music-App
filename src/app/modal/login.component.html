@@ -51,12 +51,20 @@
       (mouseenter)="mouseoverLogin = true"
       (mouseleave)="mouseoverLogin = false"
     >
-      <button [disabled]="!loginForm.valid" class="input__btn">
-        Sign in ➡
-      </button>
+      <button [disabled]="!loginForm.valid">Sign in ➡</button>
     </span>
   </form>
-  <button class="su" (click)="goToSignUp()">Don't have an account?</button>
+  <button (click)="signInWithGoogle()" class="input__btn">
+    <img
+      src="assets/img/google-icon.svg"
+      alt="Google Icon"
+      style="height: 1.3rem"
+    />
+    Continue with Google
+  </button>
+  <button class="su" (click)="goToSignUp()">
+    Don't have an account?<span>Sign Up</span>
+  </button>
 </div>
 <div class="overlay">
   <img src="/assets/img/logo.png" alt="" class="logo" />

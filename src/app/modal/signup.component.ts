@@ -1,15 +1,12 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-import { NgClass } from '@angular/common';
 
 @Component({
   templateUrl: './signup.component.html',
 })
 export class SignupComponent implements OnInit {
-  email: string = '';
-  pass: string = '';
   signUpForm!: FormGroup;
   private userMail!: FormControl;
   private nickName!: FormControl;
@@ -19,9 +16,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     // Sign Up
-    this.userMail = new FormControl('', [
-      Validators.required,
-    ]);
+    this.userMail = new FormControl('', [Validators.required]);
     this.nickName = new FormControl(null, [Validators.required]);
     this.userKey = new FormControl(null, [
       Validators.required,
@@ -36,7 +31,7 @@ export class SignupComponent implements OnInit {
   }
 
   closeModal() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/playlist']);
   }
 
   goToLogin() {
@@ -45,10 +40,19 @@ export class SignupComponent implements OnInit {
     }, 200);
   }
 
-  submit() {
-    // this.router.navigate(['/auth/login']);
-    // this.authService.register(this.signUpForm.value)
-    this.authService.register(this.userKey.value, this.userMail.value);
-    console.log(this.userKey.value, this.userMail.value);
+  register() {
+    const userData = Object.assign(this.signUpForm.value, {
+      email: this.signUpForm.value.userMail,
+      password: this.signUpForm.value.userKey,
+    });
+
+    this.authService
+      .register(userData)
+      .then((res: any) => {
+        this.router.navigate(['/playlist']);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
   }
 }

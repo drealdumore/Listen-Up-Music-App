@@ -15,6 +15,9 @@ import { AppService } from 'src/app/shared/app.service';
           <p class="playlist__artist">{{ song.artist }}</p>
         </div>
       </a>
+      <svg class="view-icon" id="unlikeView">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
+      </svg>
     </li>
   `,
 })

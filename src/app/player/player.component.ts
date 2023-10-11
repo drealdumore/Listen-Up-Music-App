@@ -4,6 +4,7 @@ import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { Subscription } from 'rxjs';
 import { LikesService } from 'src/app/shared/likes.service';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'player',
@@ -21,8 +22,7 @@ export class PlayerComponent implements OnInit {
   public current: number = 0;
   public duration: number = 0;
 
-  like4toggle = new EventEmitter() //  --togglelikes
-  liked: boolean = false; // song is liked --songisliked
+
 
   constructor(
     private audioService: AudioService,
@@ -30,9 +30,6 @@ export class PlayerComponent implements OnInit {
     private likeService: LikesService
   ) {}
 
-onClick() {
-  this.like4toggle.emit({})
-}
 
   ngOnInit() {
     this.songs = this.appService.getSongs();
@@ -75,9 +72,6 @@ onClick() {
     }
   }
 
-  /**
-   * setCurrentSong
-   */
   public setCurrentSong() {
     if (this.currentSong) {
       this.audioService.setCurrentSong(this.currentSong);
@@ -131,44 +125,53 @@ onClick() {
     }
   }
 
+
+
+  set liked(val: boolean) {
+    this.icons = val ? 'icon-heart1' : 'icon-heart1';
+  } // song is liked --songisliked
+  isLiked: Boolean = false  
+  icons: string = '';
+
   addLikes() {
     const song: ISongs = this.currentSong;
     this.likeService.newLike(song);
     console.log('Added like:', song);
     this.liked = true;
+    localStorage.setItem('token', 'true');
   }
-  
+
   deleteLikes() {
     const song: ISongs = this.currentSong;
-    this.likeService.removeLike(song.id);
+    this.likeService.removeLike(this.currentSong.id);
     console.log('Deleted like:', song);
     this.liked = false;
+    this.likeService.getNumLikes();
   }
 
   getNumLikes() {
     this.likeService.getNumLikes();
   }
 
-  // toggleLikes(song: ISongs) {
-  //   if (this.songIsLiked(song)) {
-  //     this.likeService.removeLike(song.id);
-  //   } else {
-  //     this.likeService.newLike(song);
-  //   }
-  // }
-
-
-  toggleLikes() {
-    const song: ISongs = this.currentSong;
-    this.likeService.toggleLikes(song);
-    console.log('toogling');
-    
+  toggleLikes(song: ISongs) {
+    if (this.songIsLiked(song)) {
+      this.likeService.removeLike(song.id);
+    } else {
+      this.likeService.newLike(song);
+    }
   }
+
+  // toggleLikes() {
+  //   const song: ISongs = this.currentSong;
+  //   this.likeService.toggleLikes(song);
+  //   console.log('toogling');
+  // }
 
   songIsLiked(song: ISongs) {
     return this.likeService.songIsLiked(song);
   }
+
   numLikes() {
-    this.likeService.getNumLikes()
+    this.likeService.getNumLikes();
   }
 }

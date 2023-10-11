@@ -2,19 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-// import { AuthService } from '../shared/auth.service';
 
 @Component({
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  pass: string = '';
   mouseoverLogin: any;
   loginForm!: FormGroup;
-  private userName: FormControl | any;
-  private password: FormControl | any;
-  hasAccount: boolean = false;
+  private userName!: FormControl;
+  private password!: FormControl;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -37,16 +33,40 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.userName.value, this.password.value);
+    const userData = Object.assign(this.loginForm.value, {
+      email: this.loginForm.value.userMail,
+      password: this.loginForm.value.userKey,
+    });
+    console.log(userData);
+
+    this.authService
+      .login(userData)
+      .then((res: any) => {
+        this.router.navigate(['/playlist']);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
   }
 
   closeModal() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/playlist']);
   }
 
   goToSignUp() {
     setTimeout(() => {
       this.router.navigate(['/auth/signup']);
     }, 200);
+  }
+
+  signInWithGoogle() {
+    this.authService
+      .signInWithGoogle()
+      .then((res: any) => {
+        this.router.navigate(['/playlist']);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
   }
 }

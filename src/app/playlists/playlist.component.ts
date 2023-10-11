@@ -14,7 +14,6 @@ export class PlaylistComponent implements OnInit {
   ngOnInit() {
     this.playlists = this.appService.getPlaylists();
     this.greeting = this.getSalutation();
-
   }
 
   salute() {

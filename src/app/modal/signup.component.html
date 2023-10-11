@@ -1,7 +1,7 @@
 <div class="modal">
   <button (click)="closeModal()" class="btn--close-modal">&times;</button>
   <h2 class="modal__header">Sign Up to get started</h2>
-  <form [formGroup]="signUpForm" (ngSubmit)="submit()" class="modal__form">
+  <form [formGroup]="signUpForm" (ngSubmit)="register()" class="modal__form">
     <div>
       <label>Email Address</label>
       <em
@@ -41,12 +41,12 @@
     <input formControlName="userKey" type="password" class="input__pin" />
     <button class="input__btn">Sign Up ➡</button>
   </form>
-  <button class="su" (click)="goToLogin()">Already have an account?</button>
+  <button class="su" (click)="goToLogin()">Already have an account?<span>Sign in</span></button>
 </div>
 
 <div class="overlay">
   <img src="/assets/img/logo.png" alt="" class="logo" />
-  <figure class="notification hidden">
+  <figure class="notification" >
     <div class="notification__body">Successfully Registered! &#128640;</div>
     <div class="notification__progress"></div>
   </figure>

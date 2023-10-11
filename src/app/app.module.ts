@@ -12,7 +12,7 @@ import { AppService } from './shared/app.service';
 import { PlaylistDetail } from './playlists/playlist-detail.component';
 import { NavComponent } from './nav/nav.component';
 import { PlaylistComponent } from './playlists/playlist.component';
-import { ThumbnailComponent } from './userpage/thumbnail.component';
+import { ThumbnailComponent } from './thumbnail.component';
 import { CreatePlaylist } from './playlists/create-playlist.component';
 import { PlaylistRouteResolver } from './playlists/playlist-route-resolver.service';
 import { PlaylistList } from './playlists/playlist-list.component';
