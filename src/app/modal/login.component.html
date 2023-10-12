@@ -6,8 +6,8 @@
       <label>Email Address</label>
       <em
         *ngIf="
-          loginForm.controls['userName']?.invalid &&
-          loginForm.controls['userName']?.touched
+          loginForm.controls['email']?.invalid &&
+          loginForm.controls['email']?.touched
         "
         class="error"
         ><i>Required</i></em
@@ -16,11 +16,11 @@
     <input
       [ngClass]="{
         wrong:
-          loginForm.controls['userName'].invalid &&
-          loginForm.controls['userName'].touched
+          loginForm.controls['email'].invalid &&
+          loginForm.controls['email'].touched
       }"
-      formControlName="userName"
-      id="userName"
+      formControlName="email"
+      id="email"
       required
       type="email"
       class="input__user"

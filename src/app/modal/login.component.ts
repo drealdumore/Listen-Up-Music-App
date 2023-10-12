@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
   mouseoverLogin: any;
   loginForm!: FormGroup;
-  private userName!: FormControl;
+  private email!: FormControl;
   private password!: FormControl;
 
   constructor(
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     //Login Form
-    this.userName = new FormControl(null, [
+    this.email = new FormControl(null, [
       Validators.required,
       Validators.email,
     ]);
@@ -32,27 +32,41 @@ export class LoginComponent implements OnInit {
     ]);
 
     this.loginForm = new FormGroup({
-      userName: this.userName,
+      email: this.email,
       password: this.password,
     });
   }
 
   login() {
     const userData = Object.assign(this.loginForm.value, {
-      email: this.loginForm.value.userMail,
-      password: this.loginForm.value.userKey,
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
     });
-    console.log(userData);
 
     this.authService
       .login(userData)
       .then((res: any) => {
-        this.toastr.success('Login Successful!');
-        this.router.navigate(['/playlist']);
+        this.toastr.success('Sign in Successful!');
+        setTimeout(() => {
+          this.router.navigate(['/playlist']);
+        }, 2000);
       })
       .catch((error: any) => {
         this.toastr.error('error');
-        console.error(error);
+      });
+  }
+
+  signInWithGoogle() {
+    this.authService
+      .signInWithGoogle()
+      .then((res: any) => {
+        this.toastr.success('Google Signin Successful!');
+        setTimeout(() => {
+          this.router.navigate(['/playlist']);
+        }, 2000);
+      })
+      .catch((error: any) => {
+        this.toastr.error(error);
       });
   }
 
@@ -64,16 +78,5 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/auth/signup']);
     }, 200);
-  }
-
-  signInWithGoogle() {
-    this.authService
-      .signInWithGoogle()
-      .then((res: any) => {
-        this.router.navigate(['/playlist']);
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
   }
 }

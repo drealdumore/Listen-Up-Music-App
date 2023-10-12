@@ -54,11 +54,19 @@ export class SignupComponent implements OnInit {
     this.authService
       .register(userData)
       .then((res: any) => {
-        this.router.navigate(['/playlist']);
+        this.toastr.success('Sign up Successful!');
+        setTimeout(() => {
+          this.toastr.info(
+            `You will be redirected to the Sign in page, 
+            Sign in with your Email and Password`
+          );
+        }, 4000);
+        setTimeout(() => {
+          this.router.navigate(['/auth/login']);
+        }, 6000);
       })
       .catch((error: any) => {
-        this.toastr.success('error');
-        console.error(error);
+        this.toastr.error(error);
       });
   }
 }
