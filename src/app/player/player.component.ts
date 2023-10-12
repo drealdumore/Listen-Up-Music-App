@@ -23,7 +23,6 @@ export class PlayerComponent implements OnInit {
   public duration: number = 0;
   liked: boolean = false;
 
-
   constructor(
     private audioService: AudioService,
     private appService: AppService,
@@ -133,7 +132,6 @@ export class PlayerComponent implements OnInit {
       this.deleteLikes();
     }
   }
-
 
   songIsLiked() {
     return this.likeService.songIsLiked(this.currentSong);
