@@ -18,10 +18,24 @@ import { Router } from '@angular/router';
           <div *ngIf="isVisible" class="display">
             <h4 class="display__salute">Yo! Wazzup!</h4>
             <ul class="display__links">
-              <li [routerLink]="'/user/profile'" class="display__link">profile</li>
-              <li [routerLink]="'/user/settings'" class="display__link">settings</li>
-              <li [routerLink]="'/404'" class="display__link">support</li>
-              <li [routerLink]="'/404'" class="display__link">download</li>
+              <li [routerLink]="'/user/profile'" class="display__link">
+                <img src="/assets/img/profile.svg" class="display__icon" />
+                <span>profile</span>
+              </li>
+              <li [routerLink]="'/user/settings'" class="display__link">
+                <img src="/assets/img/setting.svg" class="display__icon" />
+                <span>settings</span>
+              </li>
+              <li [routerLink]="'/404'" class="display__link">
+                <img src="/assets/img/support.svg" class="display__icon" />
+                <span>support</span>
+              </li>
+              <li [routerLink]="'/404'" class="display__link">
+                <svg class="display__icon">
+                  <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
+                </svg>
+                <span>download</span>
+              </li>
             </ul>
             <hr />
             <button class="display__close">Log Out</button>

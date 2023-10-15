@@ -1276,6 +1276,9 @@ span {
   list-style: none;
   text-transform: capitalize;
   padding: 0.5rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 .display__link:hover {
   background-color: #33619c;
@@ -1286,6 +1289,12 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.display__icon {
+  height: 1.3rem;
+  width: 1.5rem;
+  fill: #dfd9d9;
 }
 
 .display__close {
