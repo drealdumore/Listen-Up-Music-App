@@ -12,18 +12,18 @@ export class LikesService {
 
   // Delete likes
   removeLike(id: any) {
-    this.likesArr.splice(id, 1);
+    const i = this.likesArr.findIndex((song) => song.id === id);
+    this.likesArr.splice(i, 1);
   }
 
-  // Boolean to check if song is liked or not
   // songIsLiked(song: ISongs) {
   //   return this.likesArr.some((el) => el === song);
   // }
 
+  // Boolean to check if song is liked or not
   songIsLiked(song: ISongs) {
-    return this.likesArr.some((el) => el.id === song.id);
+    return this.likesArr.find((el) => el.id === song.id);
   }
-  
 
   // Toogle between like and unlike
   toggleLikes(song: ISongs) {

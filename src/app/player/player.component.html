@@ -31,10 +31,10 @@
   <ul class="player__icons">
     <!-- <li (click)="toggleLikes()"> -->
     <li>
-      <svg *ngIf="!liked" class="player__icon" (click)="addLikes()">
+      <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
       </svg>
-      <svg *ngIf="liked" class="player__icon" (click)="deleteLikes()">
+      <svg *ngIf="songIsLiked()" class="player__icon" (click)="deleteLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
       </svg>
     </li>
@@ -82,20 +82,26 @@
 
     <div class="playing-view">
       <img
-        [src]="currentSong?.img"
+        [src]="currentSong.img"
         class="player__img"
-        alt="{{ currentSong?.title }}"
+        alt="{{ currentSong.title }}"
         class="playing-img"
       />
     </div>
     <div class="playing__body">
       <div class="player__data">
-        <h4 class="playing__name">{{ currentSong?.title }}</h4>
-        <p class="playing__artist">{{ currentSong?.artist }}</p>
+        <h4 class="playing__name">{{ currentSong.title }}</h4>
+        <p class="playing__artist">{{ currentSong.artist }}</p>
       </div>
-      <svg class="heart-icon">
-        <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
-      </svg>
+
+      <span>
+        <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
+          <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+        </svg>
+        <svg *ngIf="songIsLiked()" class="player__icon" (click)="deleteLikes()">
+          <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
+        </svg>
+      </span>
     </div>
 
     <div class="movement">
