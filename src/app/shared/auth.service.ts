@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { GoogleAuthProvider } from '@angular/fire/auth';
+// import { GoogleAuthProvider } from '@angular/fire/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 
@@ -30,12 +31,6 @@ export class AuthService {
   logOut() {
     return this.afs['signOut']();
   }
-
-
-
-
-
-
 
 
   // /// Login

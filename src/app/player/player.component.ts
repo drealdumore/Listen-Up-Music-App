@@ -21,7 +21,6 @@ export class PlayerComponent implements OnInit {
   public playingMov: number = 0;
   public current: number = 0;
   public duration: number = 0;
-  liked: boolean = false;
 
   constructor(
     private audioService: AudioService,
@@ -115,13 +114,11 @@ export class PlayerComponent implements OnInit {
 
   addLikes() {
     this.likeService.newLike(this.currentSong);
-    this.liked = true;
     this.songIsLiked();
   }
 
   deleteLikes() {
     this.likeService.removeLike(this.currentSong.id);
-    this.liked = false;
     this.songIsLiked();
   }
 

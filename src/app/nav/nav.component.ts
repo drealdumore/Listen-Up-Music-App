@@ -30,12 +30,6 @@ import { Router } from '@angular/router';
                 <img src="/assets/img/support.svg" class="display__icon" />
                 <span>support</span>
               </li>
-              <li [routerLink]="'/404'" class="display__link">
-                <svg class="display__icon">
-                  <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
-                </svg>
-                <span>download</span>
-              </li>
             </ul>
             <hr />
             <button class="display__close">Log Out</button>
