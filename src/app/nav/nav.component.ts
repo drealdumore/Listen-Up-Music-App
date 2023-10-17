@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
         <button class="search__btn">&rarr;</button>
       </form>
 
-      <nav class="user-nav">
+      <nav  *ngIf="isAuthenticated" class="user-nav">
         <div class="user" (mouseenter)="visible()" (mouseleave)="notvisible()">
           <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
           <!-- *ngIf="isVisible" -->
@@ -37,7 +37,7 @@ import { Router } from '@angular/router';
         </div>
       </nav>
 
-      <div *ngIf="isAuthenticated" class="navbtns">
+      <div class="navbtns">
         <button class="nb signupbtn" (click)="goToSignUp()">Sign Up</button>
         <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
       </div>

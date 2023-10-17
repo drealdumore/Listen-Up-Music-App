@@ -25,6 +25,7 @@ export const appRoutes: Routes = [
     component: PlaylistDetail,
     canActivate: [PlaylistRouteResolver],
   },
-  { path: '404', component: Error404Component },
+  // { path: '404', component: Error404Component },
   { path: '', redirectTo: '/playlist', pathMatch: 'full' },
+  { path: '**', component: Error404Component },
 ];
