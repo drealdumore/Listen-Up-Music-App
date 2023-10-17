@@ -6,26 +6,22 @@ import { HistoryComponent } from './history/history.component';
 import { PlaylistDetail } from './playlists/playlist-detail.component';
 import { CreatePlaylist } from './playlists/create-playlist.component';
 import { PlaylistRouteResolver } from './playlists/playlist-route-resolver.service';
-import { LoginComponent } from './modal/login.component';
-import { SignupComponent } from './modal/signup.component';
-import { SettingsComponent } from './user/settings.component';
-import { ProfileComponent } from './user/profile.component';
+import { LoginComponent } from './auth/login.component';
+import { SignupComponent } from './auth/signup.component';
 
 export const appRoutes: Routes = [
-  { path: 'liked-songs', component: LikesComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: 'history', component: HistoryComponent },
+  { path: 'liked-songs', component: LikesComponent },
   { path: 'playlist', component: PlaylistComponent },
-  { path: 'user/settings', component: SettingsComponent },
-  { path: 'user/profile', component: ProfileComponent },
   { path: 'playlist/new', component: CreatePlaylist },
+
   {
     path: 'playlist/:id',
     component: PlaylistDetail,
     canActivate: [PlaylistRouteResolver],
   },
-  // { path: '404', component: Error404Component },
   { path: '', redirectTo: '/playlist', pathMatch: 'full' },
   { path: '**', component: Error404Component },
 ];

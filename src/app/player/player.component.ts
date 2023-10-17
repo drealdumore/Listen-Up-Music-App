@@ -17,7 +17,6 @@ export class PlayerComponent implements OnInit {
   public currentSong!: ISongs;
   public isplayed: boolean = false;
   public movElement: number = 0;
-  // public progressEl: number = 0;
   public playingMov: number = 0;
   public current: number = 0;
   public duration: number = 0;
@@ -54,10 +53,6 @@ export class PlayerComponent implements OnInit {
     this.audioService.playingSongProgress.subscribe((playingSongProgress) => {
       this.playingMov = playingSongProgress;
     });
-  }
-
-  public isplayerClicked() {
-    this.playerClicked = true;
   }
 
   // If songplayed = display pause btn.
@@ -103,10 +98,6 @@ export class PlayerComponent implements OnInit {
     this.currentSong = this.songs[this.currentSindex];
   }
 
-  public hidePlaying() {
-    this.playerClicked = false;
-  }
-
   seekTo(value: number) {
     const pct = value / 100;
     this.audioService.seekTo((this.duration || 0) * pct);
@@ -134,3 +125,9 @@ export class PlayerComponent implements OnInit {
     return this.likeService.songIsLiked(this.currentSong);
   }
 }
+
+// the reason why it is playing differently on different pages is because, in every page, theres a new instance of the player component.
+// Possible fixes
+//- subscribe to an observable so that whenever ot routes to a new page, it will read the observable of the previouse page and continue.
+//- make the player component to be side by side with the router link : cons = if it works, it will be  displayed in the 404 page as well.
+//- 

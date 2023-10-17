@@ -116,6 +116,28 @@ button {
   padding: 0.5rem 0.7rem;
 }
 
+.navbtns {
+  display: flex;
+  gap: 1.2rem;
+  margin-right: 2rem;
+}
+.nb {
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  color: #a49999;
+  border: 1px solid #a49999;
+}
+.nb:hover {
+  color: #f3f3f3;
+  border: 1px solid #f3f3f3;
+}
+.signupbtn {
+  background-color: #2e415a;
+}
+.loginbtn {
+  background-color: transparent;
+}
+
 span {
   margin-left: 0.2rem;
 }

@@ -11,22 +11,30 @@ import { Router } from '@angular/router';
         <button class="search__btn">&rarr;</button>
       </form>
 
-      <nav  *ngIf="isAuthenticated" class="user-nav">
+      <!-- if it authenticated.
+      - i want the salute message to be bolder and it should have the username: Good afternoon, saint.
+      - i want to remove the signin and signup button and add the user nav
+      - in the user profile, i want to have a circle that can make user add images from their device.
+      - it should also have a form with prefilled user name and password, where user can change details and when saved,
+        the details will be added automatically.
+      -->
+
+      <nav *ngIf="isAuthenticated" class="user-nav">
         <div class="user" (mouseenter)="visible()" (mouseleave)="notvisible()">
           <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
           <!-- *ngIf="isVisible" -->
           <div *ngIf="isVisible" class="display">
             <h4 class="display__salute">Yo! Wazzup!</h4>
             <ul class="display__links">
-              <li [routerLink]="'/user/profile'" class="display__link">
+              <li class="display__link">
                 <img src="/assets/img/profile.svg" class="display__icon" />
                 <span>profile</span>
               </li>
-              <li [routerLink]="'/user/settings'" class="display__link">
+              <li class="display__link">
                 <img src="/assets/img/setting.svg" class="display__icon" />
                 <span>settings</span>
               </li>
-              <li [routerLink]="'/404'" class="display__link">
+              <li class="display__link">
                 <img src="/assets/img/support.svg" class="display__icon" />
                 <span>support</span>
               </li>
@@ -43,31 +51,6 @@ import { Router } from '@angular/router';
       </div>
     </header>
   `,
-  styles: [
-    `
-      .navbtns {
-        display: flex;
-        gap: 1.2rem;
-        margin-right: 2rem;
-      }
-      .nb {
-        padding: 0.7rem 1.2rem;
-        border-radius: 5px;
-        color: #a49999;
-        border: 1px solid #a49999;
-      }
-      .nb:hover {
-        color: #f3f3f3;
-        border: 1px solid #f3f3f3;
-      }
-      .signupbtn {
-        background-color: #2e415a;
-      }
-      .loginbtn {
-        background-color: transparent;
-      }
-    `,
-  ],
 })
 export class NavComponent {
   isAuthenticated: boolean = false;

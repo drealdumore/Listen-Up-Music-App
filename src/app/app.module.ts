@@ -23,15 +23,13 @@ import { AudioService } from './shared/audio-control.service';
 import { FormatTimePipe } from './shared/time-format.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { LoginComponent } from './modal/login.component';
-import { SignupComponent } from './modal/signup.component';
+import { LoginComponent } from './auth/login.component';
+import { SignupComponent } from './auth/signup.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { ProfileComponent } from './user/profile.component';
-import { SettingsComponent } from './user/settings.component';
 import { LikesService } from './shared/likes.service';
 import { LikesList } from './likes/likes-list.component';
 
@@ -52,9 +50,7 @@ import { LikesList } from './likes/likes-list.component';
     FormatTimePipe,
     LoginComponent,
     SignupComponent,
-    ProfileComponent,
-    SettingsComponent,
-    LikesList
+    LikesList,
   ],
   imports: [
     BrowserModule,

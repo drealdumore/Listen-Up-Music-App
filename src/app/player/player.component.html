@@ -1,5 +1,5 @@
 <div class="player">
-  <div class="player-main" (click)="isplayerClicked()">
+  <div class="player-main" (click)="playerClicked = true">
     <figure class="player__fig">
       <img
         [src]="currentSong.img"
@@ -29,7 +29,6 @@
     </div>
   </div>
   <ul class="player__icons">
-    <!-- <li (click)="toggleLikes()"> -->
     <li>
       <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
@@ -64,7 +63,7 @@
 <div class="play-active" *ngIf="playerClicked">
   <div class="playing">
     <div class="playing__header">
-      <span class="playing_close" (click)="hidePlaying()">
+      <span class="playing_close" (click)="playerClicked = false">
         <svg class="menu-icon">
           <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
         </svg>
