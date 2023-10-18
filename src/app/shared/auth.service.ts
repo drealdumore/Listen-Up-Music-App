@@ -1,35 +1,89 @@
 import { Injectable } from '@angular/core';
-// import { GoogleAuthProvider } from '@angular/fire/auth';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, User } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; // Import the map operator
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private afs: AngularFireAuth) {}
+  isAuthenticated$: Observable<boolean>;
+  private user: User | null = null;
+
+  constructor(private router: Router, private afs: AngularFireAuth) {
+    this.isAuthenticated$ = this.afs.authState.pipe(map(user => !!user));
+    this.afs.authState.subscribe((user: firebase.default.User | null) => {
+      if (user) {
+        this.user = user as import("@firebase/auth/dist/auth-public").User;
+      } else {
+        this.user = null;
+      }
+    });
+  }
 
   signInWithGoogle() {
-    return this.afs['signInWithPopup'](new GoogleAuthProvider());
+    return this.afs.signInWithPopup(new GoogleAuthProvider());
   }
 
   register(user: { email: string; password: string }) {
-    return this.afs['createUserWithEmailAndPassword'](
-      user.email,
-      user.password
-    );
+    return this.afs.createUserWithEmailAndPassword(user.email, user.password);
   }
 
   login(user: { email: string; password: string }) {
-    return this.afs['signInWithEmailAndPassword'](user.email, user.password);
+    return this.afs.signInWithEmailAndPassword(user.email, user.password);
   }
 
   logOut() {
-    return this.afs['signOut']();
+    return this.afs.signOut();
   }
 
-  // /// Login
+  getUser(): User | null {
+    return this.user;
+  }
+}
+
+
+
+
+// import { Injectable } from '@angular/core';
+// import { GoogleAuthProvider } from 'firebase/auth';
+// import { Router } from '@angular/router';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
+
+// @Injectable({
+//   providedIn: 'root',
+// })
+// export class AuthService {
+//   isAuthenticated: boolean = false;
+
+//   constructor(private router: Router, private afs: AngularFireAuth) {}
+
+//   signInWithGoogle() {
+//     return this.afs['signInWithPopup'](new GoogleAuthProvider());
+//   }
+
+//   register(user: { email: string; password: string }) {
+//     return this.afs['createUserWithEmailAndPassword'](
+//       user.email,
+//       user.password
+//     );
+//   }
+
+//   login(user: { email: string; password: string }) {
+//     return this.afs['signInWithEmailAndPassword'](user.email, user.password);
+//   }
+
+//   logOut() {
+//     return this.afs['signOut']();
+//   }
+
+
+
+
+
+// /// Login
   // login(email: string, password: string) {
   //   signInWithEmailAndPassword(this.auth, email, password)
   //     .then((response: any) => {
@@ -77,4 +131,3 @@ export class AuthService {
   //     }
   //   );
   // }
-}

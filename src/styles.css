@@ -1256,6 +1256,22 @@ span {
   }
 }
 
+@keyframes slideUpReturn {
+  0% {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  100% {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+}
+
 .display {
   color: #dfd9d9;
   padding: 1.5rem 2rem;
@@ -1265,10 +1281,11 @@ span {
   right: 2rem;
   top: 4.5rem;
   background: rgba(66, 86, 112, 0.45);
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
   backdrop-filter: blur(5.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: slideUpReturn 0.9s ease;
+
 }
 
 /* i want it so that when the display is hovered, it stays */
@@ -1278,9 +1295,20 @@ span {
   position: absolute;
   top: -17px;
   right: 20px;
-  height: 5.5%;
+  height: 6.2%;
   width: 2px;
   background-color: rgba(255, 255, 255, 0.18);
+}
+
+.display__span {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.9rem;
+  font-size: 1.3rem;
+  padding: 0 0.3rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
 }
 
 .display__salute {
@@ -1303,10 +1331,11 @@ span {
   gap: 0.7rem;
 }
 .display__link:hover {
-  background-color: #33619c;
+  background-color: rgba(255, 255, 255, 0.27);
   border-radius: 5px;
   cursor: pointer;
 }
+
 .display__logout {
   display: flex;
   justify-content: center;
@@ -1346,6 +1375,222 @@ span {
   opacity: 0;
   transition: all 0.3s ease-in;
   transform: translateY(-100%);
+}
+
+@keyframes slideLeft {
+  0% {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+
+  100% {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
+
+/* Display menu */
+.display__menu {
+  color: #dfd9d9;
+  padding: 1.5rem 1.2rem;
+  width: 15rem;
+  position: absolute;
+  right: 2rem;
+  top: 4.5rem;
+  background: rgba(66, 86, 112, 0.45);
+  backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: slideLeft 0.9s ease;
+}
+
+.display__menu::before {
+  content: "";
+  position: absolute;
+  top: -17px;
+  right: 20px;
+  height: 3.9%;
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.setting__menu::before {
+  height: 5.4%;
+}
+.support__menu::before {
+  height: 7.2%;
+}
+.logout__menu::before {
+  height: 8%;
+}
+
+.display__menu--close {
+  background-color: transparent;
+  border: none;
+}
+
+.display__menu--icon {
+  height: 1.4rem;
+  width: 1.4rem;
+  fill: rgba(255, 255, 255, 0.47);
+  position: absolute;
+  top: 0.8rem;
+  left: 0.7rem;
+  transition: fill 0.4s ease;
+}
+
+.display__menu--icon:hover {
+  fill: #dfd9d9;
+}
+
+.display__menu--img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding-bottom: 1.2rem;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.display__menu--img img {
+  height: 2rem;
+  width: 2rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+.display__menu--form {
+  display: grid;
+  place-items: center;
+}
+.display__menu--input {
+  height: 35px;
+  color: #dfd9d9;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 1px;
+  margin-bottom: 0.7rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 0.5rem;
+}
+.display__menu--input:focus {
+  outline: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+}
+.display__menu--input::placeholder {
+  color: #dfd9d9;
+  font-weight: 100;
+  font-family: inherit;
+}
+
+.display__menu--btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.display__menu--btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+}
+
+.display__menu--cancel {
+  background-color: rgba(255, 0, 0, 0.208);
+  color: #eaf0fb;
+  border: 2px solid transparent;
+}
+
+.display__menu--cancel:hover {
+  border: 2px solid transparent;
+  background-color: rgba(255, 0, 0, 0.429);
+}
+
+.display__menu--save {
+  /* border: 2px solid rgba(255, 255, 255, 0.18); */
+  background-color: rgba(255, 255, 255, 0.27);
+  color: #eaf0fb;
+}
+
+.display__menu--save:hover {
+  background-color: rgba(255, 255, 255, 0.47);
+}
+
+.display__menu--toggles {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.display__menu--toggle {
+  align-items: center;
+  display: flex;
+
+  justify-content: space-around;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.47);
+  transition: 0.4s;
+  border-radius: 10px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4rem;
+  width: 1.4rem;
+  border-radius: 8px;
+  left: 0.3em;
+  bottom: 0.3em;
+  transform: rotate(270deg);
+  background-color: #eaf0fb;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: #39ad5687;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.5rem);
+}
+
+.display__menu--salute {
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

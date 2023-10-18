@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   private email!: FormControl;
   private password!: FormControl;
+  isAuthenticated: boolean = false;
 
   constructor(
     private router: Router,
@@ -35,6 +36,11 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     });
+
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+
   }
 
   login() {
@@ -46,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(userData)
       .then((res: any) => {
+        
         this.toastr.success('Sign in Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);
@@ -60,6 +67,7 @@ export class LoginComponent implements OnInit {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
+        
         this.toastr.success('Google Signin Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);

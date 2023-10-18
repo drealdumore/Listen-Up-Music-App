@@ -1,0 +1,151 @@
+<header class="header" scroll>
+  <img src="/assets/img/logo.png" alt="" class="logo" />
+
+  <form class="search">
+    <input type="text" class="search__input" placeholder="Search" />
+    <button class="search__btn">&rarr;</button>
+  </form>
+
+  <!-- if it authenticated.
+    - i want the salute message to be bolder and it should have the username: Good afternoon, saint.
+    - i want to remove the signin and signup button and add the user nav
+    - in the user profile, i want to have a circle that can make user add images from their device.
+    - it should also have a form with prefilled user name and password, where user can change details and when saved,
+      the details will be added automatically.
+
+      Now, i want the display to show when mouse over img and when mouse reomve, it should still be there
+    -->
+
+  <nav *ngIf="isAuthenticated" class="user-nav">
+    <div class="user" (mouseenter)="visible()">
+      <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
+
+      <div *ngIf="isVisible" class="display">
+        <span class="display__span" (click)="notvisible()">&times;</span>
+        <h4 class="display__salute">Hello!</h4>
+        <ul class="display__links">
+          <li class="display__link" (click)="showProfile()">
+            <img src="/assets/img/profile.svg" class="display__icon" />
+            <span>profile</span>
+          </li>
+          <li class="display__link" (click)="showSetting()">
+            <img src="/assets/img/setting.svg" class="display__icon" />
+            <span>settings</span>
+          </li>
+          <li class="display__link" (click)="showSupport()">
+            <img src="/assets/img/support.svg" class="display__icon" />
+            <span>support</span>
+          </li>
+        </ul>
+        <hr />
+        <button class="display__close" (click)="showLogout()">
+          Log Out
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="displayProfile" class="display__menu">
+    <button class="display__menu--close" (click)="hideProfile()">
+      <svg class="display__menu--icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+      </svg>
+    </button>
+    <div class="display__menu--img">
+      <h4 class="display__salute">Profile</h4>
+      <img src="/assets/img/profile.svg" />
+      <input type="file" />
+    </div>
+    <form class="display__menu--form">
+      <input
+        class="display__menu--input"
+        type="text"
+        placeholder="Username"
+        value="Saint"
+      />
+      <input
+        class="display__menu--input"
+        type="email"
+        placeholder="Email"
+        value="test@listenup"
+      />
+      <input
+        class="display__menu--input"
+        type="password"
+        placeholder="Password"
+        value="testing"
+      />
+    </form>
+    <div class="display__menu--btns">
+      <button class="display__menu--btn display__menu--save">Save</button>
+      <button class="display__menu--btn display__menu--cancel">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="displaySetting" class="display__menu setting__menu">
+    <button class="display__menu--close" (click)="hideSetting()">
+      <svg class="display__menu--icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+      </svg>
+    </button>
+    <div class="display__menu--img">
+      <h4 class="display__salute">Setting</h4>
+      <img src="/assets/img/setting.svg" />
+    </div>
+    <div class="display__menu--toggles">
+      <div class="display__menu--toggle">
+        <label for="toggle">Autoplay</label>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="display__menu--toggle">
+        <label for="toggle">Save Info</label>
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="displaySupport" class="display__menu support__menu">
+    <button class="display__menu--close" (click)="hideSupport()">
+      <svg class="display__menu--icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+      </svg>
+    </button>
+    <div class="display__menu--img">
+      <h4 class="display__salute">Support</h4>
+      <img src="/assets/img/support.svg" />
+    </div>
+  </div>
+
+  <div *ngIf="displayLogout" class="display__menu logout__menu">
+    <div class="display__menu--form">
+      <h4 class="display__menu--salute">Are you sure you want to log out?</h4>
+    </div>
+    <div class="display__menu--btns">
+      <button
+        (click)="logout()"
+        class="display__menu--btn display__menu--cancel"
+        style="padding: 0.7rem 2rem; border: 1px solid rgba(255, 0, 0, 0.429)"
+      >
+        Yes
+      </button>
+      <button
+        (click)="hideLogout()"
+        class="display__menu--btn display__menu--save"
+        style="padding: 0.7rem 2rem"
+      >
+        No
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!isAuthenticated" class="navbtns">
+    <button class="nb signupbtn" (click)="goToSignUp()">Sign Up</button>
+    <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
+  </div>
+</header>
