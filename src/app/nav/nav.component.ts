@@ -53,6 +53,7 @@ export class NavComponent {
       .logOut()
       .then((res: any) => {
         this.toastr.success('Sign-out successful.');
+        this.displayLogout = false;
         setTimeout(() => {
           this.router.navigate(['/playlist']);
         }, 200);
