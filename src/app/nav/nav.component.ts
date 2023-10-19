@@ -24,7 +24,12 @@ export class NavComponent {
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
+
+   const user = this.authService.getUser()
+  //  console.log(user);
+
   }
+
 
   goToSignUp() {
     this.router.navigate(['/auth/signup']);
