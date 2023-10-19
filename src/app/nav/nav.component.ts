@@ -26,7 +26,7 @@ export class NavComponent {
     });
 
    const user = this.authService.getUser()
-  //  console.log(user);
+   console.log(user);
 
   }
 
