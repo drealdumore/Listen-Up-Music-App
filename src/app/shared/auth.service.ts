@@ -79,3 +79,5 @@ export class AuthService {
 //   logOut() {
 //     return this.afs['signOut']();
 //   }
+// 
+}
