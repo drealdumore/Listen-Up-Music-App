@@ -1,19 +1,17 @@
-<header class="header" scroll>
+<header  class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
 
-  <form class="search">
-    <input type="text" class="search__input" placeholder="Search" />
+  <form class="search" (click)="isSearched()">
+    <input type="search" class="search__input"  placeholder="Search" />
     <button class="search__btn">&rarr;</button>
   </form>
 
   <!-- if it authenticated.
     - i want the salute message to be bolder and it should have the username: Good afternoon, saint.
-    - i want to remove the signin and signup button and add the user nav
     - in the user profile, i want to have a circle that can make user add images from their device.
     - it should also have a form with prefilled user name and password, where user can change details and when saved,
       the details will be added automatically.
       
-    Now, i want the display to show when mouse over img and when mouse reomve, it should still be there
   -->
 
   <nav *ngIf="isAuthenticated" class="user-nav">
@@ -38,9 +36,7 @@
           </li>
         </ul>
         <hr />
-        <button class="display__close" (click)="showLogout()">
-          Log Out
-        </button>
+        <button class="display__close" (click)="showLogout()">Log Out</button>
       </div>
     </div>
   </nav>
@@ -147,5 +143,49 @@
   <div *ngIf="!isAuthenticated" class="navbtns">
     <button class="nb signupbtn" (click)="goToSignUp()">Sign Up</button>
     <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
+  </div>
+
+  <!-- <div *ngIf="searched" #searchElement class="search_"> -->
+  <div *ngIf="searched" class="search_">
+    <h4 class="feature__heading">Recent searches</h4>
+    <ul class="search__list" style="padding: 0">
+      <li>
+        <a class="search__link">
+          <figure class="search__fig">
+            <img src="assets/img/img-2.jpg" alt="test" />
+          </figure>
+          <div class="search__data">
+            <h4 class="search__name">Ion Wanna Hear It</h4>
+            <p class="search__artist">Rod Wave</p>
+          </div>
+        </a>
+        <button class="search__remove">&times;</button>
+      </li>
+      <li>
+        <a class="search__link">
+          <figure class="search__fig">
+            <img src="assets/img/img-3.jpg" alt="test" />
+          </figure>
+          <div class="search__data">
+            <h4 class="search__name">Achieving</h4>
+            <p class="search__artist">Rich Homie Quan</p>
+          </div>
+        </a>
+        <button class="search__remove">&times;</button>
+      </li>
+      <li>
+        <a class="search__link">
+          <figure class="search__fig">
+            <img src="assets/img/img-4.jpg" alt="test" />
+          </figure>
+          <div class="search__data">
+            <h4 class="search__name">All My Life</h4>
+            <p class="search__artist">Lil durk ft J.Cole</p>
+          </div>
+        </a>
+        <button class="search__remove">&times;</button>
+      </li>
+    </ul>
+    <a class="clear search__artist">Clear recent searches</a>
   </div>
 </header>

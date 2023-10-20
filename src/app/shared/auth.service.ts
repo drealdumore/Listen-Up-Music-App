@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { GoogleAuthProvider, User } from 'firebase/auth';
-import { Router } from '@angular/router';
+
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'; 
-
+import { finalize, map } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,11 +12,14 @@ export class AuthService {
   isAuthenticated$: Observable<boolean>;
   private user: User | null = null;
 
-  constructor(private router: Router, private afs: AngularFireAuth) {
-    this.isAuthenticated$ = this.afs.authState.pipe(map(user => !!user));
+  constructor(
+    private storage: AngularFireStorage,
+    private afs: AngularFireAuth
+  ) {
+    this.isAuthenticated$ = this.afs.authState.pipe(map((user) => !!user));
     this.afs.authState.subscribe((user: firebase.default.User | null) => {
       if (user) {
-        this.user = user as import("@firebase/auth/dist/auth-public").User;
+        this.user = user as import('@firebase/auth/dist/auth-public').User;
       } else {
         this.user = null;
       }
@@ -42,8 +45,6 @@ export class AuthService {
   getUser(): User | null {
     return this.user;
   }
-}
-
 
 
 
