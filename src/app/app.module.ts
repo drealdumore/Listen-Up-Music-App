@@ -21,7 +21,7 @@ import { PlaylistList } from './playlists/playlist-list.component';
 import { ScrollDirective } from './nav/scroll.directive';
 import { AudioService } from './shared/audio-control.service';
 import { FormatTimePipe } from './shared/time-format.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
@@ -57,6 +57,7 @@ import { LikesList } from './likes/likes-list.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -64,7 +65,7 @@ import { LikesList } from './likes/likes-list.component';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [AppService, PlaylistRouteResolver, AudioService, LikesService],
+  providers: [AppService, PlaylistRouteResolver, AudioService, LikesService, ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

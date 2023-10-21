@@ -1,8 +1,14 @@
 <header class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
 
-  <form class="search" (click)="isSearched()">
-    <input type="search" class="search__input" placeholder="Search" />
+  <form id="search" class="search" (ngSubmit)="searchSongs()">
+    <input
+      type="search"
+      [(ngModel)]="searchTerm"
+      name="searchTerm"
+      class="search__input"
+      placeholder="Search"
+    />
     <button class="search__btn">&rarr;</button>
   </form>
 
@@ -12,22 +18,17 @@
     - it should also have a form with prefilled user name and password, where user can change details and when saved,
       the details will be added automatically.
       change the searc button so that when input:valid, button displays none
-      
   -->
 
   <nav *ngIf="isAuthenticated" class="user-nav">
     <div class="user" (click)="visible()">
-      <img
-        src="/assets/img/user-Mikel.jpg"
-        alt="User"
-        class="user__img"
-      />
+      <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
     </div>
   </nav>
 
   <div *ngIf="isVisible" class="display">
     <span class="display__span" (click)="notvisible()">&times;</span>
-    <h4 class="display__salute">Hello!</h4>
+    <h4 class="display__salute">Hello, {{ user }}!</h4>
     <ul class="display__links">
       <li class="display__link" (click)="showProfile()">
         <img src="/assets/img/profile.svg" class="display__icon" />
@@ -54,9 +55,19 @@
     </button>
     <div class="display__menu--img">
       <h4 class="display__salute">Profile</h4>
-      <img src="/assets/img/profile.svg" />
+      <div *ngIf="!userProfile; else usersImg">
+        <img class="display__menu__icon" src="/assets/img/profile.svg" />
+      </div>
+      <ng-template #usersImg>
+        <img
+          [src]="userImg"
+          alt="{{ user }}"
+          class="display__menu--profile-img"
+        />
+      </ng-template>
       <input type="file" />
     </div>
+
     <form class="display__menu--form">
       <input
         class="display__menu--input"
@@ -91,7 +102,7 @@
     </button>
     <div class="display__menu--img">
       <h4 class="display__salute">Setting</h4>
-      <img src="/assets/img/setting.svg" />
+      <img class="display__menu__icon" src="/assets/img/setting.svg" />
     </div>
     <div class="display__menu--toggles">
       <div class="display__menu--toggle">
@@ -119,7 +130,7 @@
     </button>
     <div class="display__menu--img">
       <h4 class="display__salute">Support</h4>
-      <img src="/assets/img/support.svg" />
+      <img class="display__menu__icon" src="/assets/img/support.svg" />
     </div>
   </div>
 
@@ -150,49 +161,20 @@
     <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
   </div>
 
-  <!-- Should also display when user is typing. -->
-  
-  <!-- <div *ngIf="searched" #searchElement class="search_"> -->
   <div *ngIf="searched" class="search_">
-    <h4 class="feature__heading">Recent searches</h4>
+    <h4 class="feature__heading">Search Result</h4>
     <ul class="search__list">
-      <li class="search__li">
+      <li class="search__li" *ngFor="let song of foundSongs">
         <a class="search__link">
           <figure class="search__fig">
-            <img src="assets/img/img-2.jpg" alt="test" />
+            <img [src]="song.img" alt="{{song.title}}" />
           </figure>
           <div class="search__data">
-            <h4 class="search__name">Ion Wanna Hear It</h4>
-            <p class="search__artist">Rod Wave</p>
+            <h4 class="search__name">{{ song.title }}</h4>
+            <p class="search__artist">{{ song.artist }}</p>
           </div>
         </a>
-        <button class="search__remove">&times;</button>
-      </li>
-      <li class="search__li">
-        <a class="search__link">
-          <figure class="search__fig">
-            <img src="assets/img/img-3.jpg" alt="test" />
-          </figure>
-          <div class="search__data">
-            <h4 class="search__name">Achieving</h4>
-            <p class="search__artist">Rich Homie Quan</p>
-          </div>
-        </a>
-        <button class="search__remove">&times;</button>
-      </li>
-      <li class="search__li">
-        <a class="search__link">
-          <figure class="search__fig">
-            <img src="assets/img/img-4.jpg" alt="test" />
-          </figure>
-          <div class="search__data">
-            <h4 class="search__name">All My Life</h4>
-            <p class="search__artist">Lil durk ft J.Cole</p>
-          </div>
-        </a>
-        <button class="search__remove">&times;</button>
       </li>
     </ul>
-    <a class="clear search__artist">Clear recent searches</a>
   </div>
 </header>

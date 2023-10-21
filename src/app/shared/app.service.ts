@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { IPlaylist, ISongs } from './app.model';
 
 @Injectable()
@@ -14,6 +14,28 @@ export class AppService {
 
   getPlaylist(id: string) {
     return playlists.find((playlist) => playlist.id === id);
+  }
+
+  searchSongs(searchTerm: string) {
+    var term = searchTerm.toLocaleLowerCase();
+    var results: ISongs[] = [];
+
+    playlists.forEach((playlist) => {
+      var matchingSongs = playlist.songs.filter(
+        (song) => song.title.toLocaleLowerCase().indexOf(term) > -1
+      );
+      matchingSongs = matchingSongs.map((song: any) => {
+        song.id = playlist.id;
+        return song;
+      });
+      results = results.concat(matchingSongs);
+    });
+
+    var emitter = new EventEmitter(true);
+    setTimeout(() => {
+      emitter.emit(results);
+    }, 100);
+    return emitter;
   }
 }
 
@@ -307,8 +329,3 @@ const playlists: IPlaylist[] = [
     ],
   },
 ];
-
-// what i want to do.
-// i want to filter thru the songs array id and
-//filter out the songs that have the same id as
-// the playlist.songs[]

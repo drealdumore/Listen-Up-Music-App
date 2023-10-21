@@ -16,10 +16,6 @@ export class PlaylistDetail {
     this.currentPlaylist = this.appService.getPlaylist(this.route.snapshot.params['id'])
   }
 
-  click() {
-    // this.appService.getSongs()
-
-  }
 
 
 }

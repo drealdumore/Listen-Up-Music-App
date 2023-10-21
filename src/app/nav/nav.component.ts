@@ -8,56 +8,42 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { IPlaylist, ISongs } from '../shared/app.model';
+import { AppService } from '../shared/app.service';
 @Component({
   selector: 'navigation',
   templateUrl: './nav.component.html',
 })
 export class NavComponent {
-  isAuthenticated: boolean = false;
+  searched: boolean = false;
   isVisible: boolean = false;
+  displayLogout: boolean = false;
   displayProfile: boolean = false;
   displaySetting: boolean = false;
   displaySupport: boolean = false;
-  displayLogout: boolean = false;
-  searched: boolean = false;
+
+  user: any;
+  userImg: any;
+  userProfile: boolean = false;
+  isAuthenticated: boolean = false;
+
+  searchTerm: string = '';
+  foundSongs: ISongs[] = [];
 
   constructor(
     private router: Router,
     private authService: AuthService,
+    private appService: AppService,
     private toastr: ToastrService,
     private renderer: Renderer2
   ) {}
 
-  // To remove the display if on esc click: the element has the ngif
+  // To remove the display on esc click: the element has the ngif
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.searched = false;
     }
-  }
-
-  // To remove the display if clicked out element
-  //need much: only that the element must have the elemenntref
-  // @ViewChild('searchElement', { static: false }) searchElement!: ElementRef;
-  // // E no return false, i just tire.
-  // @HostListener('document:click', ['$event'])
-  // handleClick(event: Event) {
-  //   if (!this.searchElement.nativeElement.contains(event.target)) {
-  //     this.searched = false;
-  //   }
-  // }
-
-  // // Testing the setstyle of the renderer2 elementref
-  // someMethod() {
-  //   this.renderer.setStyle(
-  //     this.searchElement.nativeElement,
-  //     'background-color',
-  //     'blue'
-  //   );
-  // }
-
-  isSearched() {
-    this.searched = true;
   }
 
   ngOnInit(): void {
@@ -66,7 +52,24 @@ export class NavComponent {
     });
 
     const user = this.authService.getUser();
-    console.log(user);
+    this.user = user?.displayName;
+    this.userImg = user?.photoURL;
+
+    if (
+      (this.user === null && this.userImg === null) ||
+      (this.user === undefined && this.userImg === undefined)
+    ) {
+      this.userProfile = false;
+    } else {
+      this.userProfile = true;
+    }
+  }
+
+  searchSongs() {
+    this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
+      this.foundSongs = songs;
+      this.searched = true;
+    });
   }
 
   goToSignUp() {
@@ -77,8 +80,7 @@ export class NavComponent {
     this.router.navigate(['/auth/login']);
   }
 
-  // if mouseover on img, add visible class to display
-  // if mouse out, add notvisible
+  // if click on img, add visible class to display
   visible() {
     setTimeout(() => {
       this.isVisible = true;
@@ -95,11 +97,11 @@ export class NavComponent {
     this.authService
       .logOut()
       .then((res: any) => {
-        this.toastr.success('Sign-out successful.');
+        this.toastr.success('Successfully Logged Out.');
         this.displayLogout = false;
         setTimeout(() => {
           this.router.navigate(['/playlist']);
-        }, 200);
+        }, 300);
       })
       .catch((error: any) => {
         this.toastr.error('error');
@@ -160,3 +162,23 @@ export class NavComponent {
     }, 100);
   }
 }
+
+// To remove the display if clicked out element
+//need much: only that the element must have the elemenntref
+// @ViewChild('searchElement', { static: false }) searchElement!: ElementRef;
+// // E no return false, i just tire.
+// @HostListener('document:click', ['$event'])
+// handleClick(event: Event) {
+//   if (!this.searchElement.nativeElement.contains(event.target)) {
+//     this.searched = false;
+//   }
+// }
+
+// // Testing the setstyle of the renderer2 elementref
+// someMethod() {
+//   this.renderer.setStyle(
+//     this.searchElement.nativeElement,
+//     'background-color',
+//     'blue'
+//   );
+// }

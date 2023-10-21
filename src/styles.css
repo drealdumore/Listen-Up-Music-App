@@ -216,7 +216,8 @@ button {
   width: 75%;
 }
 
-.search__input:focus ~ .search__btn {
+.search__input:focus ~ .search__btn,
+.search__input:valid ~ .search__btn {
   display: none;
 }
 
@@ -460,14 +461,6 @@ span {
   float: right;
   font-size: 0.8rem;
   color: rgba(45, 107, 200, 0.786);
-}
-.clear {
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.clear:hover {
-  color: #f3f3f3;
 }
 
 .wrong {
@@ -1142,20 +1135,6 @@ span {
   text-transform: capitalize;
 }
 
-.search__remove {
-  color: #a49999;
-  font-size: 2rem;
-  border: none;
-  background: none;
-  transition: color 0.4s;
-}
-
-.search__remove:hover,
-.view-icon:hover {
-  color: #f3f3f3;
-  fill: #f3f3f3;
-}
-
 .display {
   color: #dfd9d9;
   padding: 1.5rem 2rem;
@@ -1322,11 +1301,15 @@ span {
   gap: 0.4rem;
 }
 
-.display__menu--img img {
+.display__menu__icon {
   height: 2rem;
   width: 2rem;
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+.display__menu--profile-img {
   border-radius: 50%;
 }
 
