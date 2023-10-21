@@ -3,7 +3,6 @@
   <h2 class="modal__header">Sign in to listen for free</h2>
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="modal__form">
     <div>
-      
       <label>Email Address</label>
       <em
         *ngIf="
@@ -55,14 +54,16 @@
       <button [disabled]="!loginForm.valid">Sign in ➡</button>
     </span>
   </form>
-  <button (click)="signInWithGoogle()" class="input__btn">
-    <img
-      src="assets/img/google-icon.svg"
-      alt="Google Icon"
-      style="height: 1.3rem"
-    />
-    Continue with Google
-  </button>
+  <div class="google__container">
+    <button (click)="signInWithGoogle()" class="input__btn">
+      <img
+        src="assets/img/google-icon.svg"
+        alt="Google Icon"
+        style="height: 1.3rem"
+      />
+      Continue with Google
+    </button>
+  </div>
   <button class="su" (click)="goToSignUp()">
     Don't have an account?<span>Sign Up</span>
   </button>

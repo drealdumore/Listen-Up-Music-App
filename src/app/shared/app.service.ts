@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { IPlaylist, ISongs } from './app.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class AppService {
@@ -12,9 +13,14 @@ export class AppService {
     return playlists;
   }
 
-  getPlaylist(id: string) {
-    return playlists.find((playlist) => playlist.id === id);
+  getPlaylist(id: string): Observable<IPlaylist | undefined> {
+    return of(playlists.find((playlist) => playlist.id === id));
   }
+
+
+  // getPlaylist(id: string) {
+  //   return playlists.find((playlist) => playlist.id === id);
+  // }
 
   searchSongs(searchTerm: string) {
     var term = searchTerm.toLocaleLowerCase();
@@ -53,6 +59,7 @@ const playlists: IPlaylist[] = [
         title: 'A call to the soul',
         img: '/assets/img/apemultiverse-20220823-0001.jpg',
         path: '/assets/audio/a-call-to-the-soul-149262.mp3',
+        playlist_name: 'peaceful sounds'
       },
       {
         playlist_id: 'peaceful-sounds',
@@ -61,6 +68,7 @@ const playlists: IPlaylist[] = [
         title: 'reflected light',
         img: '/assets/img/IMG_20230504_173418.jpg',
         path: '/assets/audio/reflected-light-147979.mp3',
+        playlist_name: 'peaceful sounds'
       },
       {
         playlist_id: 'peaceful-sounds',
@@ -69,6 +77,7 @@ const playlists: IPlaylist[] = [
         title: 'Relaxing',
         img: '/assets/img/fass.webp',
         path: '/assets/audio/relaxing-145038.mp3',
+        playlist_name: 'peaceful sounds'
       },
       {
         playlist_id: 'peaceful-sounds',
@@ -77,6 +86,7 @@ const playlists: IPlaylist[] = [
         title: 'Summer walk',
         img: '/assets/img/Snapchat-1925539984.jpg',
         path: '/assets/audio/summer-walk-152722.mp3',
+        playlist_name: 'peaceful sounds'
       },
       {
         playlist_id: 'peaceful-sounds',
@@ -85,6 +95,7 @@ const playlists: IPlaylist[] = [
         title: 'Good Night',
         img: '/assets/img/fass.webp',
         path: '/assets/audio/good-night-160166.mp3',
+        playlist_name: 'peaceful sounds'
       },
     ],
   },
@@ -101,6 +112,7 @@ const playlists: IPlaylist[] = [
         title: 'Wondering',
         img: '/assets/img/IMG_20230503_230400.jpg',
         path: '/assets/audio/Wondering by Purrple Cat__.mp3',
+        playlist_name: 'deep focus'
       },
       {
         playlist_id: 'deep-focus',
@@ -109,6 +121,7 @@ const playlists: IPlaylist[] = [
         title: 'Memories of Spring',
         img: '/assets/img/Snapchat-256539643.jpg',
         path: '/assets/audio/Memories of Spring by Tokyo Music Walker__.mp3',
+        playlist_name: 'deep focus'
       },
       {
         playlist_id: 'deep-focus',
@@ -117,6 +130,7 @@ const playlists: IPlaylist[] = [
         title: 'Late at Night',
         img: '/assets/img/IMG_20230503_230400.jpg',
         path: '/assets/audio/Late at Night by Sakura Girl__.mp3',
+        playlist_name: 'deep focus'
       },
       {
         playlist_id: 'deep-focus',
@@ -125,6 +139,7 @@ const playlists: IPlaylist[] = [
         title: 'Signs of Life',
         img: '/assets/img/Snapchat-440746153.jpg',
         path: '/assets/audio/Signs of Life by Purrple Cat__.mp3',
+        playlist_name: 'deep focus'
       },
       {
         playlist_id: 'deep-focus',
@@ -133,6 +148,7 @@ const playlists: IPlaylist[] = [
         title: 'Lost and Found',
         img: '/assets/img/IMG_20230503_230400.jpg',
         path: '/assets/audio/Lost-and-Found by purple cat.mp3',
+        playlist_name: 'deep focus'
       },
     ],
   },
@@ -149,6 +165,7 @@ const playlists: IPlaylist[] = [
         title: 'Coding Night',
         img: '/assets/img/IMG_20230504_173342.jpg',
         path: '/assets/audio/coding-night-112186.mp3',
+        playlist_name: 'international study'
       },
       {
         playlist_id: 'international-study',
@@ -157,6 +174,7 @@ const playlists: IPlaylist[] = [
         title: 'Meditation Sounds',
         img: '/assets/img/_nogginsworld_-20220507-0002.jpg',
         path: '/assets/audio/meditation-sounds-122698.mp3',
+        playlist_name: 'international study'
       },
       {
         playlist_id: 'international-study',
@@ -165,6 +183,7 @@ const playlists: IPlaylist[] = [
         title: 'Eco Technology',
         img: '/assets/img/alecmonopolyart-0008.jpg',
         path: '/assets/audio/eco-technology-145636.mp3',
+        playlist_name: 'international study'
       },
       {
         playlist_id: 'international-study',
@@ -173,6 +192,7 @@ const playlists: IPlaylist[] = [
         title: 'please calm my mind',
         img: '/assets/img/IMG_20230504_173342.jpg',
         path: '/assets/audio/please-calm-my-mind-125566.mp3',
+        playlist_name: 'international study'
       },
       {
         playlist_id: 'international-study',
@@ -181,6 +201,7 @@ const playlists: IPlaylist[] = [
         title: 'Lofi Study',
         img: '/assets/img/billionaire_ape_nft-20220823-0001.jpg',
         path: '/assets/audio/lofi-study-112191.mp3',
+        playlist_name: 'international study'
       },
     ],
   },
@@ -197,6 +218,7 @@ const playlists: IPlaylist[] = [
         title: 'Come Go',
         img: '/assets/img/blythe_behindthelens-20230805-0002.jpg',
         path: '/assets/audio/ArrDee_Come_Go_(thinkNews.com.ng).mp3',
+        playlist_name: 'focus flow'
       },
     ],
   },
@@ -213,6 +235,8 @@ const playlists: IPlaylist[] = [
         title: 'prank',
         img: '/assets/img/dariocarlucci-20220718-0025.jpg',
         path: '/assets/audio/prank-157083.mp3',
+        playlist_name: 'break limits'
+
       },
       {
         playlist_id: 'break-limits',
@@ -221,6 +245,7 @@ const playlists: IPlaylist[] = [
         title: 'ferrari spa',
         img: '/assets/img/ziadrizkalla-20230209-0005.jpg',
         path: '/assets/audio/ferrari-spa-149172.mp3',
+        playlist_name: 'break limits'
       },
     ],
   },
@@ -237,6 +262,7 @@ const playlists: IPlaylist[] = [
         title: 'All Alone',
         img: '/assets/img/blythe_behindthelens-20230805-0001.jpg',
         path: '/assets/audio/Juice_WRLD_-_All_Alone.mp3',
+        playlist_name: 'Motivational Speeches'
       },
       {
         playlist_id: 'Motivational-Speeches',
@@ -245,6 +271,7 @@ const playlists: IPlaylist[] = [
         title: 'Come Go',
         img: '/assets/img/blythe_behindthelens-20230805-0002.jpg',
         path: '/assets/audio/ArrDee_Come_Go_(thinkNews.com.ng).mp3',
+        playlist_name: 'Motivational Speeches'
       },
     ],
   },
@@ -261,6 +288,7 @@ const playlists: IPlaylist[] = [
         title: 'A call to the soul',
         img: '/assets/img/apemultiverse-20220823-0001.jpg',
         path: '/assets/audio/a-call-to-the-soul-149262.mp3',
+        playlist_name: 'repeat rewind'
       },
       {
         playlist_id: 'repeat-rewind',
@@ -269,6 +297,7 @@ const playlists: IPlaylist[] = [
         title: 'Signs of Life',
         img: '/assets/img/Snapchat-440746153.jpg',
         path: '/assets/audio/Signs of Life by Purrple Cat__.mp3',
+        playlist_name: 'repeat rewind'
       },
     ],
   },
@@ -285,6 +314,7 @@ const playlists: IPlaylist[] = [
         title: 'prank',
         img: '/assets/img/dariocarlucci-20220718-0025.jpg',
         path: '/assets/audio/prank-157083.mp3',
+        playlist_name: 'release radar'
       },
       {
         playlist_id: 'release-radar',
@@ -293,6 +323,7 @@ const playlists: IPlaylist[] = [
         title: 'ferrari spa',
         img: '/assets/img/ziadrizkalla-20230209-0005.jpg',
         path: '/assets/audio/ferrari-spa-149172.mp3',
+        playlist_name: 'release radar'
       },
       {
         playlist_id: 'release-radar',
@@ -301,6 +332,7 @@ const playlists: IPlaylist[] = [
         title: 'Teenagers having fun',
         img: '/assets/img/ziadrizkalla-20230209-0008.jpg',
         path: '/assets/audio/teenagers-having-fun-114806.mp3',
+        playlist_name: 'release radar'
       },
       {
         playlist_id: 'release-radar',
@@ -309,6 +341,7 @@ const playlists: IPlaylist[] = [
         title: 'i cant fall in love',
         img: '/assets/img/reflected light.webp',
         path: '/assets/audio/i-canx27t-fall-in-love-106865.mp3',
+        playlist_name: 'release radar'
       },
       {
         playlist_id: 'release-radar',
@@ -317,6 +350,7 @@ const playlists: IPlaylist[] = [
         title: 'pour up',
         img: '/assets/img/Snapchat-440746153.jpg',
         path: '/assets/audio/pour-up-21684.mp3',
+        playlist_name: 'release radar'
       },
       {
         playlist_id: 'release-radar',
@@ -325,6 +359,7 @@ const playlists: IPlaylist[] = [
         title: 'heavystone',
         img: '/assets/img/Snapchat-748836033.jpg',
         path: '/assets/audio/heavystone_-_info-official-audio-prod-by-razzo-beat-hitz-triff-records-156366.mp3',
+        playlist_name: 'release radar'
       },
     ],
   },

@@ -69,4 +69,20 @@ export class SignupComponent implements OnInit {
         this.toastr.error(error);
       });
   }
+
+  
+  signInWithGoogle() {
+    this.authService
+      .signInWithGoogle()
+      .then((res: any) => {
+        
+        this.toastr.success('Google SignUp Successful!');
+        setTimeout(() => {
+          this.router.navigate(['/playlist']);
+        }, 2000);
+      })
+      .catch((error: any) => {
+        this.toastr.error(error);
+      });
+  }
 }

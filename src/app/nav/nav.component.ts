@@ -8,11 +8,20 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { IPlaylist, ISongs } from '../shared/app.model';
+import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'navigation',
   templateUrl: './nav.component.html',
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class NavComponent {
   searched: boolean = false;
@@ -29,6 +38,8 @@ export class NavComponent {
 
   searchTerm: string = '';
   foundSongs: ISongs[] = [];
+  noSearch: boolean = false;
+  selectedSongId: string | null = null;
 
   constructor(
     private router: Router,
@@ -69,7 +80,20 @@ export class NavComponent {
     this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
       this.foundSongs = songs;
       this.searched = true;
+      if (this.foundSongs.length === 0) {
+        this.noSearch = true;
+      } else {
+        this.noSearch = false;
+      }
     });
+  }
+
+  navigateToPlaylist(songId: string): void {
+    this.router.navigate(['/playlist', songId]);
+    setTimeout(() => {
+      this.searched = false;
+      this.selectedSongId = null;
+    }, 500);
   }
 
   goToSignUp() {

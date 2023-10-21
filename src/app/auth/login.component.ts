@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
-    });
+    }); 
 
   }
 

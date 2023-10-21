@@ -1,0 +1,64 @@
+<li *ngFor="let song of displaySongs">
+  <a class="playlist__link">
+    <figure class="playlist__fig">
+      <img [src]="song?.img" [alt]="song?.title" />
+    </figure>
+    <div class="playlist__data">
+      <h4 class="playlist__name">{{ song.title }}</h4>
+      <p class="playlist__artist">{{ song.artist }}</p>
+    </div>
+  </a>
+  <div class="list__icon">
+    <span>
+      <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
+      </svg>
+      <svg *ngIf="songIsLiked()" class="player__icon" (click)="deleteLikes()">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
+      </svg>
+    </span>
+    <span>
+      <svg
+        class="player__icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.9959 12H12.0049"
+          stroke="#f3f3f3"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M17.9998 12H18.0088"
+          stroke="#f3f3f3"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5.99981 12H6.00879"
+          stroke="#f3f3f3"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+    <span>
+      <svg *ngIf="!isplayed" (click)="playAudio()" class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-play2"></use>
+      </svg>
+
+      <svg *ngIf="isplayed" (click)="pauseAudio()" class="player__icon">
+        <use xlink:href="/assets/img/sprite.svg#icon-pause"></use>
+      </svg>
+    </span>
+  </div>
+</li>
+
+<!-- Add like, play and detail icons with functionality -->

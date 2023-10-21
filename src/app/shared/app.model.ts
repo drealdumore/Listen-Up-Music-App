@@ -8,6 +8,7 @@ export interface IPlaylist {
 
 export interface ISongs {
   playlist_id: string;
+  playlist_name: string;
   id: string;
   artist: string;
   title: string;

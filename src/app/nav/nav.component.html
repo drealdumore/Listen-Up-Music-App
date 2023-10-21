@@ -6,6 +6,7 @@
       type="search"
       [(ngModel)]="searchTerm"
       name="searchTerm"
+      maxlength="16"
       class="search__input"
       placeholder="Search"
     />
@@ -17,12 +18,16 @@
     - in the user profile, i want to have a circle that can make user add images from their device.
     - it should also have a form with prefilled user name and password, where user can change details and when saved,
       the details will be added automatically.
-      change the searc button so that when input:valid, button displays none
   -->
 
   <nav *ngIf="isAuthenticated" class="user-nav">
     <div class="user" (click)="visible()">
-      <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
+      <div *ngIf="!userProfile; else usersImg">
+        <img class="user__img--icon" src="/assets/img/profile.svg" />
+      </div>
+      <ng-template #usersImg>
+        <img [src]="userImg" alt="{{ user }}" class="user__img" />
+      </ng-template>
     </div>
   </nav>
 
@@ -162,19 +167,41 @@
   </div>
 
   <div *ngIf="searched" class="search_">
-    <h4 class="feature__heading">Search Result</h4>
+    <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
     <ul class="search__list">
-      <li class="search__li" *ngFor="let song of foundSongs">
+      <li
+        class="search__li"
+        *ngFor="let song of foundSongs"
+        (click)="navigateToPlaylist(song.id)"
+        (click)="selectedSongId = song.id"
+      >
         <a class="search__link">
           <figure class="search__fig">
-            <img [src]="song.img" alt="{{song.title}}" />
+            <img [src]="song.img" alt="{{ song.title }}" />
           </figure>
           <div class="search__data">
-            <h4 class="search__name">{{ song.title }}</h4>
+            <p
+              style="
+                font-size: 12px;
+                padding-bottom: 4px;
+                margin: 0;
+                color: #c1bcbc;
+              "
+            >
+              {{ song.playlist_name }}
+            </p>
+            <h4 class="search__name" [@fadeInOut]="selectedSongId === song.id">
+              {{ song.title }}
+            </h4>
             <p class="search__artist">{{ song.artist }}</p>
           </div>
         </a>
       </li>
+
+      <div *ngIf="noSearch" class="nosearch">
+        <h1>Your search result doesnt exist</h1>
+        <p>No results found for '{{ searchTerm }}'.</p>
+      </div>
     </ul>
   </div>
 </header>
