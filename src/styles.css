@@ -216,6 +216,10 @@ button {
   width: 75%;
 }
 
+.search__input:focus ~ .search__btn {
+  display: none;
+}
+
 .search__btn {
   border: none;
   color: #f3f3f3;
@@ -223,10 +227,6 @@ button {
   font-size: 1.3rem;
   outline: none;
   background-color: transparent;
-}
-
-.search__btn:active {
-  transform: translateY(2px);
 }
 
 .user-nav {
@@ -308,6 +308,7 @@ span {
 
 .user__img:hover {
   border: 2px solid #dfd9d9;
+  cursor: pointer;
 }
 
 .user {
@@ -1056,9 +1057,8 @@ span {
   top: 4rem;
   height: 12rem;
   overflow-y: scroll;
-  /* right: 24.5rem; */
   left: 19.5rem;
-  width: 29rem;
+  width: 34%;
   padding: 2rem;
   background: rgba(66, 86, 112, 0.45);
   backdrop-filter: blur(5.5px);
@@ -1066,20 +1066,50 @@ span {
   border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 2;
   color: #dfd9d9;
-  animation: slideUpReturn .9s ease;
-  /* animation: swashIn 0.9s ease; */
+  /* animation: slideUpReturn 0.9s ease; */
+  animation: swashIn 0.4s ease;
+}
+.search__list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.search__list li {
+.search__li {
   list-style: none;
   display: flex;
-  padding-bottom: 0.8rem;
+  position: relative;
+  padding: 0.3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search__li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s ease;
+}
+
+.search__li:hover::before {
+  transform: scaleX(1);
+  width: 100%;
+  border-radius: 10px;
 }
 
 .search__fig,
 .playlist__fig {
   margin: 0;
   padding-right: 2rem;
+  padding-top: 4px;
+  padding-left: 12px;
 }
 
 .search__fig img,
@@ -1113,11 +1143,7 @@ span {
 }
 
 .search__remove {
-  display: flex;
   color: #a49999;
-  position: absolute;
-  right: 2rem;
-  padding-top: 0.6rem;
   font-size: 2rem;
   border: none;
   background: none;
@@ -1433,6 +1459,109 @@ span {
   text-align: center;
 }
 
+svg {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+svg text {
+  animation: stroke 5s infinite alternate;
+  stroke-width: 2;
+  stroke: #ffffff;
+  font-size: 100px;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(46, 65, 90, 0);
+    stroke: rgba(255, 255, 255, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+  }
+  70% {
+    fill: rgba(46, 65, 90, 0);
+    stroke: rgba(255, 255, 255, 1);
+  }
+  80% {
+    fill: rgba(46, 65, 90, 0);
+    stroke: rgba(255, 255, 255, 1);
+    stroke-width: 3;
+  }
+  100% {
+    fill: rgba(46, 65, 90, 1);
+    stroke: rgba(255, 255, 255, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+.wrapper {
+  background-color: #2e415a;
+}
+
+.loading__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loading {
+  --speed-of-animation: 0.9s;
+  --gap: 6px;
+  --first-color: #dfd9d9;
+  --second-color: #dfd9d9;
+  --third-color: #dfd9d9;
+  --fourth-color: #dfd9d9;
+  --fifth-color: #dfd9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  gap: 6px;
+  height: 100px;
+}
+
+.loading span {
+  width: 4px;
+  height: 50px;
+  background: var(--first-color);
+  animation: scale var(--speed-of-animation) ease-in-out infinite;
+}
+
+.loading span:nth-child(2) {
+  background: var(--second-color);
+  animation-delay: -0.8s;
+}
+
+.loading span:nth-child(3) {
+  background: var(--third-color);
+  animation-delay: -0.7s;
+}
+
+.loading span:nth-child(4) {
+  background: var(--fourth-color);
+  animation-delay: -0.6s;
+}
+
+.loading span:nth-child(5) {
+  background: var(--fifth-color);
+  animation-delay: -0.5s;
+}
+
+@keyframes scale {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.05);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 }

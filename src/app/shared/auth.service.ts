@@ -45,7 +45,7 @@ export class AuthService {
   getUser(): User | null {
     return this.user;
   }
-
+}
 
 
 // import { Injectable } from '@angular/core';
@@ -80,4 +80,3 @@ export class AuthService {
 //     return this.afs['signOut']();
 //   }
 // 
-}

@@ -1,8 +1,8 @@
-<header  class="header" scroll>
+<header class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
 
   <form class="search" (click)="isSearched()">
-    <input type="search" class="search__input"  placeholder="Search" />
+    <input type="search" class="search__input" placeholder="Search" />
     <button class="search__btn">&rarr;</button>
   </form>
 
@@ -11,35 +11,40 @@
     - in the user profile, i want to have a circle that can make user add images from their device.
     - it should also have a form with prefilled user name and password, where user can change details and when saved,
       the details will be added automatically.
+      change the searc button so that when input:valid, button displays none
       
   -->
 
   <nav *ngIf="isAuthenticated" class="user-nav">
-    <div class="user" (mouseenter)="visible()">
-      <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
-
-      <div *ngIf="isVisible" class="display">
-        <span class="display__span" (click)="notvisible()">&times;</span>
-        <h4 class="display__salute">Hello!</h4>
-        <ul class="display__links">
-          <li class="display__link" (click)="showProfile()">
-            <img src="/assets/img/profile.svg" class="display__icon" />
-            <span>profile</span>
-          </li>
-          <li class="display__link" (click)="showSetting()">
-            <img src="/assets/img/setting.svg" class="display__icon" />
-            <span>settings</span>
-          </li>
-          <li class="display__link" (click)="showSupport()">
-            <img src="/assets/img/support.svg" class="display__icon" />
-            <span>support</span>
-          </li>
-        </ul>
-        <hr />
-        <button class="display__close" (click)="showLogout()">Log Out</button>
-      </div>
+    <div class="user" (click)="visible()">
+      <img
+        src="/assets/img/user-Mikel.jpg"
+        alt="User"
+        class="user__img"
+      />
     </div>
   </nav>
+
+  <div *ngIf="isVisible" class="display">
+    <span class="display__span" (click)="notvisible()">&times;</span>
+    <h4 class="display__salute">Hello!</h4>
+    <ul class="display__links">
+      <li class="display__link" (click)="showProfile()">
+        <img src="/assets/img/profile.svg" class="display__icon" />
+        <span>profile</span>
+      </li>
+      <li class="display__link" (click)="showSetting()">
+        <img src="/assets/img/setting.svg" class="display__icon" />
+        <span>settings</span>
+      </li>
+      <li class="display__link" (click)="showSupport()">
+        <img src="/assets/img/support.svg" class="display__icon" />
+        <span>support</span>
+      </li>
+    </ul>
+    <hr />
+    <button class="display__close" (click)="showLogout()">Log Out</button>
+  </div>
 
   <div *ngIf="displayProfile" class="display__menu">
     <button class="display__menu--close" (click)="hideProfile()">
@@ -145,11 +150,12 @@
     <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
   </div>
 
+  <!-- Should also display when user is typing. -->
   <!-- <div *ngIf="searched" #searchElement class="search_"> -->
   <div *ngIf="searched" class="search_">
     <h4 class="feature__heading">Recent searches</h4>
-    <ul class="search__list" style="padding: 0">
-      <li>
+    <ul class="search__list">
+      <li class="search__li">
         <a class="search__link">
           <figure class="search__fig">
             <img src="assets/img/img-2.jpg" alt="test" />
@@ -161,7 +167,7 @@
         </a>
         <button class="search__remove">&times;</button>
       </li>
-      <li>
+      <li class="search__li">
         <a class="search__link">
           <figure class="search__fig">
             <img src="assets/img/img-3.jpg" alt="test" />
@@ -173,7 +179,7 @@
         </a>
         <button class="search__remove">&times;</button>
       </li>
-      <li>
+      <li class="search__li">
         <a class="search__link">
           <figure class="search__fig">
             <img src="assets/img/img-4.jpg" alt="test" />
