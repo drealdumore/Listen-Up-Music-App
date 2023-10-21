@@ -28,8 +28,7 @@ export class NavComponent {
     private renderer: Renderer2
   ) {}
 
-  // To remove the display if on esc click
-  // doessn't need much: only that the element has the ngif
+  // To remove the display if on esc click: the element has the ngif
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
@@ -39,23 +38,23 @@ export class NavComponent {
 
   // To remove the display if clicked out element
   //need much: only that the element must have the elemenntref
-  @ViewChild('searchElement', { static: false }) searchElement!: ElementRef;
-  // E no return false, i just tire.
-  @HostListener('document:click', ['$event'])
-  handleClick(event: Event) {
-    if (!this.searchElement.nativeElement.contains(event.target)) {
-      this.searched = false;
-    }
-  }
+  // @ViewChild('searchElement', { static: false }) searchElement!: ElementRef;
+  // // E no return false, i just tire.
+  // @HostListener('document:click', ['$event'])
+  // handleClick(event: Event) {
+  //   if (!this.searchElement.nativeElement.contains(event.target)) {
+  //     this.searched = false;
+  //   }
+  // }
 
-  // Testing the setstyle of the renderer2 elementref
-  someMethod() {
-    this.renderer.setStyle(
-      this.searchElement.nativeElement,
-      'background-color',
-      'blue'
-    );
-  }
+  // // Testing the setstyle of the renderer2 elementref
+  // someMethod() {
+  //   this.renderer.setStyle(
+  //     this.searchElement.nativeElement,
+  //     'background-color',
+  //     'blue'
+  //   );
+  // }
 
   isSearched() {
     this.searched = true;
