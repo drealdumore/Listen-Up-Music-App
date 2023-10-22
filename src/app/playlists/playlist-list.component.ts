@@ -7,7 +7,6 @@
 // })
 // export class PlaylistList {
 //   @Input() songs: ISongs[] = [];
-
 // }
 
 import { Component, Input, OnInit } from '@angular/core';
