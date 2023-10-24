@@ -21,38 +21,39 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //Login Form
-    this.email = new FormControl(null, [
-      Validators.required,
-      Validators.email,
-    ]);
+    //Login Email
+    this.email = new FormControl(null, [Validators.required, Validators.email]);
 
+    //Login password
     this.password = new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
     ]);
 
+    //Login form names/initializers
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password,
     });
 
+    //To check if user is authenticated
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
-    }); 
-
+    });
   }
 
+  //Login Function
   login() {
+    //To assign the form values to an object and use the object once instead
+    // of writing the values for both email and password, just use an object and put both value
     const userData = Object.assign(this.loginForm.value, {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     });
-
+    // login function from authservice
     this.authService
       .login(userData)
       .then((res: any) => {
-        
         this.toastr.success('Sign in Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);
@@ -63,11 +64,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  // signInWithGoogle function from authservice
   signInWithGoogle() {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
-        
         this.toastr.success('Google Signin Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);
@@ -78,10 +79,12 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  // to close login modal
   closeModal() {
     this.router.navigate(['/playlist']);
   }
 
+  // to route to signup page if user wants to sign up
   goToSignUp() {
     setTimeout(() => {
       this.router.navigate(['/auth/signup']);

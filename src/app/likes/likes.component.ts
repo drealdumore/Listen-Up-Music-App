@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AppService } from '../shared/app.service';
-import { ActivatedRoute } from '@angular/router';
 import { LikesService } from '../shared/likes.service';
 import { ISongs } from '../shared/app.model';
 
@@ -11,13 +9,9 @@ export class LikesComponent {
   title: string = 'Liked Songs';
   likedSongs: ISongs[] = [];
 
-  constructor(
-    private appService: AppService,
-    private route: ActivatedRoute,
-    private likeService: LikesService
-  ) {}
+  constructor(private likeService: LikesService) {}
 
   ngOnInit() {
-    this.likedSongs = this.likeService.getLikes()
+    this.likedSongs = this.likeService.getLikes();
   }
 }

@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Sign Up
+    // Sign form
     this.userMail = new FormControl('', [Validators.required]);
     this.nickName = new FormControl(null, [Validators.required]);
     this.userKey = new FormControl(null, [
@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
       Validators.minLength(4),
     ]);
 
+    // signup form initializers/ name
     this.signUpForm = new FormGroup({
       userMail: this.userMail,
       nickName: this.nickName,
@@ -35,22 +36,29 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  // to close signup modal
   closeModal() {
     this.router.navigate(['/playlist']);
   }
 
+  // to route to login page
   goToLogin() {
     setTimeout(() => {
       this.router.navigate(['/auth/login']);
     }, 200);
   }
 
+  // to register
   register() {
+    //To assign the form values to an object and use the object once instead
+    // of writing the values for both email and password, just use an object and put both value
+
     const userData = Object.assign(this.signUpForm.value, {
       email: this.signUpForm.value.userMail,
       password: this.signUpForm.value.userKey,
     });
 
+    // register function from authservice
     this.authService
       .register(userData)
       .then((res: any) => {
@@ -70,12 +78,11 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  
+  // signInWithGoogle function from authservice
   signInWithGoogle() {
     this.authService
       .signInWithGoogle()
       .then((res: any) => {
-        
         this.toastr.success('Google SignUp Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);

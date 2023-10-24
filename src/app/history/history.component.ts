@@ -6,6 +6,5 @@ import { AppService } from '../shared/app.service';
 })
 export class HistoryComponent {
   title: string = 'History';
-  constructor(private appService: AppService) {}
   
 }
