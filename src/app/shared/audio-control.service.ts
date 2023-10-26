@@ -47,25 +47,28 @@ export class AudioService {
 
   // if there's no song playing, start new song
   // else continue playing the old one
-
   setCurrentSong(song: ISongs) {
     this.currentAudio = new Audio(song.path);
   }
 
+  // To go to play song
   playSong() {
     if (!this.currentAudio) {
       return;
     }
     this.currentAudio.play();
     this.startUpdatingSongCurrent();
+    console.log(this.index)
   }
 
+  // To pause song
   pauseSong() {
     if (this.currentAudio) {
       this.currentAudio.pause();
     }
   }
 
+  // To go to next song
   nextSong() {
     if (this.index < this.songs.length - 1) {
       this.index++;
@@ -75,6 +78,7 @@ export class AudioService {
     this.playSong();
   }
 
+  // To go to prev song
   prevSong() {
     if (this.index > 0) {
       this.index--;
@@ -84,6 +88,7 @@ export class AudioService {
     this.playSong();
   }
 
+  // To seek between song
   public seekTo(percentage: number) {
     if (this.currentAudio) {
       const newTime = (percentage / 100) * (this.currentAudio.duration || 0);

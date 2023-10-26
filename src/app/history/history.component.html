@@ -2,90 +2,73 @@
   <navigation></navigation>
 
   <main class="flex">
-    <div class="navigation">
-      <!-- <div class="user">
-        <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
-        <h4 class="user__name">Mikel</h4>
-      </div> -->
+    <div class="sidebar open" [class.open]="isSidebarOpen">
+      <div class="logo-details">
+        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
+      </div>
       <div class="small">
-        <h2 class="small__p">Create your first playlist</h2>
+        <h2 class="small__p">
+          Create your <br />
+          first playlist
+        </h2>
         <button [routerLink]="['/playlist/new']" class="small__btn">
           Create playlist
         </button>
       </div>
-
-      <nav class="sidenav">
-        <ul class="nav">
-          <li class="nav__item" [routerLink]="['/playlist']">
-            <a class="nav__link" routerLinkActive="navActive">
-              <svg class="nav__icon">
-                <use
-                  xlink:href="/assets/img/sprite.svg#icon-music-playlist"
-                ></use>
-              </svg>
-              <span>Playlist</span>
-            </a>
-          </li>
-
-          <li class="nav__item" [routerLink]="['/404']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-paperclip"></use>
-              </svg>
-              <span>category</span>
-            </a>
-          </li>
-
-          <li class="nav__item" [routerLink]="['/liked-songs']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
-              </svg>
-              <span>likes</span>
-            </a>
-          </li>
-
-          <li class="nav__item nav__item--active" [routerLink]="['/history']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-reload"></use>
-              </svg>
-              <span>history</span>
-            </a>
-          </li>
-
-          <li class="nav__item" [routerLink]="['/404']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-download"></use>
-              </svg>
-              <span>downloads</span>
-            </a>
-          </li>
-
-          <li class="nav__item" [routerLink]="['/404']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-star"></use>
-              </svg>
-              <span>favourite</span>
-            </a>
-          </li>
-
-          <li class="nav__item" [routerLink]="['/404']">
-            <a class="nav__link">
-              <svg class="nav__icon">
-                <use xlink:href="/assets/img/sprite.svg#icon-credit-card"></use>
-              </svg>
-              <span>subscription</span>
-            </a>
-          </li>
-        </ul>
-
-        <div class="legal">
-          <p>© Copyright by Saint.</p>
-        </div>
-      </nav>
+      <ul class="nav-list">
+        <li [routerLink]="['/playlist']">
+          <a href="/playlist">
+            <i class="bx bxs-playlist"></i>
+            <span class="links_name">Playlist</span>
+          </a>
+          <span class="tooltip">Playlist</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-paperclip"></i>
+            <span class="links_name">Category</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/liked-songs']">
+          <a href="/liked-songs">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Likes</span>
+          </a>
+          <span class="tooltip">Liked Songs</span>
+        </li>
+        <li class="navactive" [routerLink]="['/history']">
+          <a href="/history">
+            <i class="bx bx-history"></i>
+            <span class="links_name">History</span>
+          </a>
+          <span class="tooltip">History</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-download"></i>
+            <span class="links_name">Downloads</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-star"></i>
+            <span class="links_name">Favourite</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-credit-card"></i>
+            <span class="links_name">Subscription</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+      </ul>
+      <div class="legal">
+        <p>© Copyright by Saint.</p>
+      </div>
     </div>
 
     <div class="home_">

@@ -1,32 +1,3 @@
-/*
-0 - 600px:          phone
-600 - 900px:        tablet portrait
-900 - 1200px:       tablet landscape
-1200- 1800px:       is where our normal style apply
-1800 + :            big desktop
-
-
-$breakpoint argument choices:
-- phone
-- tab-port
-- tab-land
-- big-desktop
-
-ORDER: Base + typography > general layout + grid > page layout > components
-
-1em = 16px -----------1rem = 10px
-*/
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-}
-
 ::-webkit-scrollbar {
   width: 0.5em;
 }
@@ -216,7 +187,7 @@ button {
   background-color: #535050;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 2000;
 }
 
 .logo {
@@ -367,56 +338,14 @@ span {
   border-bottom-left-radius: 15px;
   background-color: #2e415a;
   color: #d8d6d6;
-  width: 80%;
+  width: 90%;
   padding: 1rem;
-}
-
-.navigation {
-  background-color: #535050;
-  width: 20%;
-  padding-left: 1rem;
-}
-
-.nav {
-  list-style: none;
-  font-size: 1.1rem;
-  margin-top: 0;
-  padding-left: 0;
-}
-
-.nav__item {
-  margin: 0;
-  text-align: left;
-  position: relative;
-  padding-left: 2.5rem;
-  cursor: pointer;
-}
-
-.nav__item:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
-.nav__link {
-  color: #fff;
-  text-decoration: none;
-  text-transform: capitalize;
-  padding: 1rem;
-  position: relative;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  z-index: 1;
 }
 
 .nav__icon {
   height: 1.6rem;
   width: 1.6rem;
-  display: flex;
-  padding-left: 0;
-  font-size: 1.6rem;
   fill: #f3f3f3;
-  position: relative;
-  margin-right: 1.2rem;
 }
 
 .legal {
@@ -593,6 +522,7 @@ span {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-row-gap: 2rem;
+  place-items: center;
 }
 
 .feature {
@@ -602,7 +532,7 @@ span {
   overflow: hidden;
   border: 1px solid transparent;
   transition: all 0.6s;
-  width: 15rem;
+  width: 17rem;
 }
 
 .feature:hover {
@@ -916,27 +846,6 @@ span {
 
 .playlist-close {
   margin-top: 2rem;
-}
-
-.nav__item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 3px;
-  background-color: rgba(18, 18, 18, 0.605);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.4s;
-}
-
-.nav__item--active::before,
-.nav__item:hover::before {
-  transform: scaleY(1);
-  width: 100%;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
 }
 
 .top__container {
@@ -1587,68 +1496,286 @@ svg text {
   animation-delay: -0.5s;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-}
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  .feature__grid {
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+  }
 
-/* Common breakpoints are 
-320px — 480px for mobile devices, 
-481px — 768px for iPads & tablets, 
-769px — 1024px for small screens like laptop, 
-1025px — 1200px for large screens like Desktops, and 
-1201px and above for extra large screens like TV */
+  .feature {
+    width: 17rem;
+  }
 
-/* Mobile: 360 x 640.
-Mobile: 375 x 667.
-Mobile: 360 x 720.
-iPhone X: 375 x 812.
-Pixel 2: 411 x 731.
-Tablet: 768 x 1024.
-Laptop: 1366 x 768.
-High-res laptop or desktop: 1920 x 1080. */
+  .nav__item {
+    padding-left: 1.5rem;
+  }
 
-/* Mobile: 360 x 640 */
-@media only screen and (min-width: 320px) and (max-width: 359px) {
-  /* Styles for Mobile: 360 x 640 */
+  .player {
+    left: 23.5%;
+    width: 68%;
+  }
 }
 
-/* Mobile: 375 x 667 */
-@media only screen and (min-width: 360px) and (max-width: 374px) {
-  /* Styles for Mobile: 375 x 667 */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .feature__grid {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+
+  .feature {
+    width: 17rem;
+  }
+
+  .nav__item {
+    padding-left: 1.5rem;
+  }
+
+  .player {
+    left: 23.5%;
+    width: 68%;
+  }
+
+  .nav {
+    list-style: none;
+    font-size: 1.1rem;
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  .nav__item {
+    margin: 0;
+    text-align: left;
+    position: relative;
+    padding-left: 2.5rem;
+    cursor: pointer;
+  }
+
+  .nav__item:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav__link {
+    color: #fff;
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 1rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+  }
+  .nav__link span {
+    display: none;
+  }
+
+  .nav__icon {
+    height: 1.6rem;
+    width: 1.6rem;
+    display: flex;
+    padding-left: 0;
+    font-size: 1.6rem;
+    fill: #f3f3f3;
+    position: relative;
+    margin-right: 1.2rem;
+  }
 }
 
-/* Mobile: 360 x 720 */
-@media only screen and (min-width: 375px) and (max-width: 359px) {
-  /* Styles for Mobile: 360 x 720 */
+/* Extra Small Devices, Phones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  /* Your CSS for extra small devices */
 }
 
-/* iPhone X: 375 x 812 */
-@media only screen and (min-width: 375px) and (max-width: 375px) and (min-height: 812px) and (max-height: 812px) {
-  /* Styles for iPhone X: 375 x 812 */
+/* Small Devices, Tablets */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Your CSS for small devices */
 }
 
-/* Pixel 2: 411 x 731 */
-@media only screen and (min-width: 411px) and (max-width: 411px) and (min-height: 731px) and (max-height: 731px) {
-  /* Styles for Pixel 2: 411 x 731 */
+/* Medium Devices, Laptops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Your CSS for medium devices */
 }
 
-/* Tablet: 768 x 1024 */
-@media only screen and (min-width: 600px) and (max-width: 767px) {
-  /* Styles for Tablet: 768 x 1024 */
+/* Large Devices, Desktops */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  /* Your CSS for large devices */
 }
 
-/* Laptop: 1366 x 768 */
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
-  /* Styles for Laptop: 1366 x 768 */
+/* Extra Large Devices, Large Desktops */
+@media only screen and (min-width: 1201px) {
+  /* Your CSS for extra large devices */
 }
 
-/* High-res laptop or desktop: 1920 x 1080 */
-@media only screen and (min-width: 1367px) {
-  /* Styles for High-res laptop or desktop: 1920 x 1080 */
+.sidebar {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  z-index: 9;
+  background: #8c8c8c;
+  transition: all 0.5s ease;
+  background-color: #535050;
+}
+.sidebar.open {
+  width: 225px;
+  padding-right: 0.6rem;
+}
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .logo-details .icon {
+  opacity: 1;
+}
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.sidebar .nav-list {
+  margin-top: 5px;
+  height: 100%;
+  padding-left: 1.2rem;
+}
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: 4rem;
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+  color: #2e415a;
+}
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip {
+  display: none;
+}
+
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 64%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.sidebar li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: rgba(18, 18, 18, 0.605);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s;
+}
+
+.sidebar li:hover::before {
+  transform: scaleY(1);
+  width: 95.5%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 1;
+}
+
+.navactive {
+  background-color: rgba(18, 18, 18, 0.605);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 1;
+  width: 95.5%;
+}
+
+/* tO HIDE SMALL */
+.sidebar li a .links_name,
+.legal,
+.small {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+  display: none;
+}
+
+/* tO MAKE SMALL VISIBLE */
+.sidebar.open li a .links_name,
+.sidebar.open .legal,
+.sidebar.open .small {
+  opacity: 1;
+  pointer-events: auto;
+  display: block;
+  z-index: 1;
+}
+
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+  transition: all 0.5s ease;
+}
+
+.sidebar li i {
+  height: 50px;
+  line-height: 50px;
+  font-size: 23px;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.home_ {
+  position: relative;
+  min-height: 100vh;
+  top: 0;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+}
+.sidebar.open ~ .home_ {
+  width: calc(100% - 250px);
 }

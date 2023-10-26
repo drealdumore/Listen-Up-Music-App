@@ -11,6 +11,22 @@ export class PlaylistDetail implements OnInit {
 
   constructor(private route: ActivatedRoute, private appService: AppService) {}
 
+  public isSidebarOpen = true;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+    this.menuBtnChange();
+  }
+
+  menuBtnChange() {
+    const btnIcon = this.isSidebarOpen ? 'bx-menu-alt-right' : 'bx-menu';
+    const btnElement = document.getElementById('btn');
+    if (btnElement) {
+      btnElement.classList.replace('bx-menu', btnIcon);
+    }
+  }
+
+
   ngOnInit() {
     // this.route.params.forEach((params: Params) => {
     //   this.appService.getPlaylist(params['id']);

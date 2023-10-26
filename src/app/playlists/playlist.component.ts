@@ -7,13 +7,27 @@ import { AppService } from '../shared/app.service';
 })
 export class PlaylistComponent implements OnInit {
   playlists: IPlaylist[] = [];
-  greeting: string = ''
+  public greeting: string = '';
+  public isSidebarOpen = true;
 
   constructor(private appService: AppService) {}
 
   ngOnInit() {
     this.playlists = this.appService.getPlaylists();
     this.greeting = this.getSalutation();
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+    this.menuBtnChange();
+  }
+
+  menuBtnChange() {
+    const btnIcon = this.isSidebarOpen ? 'bx-menu-alt-right' : 'bx-menu';
+    const btnElement = document.getElementById('btn');
+    if (btnElement) {
+      btnElement.classList.replace('bx-menu', btnIcon);
+    }
   }
 
   salute() {

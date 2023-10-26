@@ -10,6 +10,20 @@ export class LikesComponent {
   likedSongs: ISongs[] = [];
 
   constructor(private likeService: LikesService) {}
+  public isSidebarOpen = true;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+    this.menuBtnChange();
+  }
+
+  menuBtnChange() {
+    const btnIcon = this.isSidebarOpen ? 'bx-menu-alt-right' : 'bx-menu';
+    const btnElement = document.getElementById('btn');
+    if (btnElement) {
+      btnElement.classList.replace('bx-menu', btnIcon);
+    }
+  }
 
   ngOnInit() {
     this.likedSongs = this.likeService.getLikes();

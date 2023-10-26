@@ -2,11 +2,11 @@
   <navigation></navigation>
 
   <main class="flex">
-    <div class="navigation">
-      <!-- <div class="user">
+    <!-- <div class="navigation">
+      <div class="user">
             <img src="/assets/img/user-Mikel.jpg" alt="User" class="user__img" />
             <h4 class="user__name">Mikel</h4>
-          </div> -->
+          </div>
 
       <div class="small">
         <h2 class="small__p">Create your first playlist</h2>
@@ -85,6 +85,75 @@
           <p>© Copyright by Saint.</p>
         </div>
       </nav>
+    </div> -->
+
+    <div class="sidebar open" [class.open]="isSidebarOpen">
+      <div class="logo-details">
+        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
+      </div>
+      <div class="small">
+        <h2 class="small__p">
+          Create your <br />
+          first playlist
+        </h2>
+        <button [routerLink]="['/playlist/new']" class="small__btn">
+          Create playlist
+        </button>
+      </div>
+      <ul class="nav-list">
+        <li class="navactive" [routerLink]="['/playlist']">
+          <a href="/playlist">
+            <i class="bx bxs-playlist">d </i>
+            <span class="links_name">Playlist</span>
+          </a>
+          <span class="tooltip">Playlist</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-paperclip"></i>
+            <span class="links_name">Category</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/liked-songs']">
+          <a href="/liked-songs">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Likes</span>
+          </a>
+          <span class="tooltip">Liked Songs</span>
+        </li>
+        <li [routerLink]="['/history']">
+          <a href="/history">
+            <i class="bx bx-history"></i>
+            <span class="links_name">History</span>
+          </a>
+          <span class="tooltip">History</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-download"></i>
+            <span class="links_name">Downloads</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-star"></i>
+            <span class="links_name">Favourite</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-credit-card"></i>
+            <span class="links_name">Subscription</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+      </ul>
+      <div class="legal">
+        <p>© Copyright by Saint.</p>
+      </div>
     </div>
 
     <div class="home_">

@@ -13,7 +13,24 @@ export class CreatePlaylist implements OnInit {
   changeName!: FormGroup;
   nameCtrl!: FormControl;
   descriptionCtrl!: FormControl;
+
   constructor(private router: Router) {}
+
+
+  public isSidebarOpen = true;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+    this.menuBtnChange();
+  }
+
+  menuBtnChange() {
+    const btnIcon = this.isSidebarOpen ? 'bx-menu-alt-right' : 'bx-menu';
+    const btnElement = document.getElementById('btn');
+    if (btnElement) {
+      btnElement.classList.replace('bx-menu', btnIcon);
+    }
+  }
 
   ngOnInit(): void {
     this.nameCtrl = new FormControl();

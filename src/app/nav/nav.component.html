@@ -1,7 +1,12 @@
 <header class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
 
-  <form id="search" class="search" (ngSubmit)="searchSongs()">
+  <form
+    *ngIf="isAuthenticated"
+    id="search"
+    class="search"
+    (ngSubmit)="searchSongs()"
+  >
     <input
       type="search"
       [(ngModel)]="searchTerm"

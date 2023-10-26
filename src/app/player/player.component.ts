@@ -20,6 +20,7 @@ export class PlayerComponent implements OnInit {
   public playingMov: number = 0;
   public current: number = 0;
   public duration: number = 0;
+  allSongs: ISongs[] = [];
 
   constructor(
     private audioService: AudioService,
@@ -28,10 +29,16 @@ export class PlayerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.songs = this.appService.getSongs();
+    // this.songs = this.appService.getSongs();
+
     this.loadCurrentSong();
     this.setCurrentSong();
 
+    // to get All songs
+    this.appService.getAllSongs().subscribe((songs) => {
+      this.allSongs = songs;
+    });
+    
     // to get song currents
     this.audioService.playingSongCurrentTime.subscribe(
       (playingSongCurrentTime) => {
@@ -78,7 +85,8 @@ export class PlayerComponent implements OnInit {
   }
 
   public nextSong() {
-    this.currentSindex = (this.currentSindex + 1) % this.songs.length;
+    // this.currentSindex = (this.currentSindex + 1) % this.songs.length;
+    this.currentSindex = (this.currentSindex + 1) % this.allSongs.length;
     this.loadCurrentSong();
     this.pauseAudio();
     this.setCurrentSong();
@@ -87,7 +95,8 @@ export class PlayerComponent implements OnInit {
 
   public previousSong() {
     this.currentSindex =
-      (this.currentSindex - 1 + this.songs.length) % this.songs.length;
+      // (this.currentSindex - 1 + this.songs.length) % this.songs.length;
+      (this.currentSindex - 1 + this.allSongs.length) % this.allSongs.length;
     this.loadCurrentSong();
     this.pauseAudio();
     this.setCurrentSong();
@@ -95,7 +104,8 @@ export class PlayerComponent implements OnInit {
   }
 
   private loadCurrentSong() {
-    this.currentSong = this.songs[this.currentSindex];
+    // this.currentSong = this.songs[this.currentSindex];
+    this.currentSong = this.allSongs[this.currentSindex];
   }
 
   seekTo(value: number) {
@@ -130,4 +140,4 @@ export class PlayerComponent implements OnInit {
 // Possible fixes
 //- subscribe to an observable so that whenever ot routes to a new page, it will read the observable of the previouse page and continue.
 //- make the player component to be side by side with the router link : cons = if it works, it will be  displayed in the 404 page as well.
-//- 
+//-
