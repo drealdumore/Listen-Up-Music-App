@@ -532,7 +532,7 @@ span {
   overflow: hidden;
   border: 1px solid transparent;
   transition: all 0.6s;
-  width: 17rem;
+  width: 16rem;
 }
 
 .feature:hover {
