@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { ISongs } from './app.model';
 import { Observable, Subject, map } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AudioService {
   private currentAudio: HTMLAudioElement | null = null;
   public playingSongCurrentTime: Subject<number> = new Subject();
@@ -58,7 +56,6 @@ export class AudioService {
     }
     this.currentAudio.play();
     this.startUpdatingSongCurrent();
-    console.log(this.index)
   }
 
   // To pause song

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AudioService } from '../shared/audio-control.service';
 import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
@@ -29,16 +29,22 @@ export class PlayerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.songs = this.appService.getSongs();
-
-    this.loadCurrentSong();
-    this.setCurrentSong();
-
-    // to get All songs
+    // Subscribe to get all songs
     this.appService.getAllSongs().subscribe((songs) => {
       this.allSongs = songs;
+
+      // Ensure there are songs available
+      if (this.allSongs.length > 0) {
+        // Initialize currentSindex and load the initial song
+        this.currentSindex = 0;
+        this.loadCurrentSong();
+
+        // Set and play the initial song
+        this.setCurrentSong();
+        // this.playAudio();
+      }
     });
-    
+
     // to get song currents
     this.audioService.playingSongCurrentTime.subscribe(
       (playingSongCurrentTime) => {
@@ -62,8 +68,6 @@ export class PlayerComponent implements OnInit {
     });
   }
 
-  // If songplayed = display pause btn.
-  // That means that pause svg will be hidden unless song is played
   public playAudio() {
     if (this.currentSong) {
       this.audioService.playSong();

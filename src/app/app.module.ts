@@ -4,7 +4,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './404.component';
 import { PlayerComponent } from './player/player.component';
@@ -65,7 +65,12 @@ import { LikesList } from './likes/likes-list.component';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [AppService, PlaylistRouteResolver, AudioService, LikesService, ],
+  providers: [
+    AppService,
+    PlaylistRouteResolver,
+    AudioService,
+    LikesService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
