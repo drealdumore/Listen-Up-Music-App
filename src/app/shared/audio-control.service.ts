@@ -6,6 +6,7 @@ import { Observable, Subject, map } from 'rxjs';
 export class AudioService {
   private currentAudio: HTMLAudioElement | null = null;
   public playingSongCurrentTime: Subject<number> = new Subject();
+  public songEnded: Subject<void> = new Subject<void>();
 
   public playerSongProgress = this.playingSongCurrentTime.pipe(
     map((currentTime) => {
@@ -39,6 +40,12 @@ export class AudioService {
     if (this.currentAudio) {
       this.currentAudio.ontimeupdate = (data) => {
         this.playingSongCurrentTime.next(this.currentAudio?.currentTime || 0);
+
+        // Check if the song has ended
+        if (this.currentAudio?.ended) {
+          // Notify that the song has ended
+          this.songEnded.next();
+        }
       };
     }
   }
@@ -46,7 +53,20 @@ export class AudioService {
   // if there's no song playing, start new song
   // else continue playing the old one
   setCurrentSong(song: ISongs) {
+    // this.currentAudio = new Audio(song.path);
+    // Release the resources of the previous audio before creating a new one
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio = null;
+    }
+
     this.currentAudio = new Audio(song.path);
+
+    // Listen for the 'ended' event
+    this.currentAudio.addEventListener('ended', () => {
+      // Notify that the song has ended
+      this.songEnded.next();
+    });
   }
 
   // To go to play song

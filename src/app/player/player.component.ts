@@ -66,6 +66,11 @@ export class PlayerComponent implements OnInit {
     this.audioService.playingSongProgress.subscribe((playingSongProgress) => {
       this.playingMov = playingSongProgress;
     });
+
+    // Subscribe to songEnded to move to the next song
+    this.audioService.songEnded.subscribe(() => {
+      this.nextSong();
+    });
   }
 
   public playAudio() {
