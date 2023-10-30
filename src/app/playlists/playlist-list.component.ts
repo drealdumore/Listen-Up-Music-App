@@ -1,14 +1,3 @@
-// import { Component, Input } from '@angular/core';
-// import { ISongs } from 'src/app/shared/app.model';
-
-// @Component({
-//   selector: 'song-list',
-//   templateUrl: './playlist-list.component.html'
-// })
-// export class PlaylistList {
-//   @Input() songs: ISongs[] = [];
-// }
-
 import { Component, Input, OnInit } from '@angular/core';
 import { ISongs } from 'src/app/shared/app.model';
 import { AppService } from '../shared/app.service';
@@ -134,5 +123,33 @@ export class PlaylistList implements OnInit {
 
   songIsLiked() {
     return this.likeService.songIsLiked(this.currentSong);
+  }
+
+  playSongFromUrl(url: string) {
+    this.pauseAudio();
+
+    this.audioService.setCurrentSong({ path: url } as ISongs);
+
+    this.playAudio();
+  }
+
+  toggleLikesForSong(song: ISongs) {
+    this.likeService.toggleLikes(song);
+  }
+
+  
+  // if click on img, add visible class to display
+  isVisible: boolean = false;
+
+  visible() {
+    setTimeout(() => {
+      this.isVisible = true;
+    }, 200);
+  }
+
+  notvisible() {
+    setTimeout(() => {
+      this.isVisible = false;
+    }, 150);
   }
 }

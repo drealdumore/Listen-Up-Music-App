@@ -512,6 +512,8 @@ span {
   color: #d8d6d6;
   width: 90%;
   padding: 1rem;
+  height: 101vh;
+  overflow-y: scroll;
 }
 
 .nav__icon {

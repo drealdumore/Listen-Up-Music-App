@@ -9,7 +9,7 @@
     </div>
   </a>
   <div class="list__icon">
-    <span>
+    <span (click)="toggleLikesForSong(song)">
       <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
       </svg>
@@ -17,7 +17,7 @@
         <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
       </svg>
     </span>
-    <span>
+    <span (click)="visible()">
       <svg
         class="player__icon"
         width="24"
@@ -49,7 +49,8 @@
         />
       </svg>
     </span>
-    <span>
+
+    <span (click)="playSongFromUrl(song.path)">
       <svg *ngIf="!isplayed" (click)="playAudio()" class="player__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-play2"></use>
       </svg>
@@ -60,5 +61,3 @@
     </span>
   </div>
 </li>
-
-<!-- Add like, play and detail icons with functionality -->

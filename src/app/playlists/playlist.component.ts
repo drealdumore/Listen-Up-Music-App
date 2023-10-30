@@ -50,4 +50,5 @@ export class PlaylistComponent implements OnInit {
   getSalutation() {
     return this.salute();
   }
+
 }

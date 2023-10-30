@@ -16,16 +16,12 @@ export class LikesService {
     this.likesArr.splice(i, 1);
   }
 
-  // songIsLiked(song: ISongs) {
-  //   return this.likesArr.some((el) => el === song);
-  // }
-
   // Boolean to check if song is liked or not
   songIsLiked(song: ISongs) {
     return this.likesArr.find((el) => el.id === song.id);
   }
 
-  // Toogle between like and unlike
+  // Toggle between like and unlike
   toggleLikes(song: ISongs) {
     if (this.songIsLiked(song)) {
       this.removeLike(song.id);
@@ -36,7 +32,7 @@ export class LikesService {
 
   // Get number of likes
   getNumLikes() {
-    this.likesArr.length;
+    return this.likesArr.length;
   }
 
   // Get likes Array

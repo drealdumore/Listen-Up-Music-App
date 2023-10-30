@@ -143,6 +143,22 @@ export class PlayerComponent implements OnInit {
   songIsLiked() {
     return this.likeService.songIsLiked(this.currentSong);
   }
+
+  playSongFromUrl(url: string) {
+    // Stop the current song
+    this.pauseAudio();
+
+    // Create a new audio element with the provided URL
+    this.audioService.setCurrentSong({ path: url } as ISongs);
+
+    // Play the new song
+    this.playAudio();
+  }
+
+  // Assuming your ISongs interface has a property 'id'
+  toggleLikesForSong(song: ISongs) {
+    this.likeService.toggleLikes(song);
+  }
 }
 
 // the reason why it is playing differently on different pages is because, in every page, theres a new instance of the player component.
