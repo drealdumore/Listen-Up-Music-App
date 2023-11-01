@@ -26,6 +26,7 @@ export class LikesComponent {
   }
 
   ngOnInit() {
+    // to get liked songs array
     this.likedSongs = this.likeService.getLikes();
   }
 }

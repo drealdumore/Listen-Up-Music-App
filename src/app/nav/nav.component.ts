@@ -58,10 +58,12 @@ export class NavComponent {
   }
 
   ngOnInit(): void {
+    // to check authentication state
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
+    // to get user displayname and img from their email
     const user = this.authService.getUser();
     this.user = user?.displayName;
     this.userImg = user?.photoURL;
@@ -76,6 +78,7 @@ export class NavComponent {
     }
   }
 
+  // function to seach for songs
   searchSongs() {
     this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
       this.foundSongs = songs;
@@ -88,6 +91,7 @@ export class NavComponent {
     });
   }
 
+  // when clicked to navigate to the playlist with the seacrh song
   navigateToPlaylist(songId: string): void {
     this.router.navigate(['/playlist', songId]);
     setTimeout(() => {
