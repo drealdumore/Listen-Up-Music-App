@@ -91,12 +91,31 @@
         placeholder="Email"
         value="test@listenup"
       />
-      <input
+      <!-- <input
         class="display__menu--input"
         type="password"
         placeholder="Password"
         value="testing"
+      /> -->
+      <input
+        type="{{ showPassword ? 'text' : 'password' }}"
+        required
+        value="testing"
+        class="display__menu--input"
+        placeholder="Password"
+        formControlName="password"
       />
+
+      <span class="eye-span" (click)="togglePasswordVisibility()">
+        <img
+          *ngIf="showPassword; else closedEye"
+          class="eye"
+          src="/assets/img/eye.svg"
+        />
+        <ng-template #closedEye>
+          <img src="/assets/img/eye-closed.svg" class="eye" />
+        </ng-template>
+      </span>
     </form>
     <div class="display__menu--btns">
       <button class="display__menu--btn display__menu--save">Save</button>

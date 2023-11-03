@@ -1725,3 +1725,18 @@ svg text {
 @media only screen and (min-width: 1201px) {
   /* Your CSS for extra large devices */
 }
+
+.eye {
+  position: absolute;
+  bottom: 1.15rem;
+  right: 2rem;
+  transform: translateY(-40%);
+  width: 1.2rem;
+}
+
+.eye-span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  cursor: pointer;
+}

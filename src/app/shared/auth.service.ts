@@ -12,16 +12,29 @@ export class AuthService {
   isAuthenticated$: Observable<boolean>;
   private user: User | null = null;
 
-  constructor(
-    private storage: AngularFireStorage,
-    private afs: AngularFireAuth
-  ) {
+  // constructor(
+  //   private storage: AngularFireStorage,
+  //   private afs: AngularFireAuth
+  // ) {
+  //   this.isAuthenticated$ = this.afs.authState.pipe(map((user) => !!user));
+  //   this.afs.authState.subscribe((user: firebase.default.User | null) => {
+  //     if (user) {
+  //       this.user = user as import('@firebase/auth/dist/auth-public').User;
+  //     } else {
+  //       this.user = null;
+  //     }
+  //   });
+  // }
+  
+  constructor(private afs: AngularFireAuth) {
     this.isAuthenticated$ = this.afs.authState.pipe(map((user) => !!user));
     this.afs.authState.subscribe((user: firebase.default.User | null) => {
       if (user) {
         this.user = user as import('@firebase/auth/dist/auth-public').User;
+        localStorage.setItem('user', JSON.stringify(this.user));
       } else {
         this.user = null;
+        localStorage.removeItem('user');
       }
     });
   }
