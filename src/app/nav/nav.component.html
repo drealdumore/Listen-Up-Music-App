@@ -83,40 +83,39 @@
         class="display__menu--input"
         type="text"
         placeholder="Username"
-        value="Saint"
+        value="{{user}}"
       />
       <input
         class="display__menu--input"
         type="email"
         placeholder="Email"
-        value="test@listenup"
-      />
-      <!-- <input
-        class="display__menu--input"
-        type="password"
-        placeholder="Password"
-        value="testing"
-      /> -->
-      <input
-        type="{{ showPassword ? 'text' : 'password' }}"
-        required
-        value="testing"
-        class="display__menu--input"
-        placeholder="Password"
-        formControlName="password"
+        value="{{ userEmail }}"
       />
 
-      <span class="eye-span" (click)="togglePasswordVisibility()">
-        <img
-          *ngIf="showPassword; else closedEye"
-          class="eye"
-          src="/assets/img/eye.svg"
+      <!-- <div class="i">
+        <input
+          type="{{ showPassword ? 'text' : 'password' }}"
+          value="{{ userEmail }}"
+          required
+          class="display__menu--input-1"
+          placeholder="Password"
+          formControlName="password"
         />
-        <ng-template #closedEye>
-          <img src="/assets/img/eye-closed.svg" class="eye" />
-        </ng-template>
-      </span>
+
+        <span class="eye-span" (click)="togglePasswordVisibility()">
+          <img
+            *ngIf="showPassword; else closedEye"
+            class="eye"
+            src="/assets/img/eye.svg"
+          />
+          <ng-template #closedEye>
+            <img src="/assets/img/eye-closed.svg" class="eye" />
+          </ng-template>
+        </span>
+      </div> -->
+
     </form>
+    
     <div class="display__menu--btns">
       <button class="display__menu--btn display__menu--save">Save</button>
       <button class="display__menu--btn display__menu--cancel">Cancel</button>

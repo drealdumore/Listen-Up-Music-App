@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Sign in Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);
-        }, 2000);
+        }, 200);
       })
       .catch((error: any) => {
         this.toastr.error('error');
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Google Signin Successful!');
         setTimeout(() => {
           this.router.navigate(['/playlist']);
-        }, 2000);
+        }, 200);
       })
       .catch((error: any) => {
         this.toastr.error(error);

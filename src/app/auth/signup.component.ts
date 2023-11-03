@@ -68,10 +68,10 @@ export class SignupComponent implements OnInit {
             `You will be redirected to the Sign in page, 
             Sign in with your Email and Password`
           );
-        }, 4000);
+        }, 2000);
         setTimeout(() => {
           this.router.navigate(['/auth/login']);
-        }, 6000);
+        }, 1000);
       })
       .catch((error: any) => {
         this.toastr.error(error);

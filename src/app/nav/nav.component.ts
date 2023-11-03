@@ -33,6 +33,7 @@ export class NavComponent {
 
   user: any;
   userImg: any;
+  userEmail: any;
   userProfile: boolean = false;
   isAuthenticated: boolean = false;
 
@@ -57,27 +58,6 @@ export class NavComponent {
     }
   }
 
-  // ngOnInit(): void {
-  //   // to check authentication state
-  //   this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
-  //     this.isAuthenticated = isAuthenticated;
-  //   });
-
-  //   // to get user displayname and img from their email
-  //   const user = this.authService.getUser();
-  //   this.user = user?.displayName;
-  //   this.userImg = user?.photoURL;
-
-  //   if (
-  //     (this.user === null && this.userImg === null) ||
-  //     (this.user === undefined && this.userImg === undefined)
-  //   ) {
-  //     this.userProfile = false;
-  //   } else {
-  //     this.userProfile = true;
-  //   }
-  // }
-
   ngOnInit(): void {
     // to check authentication state
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
@@ -85,10 +65,19 @@ export class NavComponent {
     });
 
     // to get user display name and img from their email
+
+    // to get user displayname and img from their email
+    //   const user = this.authService.getUser();
+    //   this.user = user?.displayName;
+    //   this.userImg = user?.photoURL;
+
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser).displayName;
       this.userImg = JSON.parse(storedUser).photoURL;
+      this.userEmail = JSON.parse(storedUser).email;
+      console.log('User Photo URL:', this.userImg);
+      console.log('userEmail:', this.userEmail);
     }
 
     if (this.user === null || this.userImg === null) {
@@ -99,7 +88,7 @@ export class NavComponent {
   }
 
   showPassword: boolean = false;
-  
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
