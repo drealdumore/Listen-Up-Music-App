@@ -36,6 +36,22 @@ export class SignupComponent implements OnInit {
     });
   }
 
+
+  
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  
+  setNickname() {
+    const newNickname = this.nickName.value;
+
+    if (this.nickName.valid && newNickname.trim() !== '') {
+      this.authService.setDisplayName(newNickname);
+    }
+  }
+
   // to close signup modal
   closeModal() {
     this.router.navigate(['/playlist']);
@@ -64,10 +80,7 @@ export class SignupComponent implements OnInit {
       .then((res: any) => {
         this.toastr.success('Sign up Successful!');
         setTimeout(() => {
-          this.toastr.info(
-            `You will be redirected to the Sign in page, 
-            Sign in with your Email and Password`
-          );
+          this.toastr.info(`Sign in with your Email and Password`);
         }, 2000);
         setTimeout(() => {
           this.router.navigate(['/auth/login']);
@@ -76,6 +89,7 @@ export class SignupComponent implements OnInit {
       .catch((error: any) => {
         this.toastr.error(error);
       });
+    this.setNickname();
   }
 
   // signInWithGoogle function from authservice

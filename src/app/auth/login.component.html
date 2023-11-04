@@ -9,11 +9,11 @@
           loginForm.controls['email']?.invalid &&
           loginForm.controls['email']?.touched
         "
-        class="error"
+        class="error-text"
         ><i>Required</i></em
       >
     </div>
-    <input
+    <!-- <input
       [ngClass]="{
         wrong:
           loginForm.controls['email'].invalid &&
@@ -24,7 +24,21 @@
       required
       type="email"
       class="input__user"
+    /> -->
+    
+    <input
+      [ngClass]="{
+        error:
+          loginForm.controls['email'].invalid &&
+          loginForm.controls['email'].touched
+      }"
+      formControlName="email"
+      id="email"
+      required
+      type="email"
+      class="input__user"
     />
+
     <div>
       <label>Password</label>
       <em
@@ -32,11 +46,31 @@
           loginForm.controls['password']?.invalid &&
           (loginForm.controls['password']?.touched || mouseoverLogin)
         "
-        class="error"
+        class="error-text"
         ><i>Required</i></em
       >
     </div>
-    <input
+    <div class="i">
+      <input
+        formControlName="password"
+        type="{{ showPassword ? 'text' : 'password' }}"
+        class="input__pin"
+      />
+
+      <span (click)="togglePasswordVisibility()">
+        <img
+          *ngIf="showPassword; else closedEye"
+          class="eye"
+          src="/assets/img/eye.svg"
+        />
+        <ng-template #closedEye>
+          <img src="/assets/img/eye-closed.svg" class="eye" />
+        </ng-template>
+      </span>
+    </div>
+    <button [disabled]="!loginForm.valid">Sign in ➡</button>
+
+    <!-- <input
       [ngClass]="{
         wrong:
           loginForm.controls['password'].invalid &&
@@ -52,7 +86,7 @@
       (mouseleave)="mouseoverLogin = false"
     >
       <button [disabled]="!loginForm.valid">Sign in ➡</button>
-    </span>
+    </span> -->
   </form>
   <div class="google__container">
     <button (click)="signInWithGoogle()" class="input__btn">

@@ -74,9 +74,15 @@
     <div class="home_">
       <div>
         <div>
-          <nav class="home__nav">
-            <div class="home__greeting">{{ greeting }}</div>
+          <!-- <nav class="home__nav">
+            <div *ngIf="!isAuthenticated" class="home__greeting">{{ greeting }}</div>
+            <div *ngIf="isAuthenticated" class="home__greeting">{{ greeting }}, {{user}}</div>
+          </nav> -->
+          <nav class="home__nav" [ngSwitch]="isAuthenticated">
+            <div *ngSwitchCase="false" class="home__greeting">{{ greeting }}</div>
+            <div *ngSwitchCase="true" class="home__greeting">{{ greeting }}, {{ user }}</div>
           </nav>
+          
           <div>
             <h2 class="home__heading">Playlists</h2>
             <div class="feature__grid">

@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
             <text x="50%" y="50%" dy=".35em" text-anchor="middle">404</text>
           </svg>
         </div>
-        <!-- <h1>404 - Not Found</h1> -->
         <p>Sorry, we are still working on this page😞</p>
         <a routerLink="/playlist" class="btn-404">
           <span class="btn-text">Go Back to App</span>

@@ -9,7 +9,7 @@
           signUpForm.controls['userMail']?.invalid &&
           signUpForm.controls['userMail']?.touched
         "
-        class="error"
+        class="error-text"
         ><i>*Required</i></em
       >
     </div>
@@ -34,11 +34,30 @@
           signUpForm.controls['userKey']?.invalid &&
           signUpForm.controls['userKey']?.touched
         "
-        class="error"
+        class="error-text"
         ><i>*Required</i></em
       >
     </div>
-    <input formControlName="userKey" type="password" class="input__pin" />
+
+    <div class="i">
+      <input
+        formControlName="userKey"
+        type="{{ showPassword ? 'text' : 'password' }}"
+        class="input__pin"
+      />
+
+      <span (click)="togglePasswordVisibility()">
+        <img
+          *ngIf="showPassword; else closedEye"
+          class="eye"
+          src="/assets/img/eye.svg"
+        />
+        <ng-template #closedEye>
+          <img src="/assets/img/eye-closed.svg" class="eye" />
+        </ng-template>
+      </span>
+    </div>
+
     <button>Sign Up ➡</button>
   </form>
   <div class="google__container">

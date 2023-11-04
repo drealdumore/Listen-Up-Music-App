@@ -10,18 +10,11 @@ import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'navigation',
   templateUrl: './nav.component.html',
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('500ms', style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
 })
 export class NavComponent {
   searched: boolean = false;
@@ -50,6 +43,43 @@ export class NavComponent {
     private renderer: Renderer2
   ) {}
 
+  ngOnInit(): void {
+    // to check authentication state
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+
+    // to get user displayname and img from their email
+    //   const user = this.authService.getUser();
+    //   this.user = user?.displayName;
+    //   this.userImg = user?.photoURL;
+
+    // to get user display name and img from their email
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser).displayName;
+      this.userImg = JSON.parse(storedUser).photoURL;
+      this.userEmail = JSON.parse(storedUser).email;
+    }
+
+    if (this.user === null || this.userImg === null) {
+      this.userProfile = false;
+    } else {
+      this.userProfile = true;
+    }
+    this.newNickname.setValue(this.user);
+  }
+
+  newNickname: FormControl = new FormControl('');
+
+  setNickname() {
+    const newNickname = this.newNickname.value.trim();
+    if (newNickname !== '') {
+      this.authService.setDisplayName(newNickname);
+    }
+    this.hideProfile();
+  }
+
   // To remove the display on esc click: the element has the ngif
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -58,42 +88,7 @@ export class NavComponent {
     }
   }
 
-  ngOnInit(): void {
-    // to check authentication state
-    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
-      this.isAuthenticated = isAuthenticated;
-    });
-
-    // to get user display name and img from their email
-
-    // to get user displayname and img from their email
-    //   const user = this.authService.getUser();
-    //   this.user = user?.displayName;
-    //   this.userImg = user?.photoURL;
-
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      this.user = JSON.parse(storedUser).displayName;
-      this.userImg = JSON.parse(storedUser).photoURL;
-      this.userEmail = JSON.parse(storedUser).email;
-      console.log('User Photo URL:', this.userImg);
-      console.log('userEmail:', this.userEmail);
-    }
-
-    if (this.user === null || this.userImg === null) {
-      this.userProfile = false;
-    } else {
-      this.userProfile = true;
-    }
-  }
-
-  showPassword: boolean = false;
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-  }
-
-  // function to seach for songs
+  // function to search for songs
   searchSongs() {
     this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
       this.foundSongs = songs;

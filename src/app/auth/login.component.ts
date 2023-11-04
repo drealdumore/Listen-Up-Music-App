@@ -42,6 +42,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
+   
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   //Login Function
   login() {
     //To assign the form values to an object and use the object once instead

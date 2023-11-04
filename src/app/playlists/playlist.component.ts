@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPlaylist } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   templateUrl: './playlist.component.html',
@@ -10,11 +11,29 @@ export class PlaylistComponent implements OnInit {
   public greeting: string = '';
   public isSidebarOpen = true;
 
-  constructor(private appService: AppService) {}
+  user: any;
+  userImg: any;
+  userEmail: any;
+  userProfile: boolean = false;
+  isAuthenticated: boolean = false;
+  constructor(
+    private appService: AppService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.playlists = this.appService.getPlaylists();
     this.greeting = this.getSalutation();
+
+    // to check authentication state
+    this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser).displayName;
+    }
   }
 
   toggleSidebar() {
@@ -50,5 +69,4 @@ export class PlaylistComponent implements OnInit {
   getSalutation() {
     return this.salute();
   }
-
 }

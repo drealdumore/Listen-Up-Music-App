@@ -1,230 +1,202 @@
 <header class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
-
-  <form
-    *ngIf="isAuthenticated"
-    id="search"
-    class="search"
-    (ngSubmit)="searchSongs()"
-  >
-    <input
-      type="search"
-      [(ngModel)]="searchTerm"
-      name="searchTerm"
-      maxlength="16"
-      class="search__input"
-      placeholder="Search"
-    />
-    <button class="search__btn">&rarr;</button>
-  </form>
-
-  <!-- if it authenticated.
-    - i want the salute message to be bolder and it should have the username: Good afternoon, saint.
-    - in the user profile, i want to have a circle that can make user add images from their device.
-    - it should also have a form with prefilled user name and password, where user can change details and when saved,
-      the details will be added automatically.
-  -->
-
-  <nav *ngIf="isAuthenticated" class="user-nav">
-    <div class="user" (click)="visible()">
-      <div *ngIf="!userProfile; else usersImg">
-        <img class="user__img--icon" src="/assets/img/profile.svg" />
-      </div>
-      <ng-template #usersImg>
-        <img [src]="userImg" alt="{{ user }}" class="user__img" />
-      </ng-template>
-    </div>
-  </nav>
-
-  <div *ngIf="isVisible" class="display">
-    <span class="display__span" (click)="notvisible()">&times;</span>
-    <h4 class="display__salute">Hello, {{ user }}!</h4>
-    <ul class="display__links">
-      <li class="display__link" (click)="showProfile()">
-        <img src="/assets/img/profile.svg" class="display__icon" />
-        <span>profile</span>
-      </li>
-      <li class="display__link" (click)="showSetting()">
-        <img src="/assets/img/setting.svg" class="display__icon" />
-        <span>settings</span>
-      </li>
-      <li class="display__link" (click)="showSupport()">
-        <img src="/assets/img/support.svg" class="display__icon" />
-        <span>support</span>
-      </li>
-    </ul>
-    <hr />
-    <button class="display__close" (click)="showLogout()">Log Out</button>
-  </div>
-
-  <div *ngIf="displayProfile" class="display__menu">
-    <button class="display__menu--close" (click)="hideProfile()">
-      <svg class="display__menu--icon">
-        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
-      </svg>
-    </button>
-    <div class="display__menu--img">
-      <h4 class="display__salute">Profile</h4>
-      <div *ngIf="!userProfile; else usersImg">
-        <img class="display__menu__icon" src="/assets/img/profile.svg" />
-      </div>
-      <ng-template #usersImg>
-        <img
-          [src]="userImg"
-          alt="{{ user }}"
-          class="display__menu--profile-img"
-        />
-      </ng-template>
-      <input type="file" />
-    </div>
-
-    <form class="display__menu--form">
+  <ng-container *ngIf="isAuthenticated">
+    <form id="search" class="search" (ngSubmit)="searchSongs()">
       <input
-        class="display__menu--input"
-        type="text"
-        placeholder="Username"
-        value="{{user}}"
+        type="search"
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        maxlength="16"
+        class="search__input"
+        placeholder="Search"
       />
-      <input
-        class="display__menu--input"
-        type="email"
-        placeholder="Email"
-        value="{{ userEmail }}"
-      />
-
-      <!-- <div class="i">
-        <input
-          type="{{ showPassword ? 'text' : 'password' }}"
-          value="{{ userEmail }}"
-          required
-          class="display__menu--input-1"
-          placeholder="Password"
-          formControlName="password"
-        />
-
-        <span class="eye-span" (click)="togglePasswordVisibility()">
-          <img
-            *ngIf="showPassword; else closedEye"
-            class="eye"
-            src="/assets/img/eye.svg"
-          />
-          <ng-template #closedEye>
-            <img src="/assets/img/eye-closed.svg" class="eye" />
-          </ng-template>
-        </span>
-      </div> -->
-
+      <button class="search__btn">&rarr;</button>
     </form>
-    
-    <div class="display__menu--btns">
-      <button class="display__menu--btn display__menu--save">Save</button>
-      <button class="display__menu--btn display__menu--cancel">Cancel</button>
-    </div>
-  </div>
 
-  <div *ngIf="displaySetting" class="display__menu setting__menu">
-    <button class="display__menu--close" (click)="hideSetting()">
-      <svg class="display__menu--icon">
-        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
-      </svg>
-    </button>
-    <div class="display__menu--img">
-      <h4 class="display__salute">Setting</h4>
-      <img class="display__menu__icon" src="/assets/img/setting.svg" />
-    </div>
-    <div class="display__menu--toggles">
-      <div class="display__menu--toggle">
-        <label for="toggle">Autoplay</label>
-        <label class="switch">
-          <input type="checkbox" checked />
-          <span class="slider"></span>
-        </label>
+    <nav class="user-nav">
+      <div class="user" (click)="visible()">
+        <div *ngIf="!userProfile; else usersImg">
+          <img class="user__img--icon" src="/assets/img/profile.svg" />
+        </div>
+        <ng-template #usersImg>
+          <img [src]="userImg" alt="{{ user }}" class="user__img" />
+        </ng-template>
       </div>
-      <div class="display__menu--toggle">
-        <label for="toggle">Save Info</label>
-        <label class="switch">
-          <input type="checkbox" />
-          <span class="slider"></span>
-        </label>
+    </nav>
+
+    <div *ngIf="isVisible" class="display">
+      <span class="display__span" (click)="notvisible()">&times;</span>
+      <h4 class="display__salute">Hello, {{ user }}!</h4>
+      <ul class="display__links">
+        <li class="display__link" (click)="showProfile()">
+          <img src="/assets/img/profile.svg" class="display__icon" />
+          <span>profile</span>
+        </li>
+        <li class="display__link" (click)="showSetting()">
+          <img src="/assets/img/setting.svg" class="display__icon" />
+          <span>settings</span>
+        </li>
+        <li class="display__link" (click)="showSupport()">
+          <img src="/assets/img/support.svg" class="display__icon" />
+          <span>support</span>
+        </li>
+      </ul>
+      <hr />
+      <button class="display__close" (click)="showLogout()">Log Out</button>
+    </div>
+
+    <div *ngIf="displayProfile" class="display__menu">
+      <button class="display__menu--close" (click)="hideProfile()">
+        <svg class="display__menu--icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+        </svg>
+      </button>
+      <div class="display__menu--img">
+        <h4 class="display__salute">Profile</h4>
+        <div *ngIf="!userProfile; else usersImg">
+          <img class="display__menu__icon" src="/assets/img/profile.svg" />
+        </div>
+        <ng-template #usersImg>
+          <img
+            [src]="userImg"
+            alt="{{ user }}"
+            class="display__menu--profile-img"
+          />
+        </ng-template>
+      </div>
+
+      <form class="display__menu--form">
+        <input
+          class="display__menu--input"
+          type="text"
+          placeholder="Username"
+          [formControl]="newNickname"
+          name="newNickname"
+        />
+        <input
+          class="display__menu--input"
+          type="email"
+          disabled
+          placeholder="Email"
+          [value]="userEmail"
+        />
+      </form>
+
+      <div class="display__menu--btns">
+        <button
+          class="display__menu--btn display__menu--save"
+          (click)="setNickname()"
+        >
+          Save
+        </button>
+        <button class="display__menu--btn display__menu--cancel">Cancel</button>
       </div>
     </div>
-  </div>
 
-  <div *ngIf="displaySupport" class="display__menu support__menu">
-    <button class="display__menu--close" (click)="hideSupport()">
-      <svg class="display__menu--icon">
-        <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
-      </svg>
-    </button>
-    <div class="display__menu--img">
-      <h4 class="display__salute">Support</h4>
-      <img class="display__menu__icon" src="/assets/img/support.svg" />
+    <div *ngIf="displaySetting" class="display__menu setting__menu">
+      <button class="display__menu--close" (click)="hideSetting()">
+        <svg class="display__menu--icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+        </svg>
+      </button>
+      <div class="display__menu--img">
+        <h4 class="display__salute">Setting</h4>
+        <img class="display__menu__icon" src="/assets/img/setting.svg" />
+      </div>
+      <div class="display__menu--toggles">
+        <div class="display__menu--toggle">
+          <label for="toggle">Autoplay</label>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="display__menu--toggle">
+          <label for="toggle">Save Info</label>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="displayLogout" class="display__menu logout__menu">
-    <div class="display__menu--form">
-      <h4 class="display__menu--salute">Are you sure you want to log out?</h4>
-    </div>
-    <div class="display__menu--btns">
-      <button
-        (click)="logout()"
-        class="display__menu--btn display__menu--cancel"
-        style="padding: 0.7rem 2rem; border: 1px solid rgba(255, 0, 0, 0.429)"
-      >
-        Yes
+    <div *ngIf="displaySupport" class="display__menu support__menu">
+      <button class="display__menu--close" (click)="hideSupport()">
+        <svg class="display__menu--icon">
+          <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+        </svg>
       </button>
-      <button
-        (click)="hideLogout()"
-        class="display__menu--btn display__menu--save"
-        style="padding: 0.7rem 2rem"
-      >
-        No
-      </button>
+      <div class="display__menu--img">
+        <h4 class="display__salute">Support</h4>
+        <img class="display__menu__icon" src="/assets/img/support.svg" />
+      </div>
     </div>
-  </div>
+
+    <div *ngIf="displayLogout" class="display__menu logout__menu">
+      <div class="display__menu--form">
+        <h4 class="display__menu--salute">Are you sure you want to log out?</h4>
+      </div>
+      <div class="display__menu--btns">
+        <button
+          (click)="logout()"
+          class="display__menu--btn display__menu--cancel"
+          style="padding: 0.7rem 2rem; border: 1px solid rgba(255, 0, 0, 0.429)"
+        >
+          Yes
+        </button>
+        <button
+          (click)="hideLogout()"
+          class="display__menu--btn display__menu--save"
+          style="padding: 0.7rem 2rem"
+        >
+          No
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="searched" class="search_">
+      <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
+      <ul class="search__list">
+        <li
+          class="search__li"
+          *ngFor="let song of foundSongs"
+          (click)="navigateToPlaylist(song.id)"
+          (click)="selectedSongId = song.id"
+        >
+          <a class="search__link">
+            <figure class="search__fig">
+              <img [src]="song.img" alt="{{ song.title }}" />
+            </figure>
+            <div class="search__data">
+              <p
+                style="
+                  font-size: 12px;
+                  padding-bottom: 4px;
+                  margin: 0;
+                  color: #c1bcbc;
+                "
+              >
+                {{ song.playlist_name }}
+              </p>
+              <h4 class="search__name">
+                {{ song.title }}
+              </h4>
+              <p class="search__artist">{{ song.artist }}</p>
+            </div>
+          </a>
+        </li>
+
+        <div *ngIf="noSearch" class="nosearch">
+          <h1>Your search result doesnt exist</h1>
+          <p>No results found for '{{ searchTerm }}'.</p>
+        </div>
+      </ul>
+    </div>
+  </ng-container>
 
   <div *ngIf="!isAuthenticated" class="navbtns">
     <button class="nb signupbtn" (click)="goToSignUp()">Sign Up</button>
     <button class="nb loginbtn" (click)="goToSignIn()">Log In</button>
-  </div>
-
-  <div *ngIf="searched" class="search_">
-    <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
-    <ul class="search__list">
-      <li
-        class="search__li"
-        *ngFor="let song of foundSongs"
-        (click)="navigateToPlaylist(song.id)"
-        (click)="selectedSongId = song.id"
-      >
-        <a class="search__link">
-          <figure class="search__fig">
-            <img [src]="song.img" alt="{{ song.title }}" />
-          </figure>
-          <div class="search__data">
-            <p
-              style="
-                font-size: 12px;
-                padding-bottom: 4px;
-                margin: 0;
-                color: #c1bcbc;
-              "
-            >
-              {{ song.playlist_name }}
-            </p>
-            <h4 class="search__name" [@fadeInOut]="selectedSongId === song.id">
-              {{ song.title }}
-            </h4>
-            <p class="search__artist">{{ song.artist }}</p>
-          </div>
-        </a>
-      </li>
-
-      <div *ngIf="noSearch" class="nosearch">
-        <h1>Your search result doesnt exist</h1>
-        <p>No results found for '{{ searchTerm }}'.</p>
-      </div>
-    </ul>
   </div>
 </header>
