@@ -2170,7 +2170,7 @@ svg text {
     padding: 2rem 2.5rem;
     width: 16rem;
     background-color: transparent;
-    top: 53%;
+    top: 50%;
   }
 
   .top__fig--container {
@@ -2194,8 +2194,6 @@ svg text {
   .sidebar.open .small {
     display: none;
   }
-
- 
 
   .navbtns {
     margin-right: 1rem;
