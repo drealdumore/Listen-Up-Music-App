@@ -15,7 +15,8 @@
 
     <nav class="user-nav">
       <div class="user" (click)="visible()">
-        <div *ngIf="!userProfile; else usersImg">
+        <!-- <div *ngIf="!userProfile; else usersImg"> -->
+        <div *ngIf="!userImg; else usersImg">
           <img class="user__img--icon" src="/assets/img/profile.svg" />
         </div>
         <ng-template #usersImg>
@@ -53,7 +54,8 @@
       </button>
       <div class="display__menu--img">
         <h4 class="display__salute">Profile</h4>
-        <div *ngIf="!userProfile; else usersImg">
+        <!-- <div *ngIf="!userProfile; else usersImg"> -->
+        <div *ngIf="!userImg; else usersImg">
           <img class="display__menu__icon" src="/assets/img/profile.svg" />
         </div>
         <ng-template #usersImg>
@@ -156,6 +158,7 @@
     </div>
 
     <div *ngIf="searched" class="search_">
+      <button class="remove__search" (click)="this.searched = false">&times;</button>
       <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
       <ul class="search__list">
         <li

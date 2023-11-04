@@ -36,14 +36,14 @@ export class SignupComponent implements OnInit {
     });
   }
 
-
-  
   showPassword: boolean = false;
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  
+
+  // to set nickname.
+  // this will be the displayname.
   setNickname() {
     const newNickname = this.nickName.value;
 

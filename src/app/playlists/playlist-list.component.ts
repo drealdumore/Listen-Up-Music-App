@@ -137,19 +137,4 @@ export class PlaylistList implements OnInit {
     this.likeService.toggleLikes(song);
   }
 
-  
-  // if click on img, add visible class to display
-  isVisible: boolean = false;
-
-  visible() {
-    setTimeout(() => {
-      this.isVisible = true;
-    }, 200);
-  }
-
-  notvisible() {
-    setTimeout(() => {
-      this.isVisible = false;
-    }, 150);
-  }
 }

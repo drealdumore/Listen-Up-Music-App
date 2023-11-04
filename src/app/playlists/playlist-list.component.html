@@ -9,7 +9,7 @@
     </div>
   </a>
   <div class="list__icon">
-    <span (click)="toggleLikesForSong(song)">
+    <span (click)="toggleLikesForSong(song)" class="three__dots">
       <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
       </svg>
@@ -17,7 +17,7 @@
         <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
       </svg>
     </span>
-    <span (click)="visible()">
+    <span class="three__dots">
       <svg
         class="player__icon"
         width="24"

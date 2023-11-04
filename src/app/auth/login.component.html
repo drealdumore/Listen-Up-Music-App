@@ -1,6 +1,7 @@
 <div class="modal">
   <button (click)="closeModal()" class="btn--close-modal">&times;</button>
-  <h2 class="modal__header">Sign in to listen for free</h2>
+  <!-- <h2 class="modal__header">Sign in to listen for free</h2> -->
+  <h2 class="modal__header">Sign In to listen</h2>
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="modal__form">
     <div>
       <label>Email Address</label>
@@ -103,5 +104,5 @@
   </button>
 </div>
 <div class="overlay">
-  <img src="/assets/img/logo.png" alt="" class="logo" />
+  <!-- <img src="/assets/img/logo.png" alt="" class="logo" /> -->
 </div>

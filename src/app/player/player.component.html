@@ -30,15 +30,15 @@
   </div>
   <ul class="player__icons">
     <li>
-      <svg *ngIf="!songIsLiked()" class="player__icon" (click)="addLikes()">
+      <svg *ngIf="!songIsLiked()" class="heart-icon" (click)="addLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart"></use>
       </svg>
-      <svg *ngIf="songIsLiked()" class="player__icon" (click)="deleteLikes()">
+      <svg *ngIf="songIsLiked()" class="heart-icon" (click)="deleteLikes()">
         <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
       </svg>
     </li>
 
-    <li (click)="previousSong()">
+    <li class="prev" (click)="previousSong()">
       <svg class="player__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-previous"></use>
       </svg>
@@ -52,7 +52,7 @@
         <use xlink:href="/assets/img/sprite.svg#icon-pause"></use>
       </svg>
     </li>
-    <li (click)="nextSong()">
+    <li (click)="nextSong()" class="next">
       <svg class="player__icon">
         <use xlink:href="/assets/img/sprite.svg#icon-next"></use>
       </svg>
@@ -68,7 +68,7 @@
           <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
         </svg>
       </span>
-      <figure>
+      <figure class="playing__figure">
         <h4 class="search__name">Playing from Playlist</h4>
         <p class="search__artist">{{ currentSong.playlist_id }}</p>
       </figure>
