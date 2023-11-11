@@ -32,6 +32,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { LikesService } from './shared/likes.service';
 import { LikesList } from './likes/likes-list.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LikesList } from './likes/likes-list.component';
     LoginComponent,
     SignupComponent,
     LikesList,
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,

@@ -2333,3 +2333,71 @@ svg text {
 .remove__search {
   display: none;
 }
+
+
+.pricing-section {
+  padding: 80px 0;
+  /* background-color: #f2f2f2; */
+  /* color: #333; */
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section-header {
+  max-width: 2xl;
+  margin: 0 auto 16px;
+}
+
+.pricing-plans {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px;
+}
+
+.pricing-plan {
+  /* flex: 1 0 100%; */
+  flex: 1 0 30%;
+  margin: 0 8px 16px;
+  border: 1px solid #a49999;
+  border-radius: 7px;
+}
+
+.plan-content {
+  flex-grow: 1;
+  flex-basis: 100%;
+  padding: 24px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  /* background-color: #fff; */
+}
+
+.plan-details {
+  margin-bottom: 16px;
+}
+
+.features-list {
+  flex: 1;
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.features-list li {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.get-started-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #8a3ab9;
+  color: #fff;
+  text-decoration: none;
+}

@@ -1,0 +1,275 @@
+<div class="userPage">
+  <navigation></navigation>
+
+  <main class="flex">
+    <div class="sidebar open" [class.open]="isSidebarOpen">
+      <div class="logo-details">
+        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
+      </div>
+      <div class="small">
+        <h2 class="small__p">
+          Create your <br />
+          first playlist
+        </h2>
+        <button [routerLink]="['/playlist/new']" class="small__btn">
+          Create playlist
+        </button>
+      </div>
+      <ul class="nav-list">
+        <li [routerLink]="['/playlist']">
+          <a href="/playlist">
+            <i class="bx bxs-playlist"></i>
+            <span class="links_name">Playlist</span>
+          </a>
+          <span class="tooltip">Playlist</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-paperclip"></i>
+            <span class="links_name">Category</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/liked-songs']">
+          <a href="/liked-songs">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Likes</span>
+          </a>
+          <span class="tooltip">Liked Songs</span>
+        </li>
+        <li [routerLink]="['/history']">
+          <a href="/history">
+            <i class="bx bx-history"></i>
+            <span class="links_name">History</span>
+          </a>
+          <span class="tooltip">History</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-download"></i>
+            <span class="links_name">Downloads</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li [routerLink]="['/404']">
+          <a>
+            <i class="bx bx-star"></i>
+            <span class="links_name">Favourite</span>
+          </a>
+          <span class="tooltip">Not Available</span>
+        </li>
+        <li class="navactive" [routerLink]="['/subsription']">
+          <a>
+            <i class="bx bx-credit-card"></i>
+            <span class="links_name">Subscription</span>
+          </a>
+          <span class="tooltip">Subsription</span>
+        </li>
+      </ul>
+      <div class="legal">
+        <p>© Copyright by Saint.</p>
+      </div>
+    </div>
+
+    <div class="home_">
+      <header class="sc-edbf1e57-0 cCiJjj sc-b96d95c2-1 gpOPrL">
+        <h2 class="sc-edbf1e57-1 icAwBf">Why go Premium?</h2>
+      </header>
+      <ul class="sc-b96d95c2-0 fjkXrm">
+        <li class="sc-b96d95c2-6 fkzDVJ">
+          <div
+            data-in-view="true"
+            class="sc-10bac88d-1 jMyOJK sc-b96d95c2-7 iGUsgx"
+          ></div>
+          <div class="sc-b96d95c2-8 cjhXwc">
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-9 qSimj"
+              data-encore-id="type"
+            >
+              Download music.
+            </p>
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-10 gbwCWN"
+              data-encore-id="type"
+            >
+              Listen anywhere.
+            </p>
+          </div>
+        </li>
+        <li class="sc-b96d95c2-6 fkzDVJ">
+          <div
+            data-in-view="true"
+            class="sc-10bac88d-1 dpqGtT sc-b96d95c2-7 iGUsgx"
+          ></div>
+          <div class="sc-b96d95c2-8 cjhXwc">
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-9 qSimj"
+              data-encore-id="type"
+            >
+              Ad-free music listening.
+            </p>
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-10 gbwCWN"
+              data-encore-id="type"
+            >
+              Enjoy uninterrupted music.
+            </p>
+          </div>
+        </li>
+        <li class="sc-b96d95c2-6 fkzDVJ">
+          <div
+            data-in-view="true"
+            class="sc-10bac88d-1 gOdwcQ sc-b96d95c2-7 iGUsgx"
+          ></div>
+          <div class="sc-b96d95c2-8 cjhXwc">
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-9 qSimj"
+              data-encore-id="type"
+            >
+              Play songs in any order.
+            </p>
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-10 gbwCWN"
+              data-encore-id="type"
+            >
+              Any song, any order.
+            </p>
+          </div>
+        </li>
+        <li class="sc-b96d95c2-6 fkzDVJ">
+          <div
+            data-in-view="true"
+            class="sc-10bac88d-1 fZVUwf sc-b96d95c2-7 iGUsgx"
+          ></div>
+          <div class="sc-b96d95c2-8 cjhXwc">
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-9 qSimj"
+              data-encore-id="type"
+            >
+              Higher sound quality.
+            </p>
+            <p
+              class="Type__TypeElement-sc-goli3j-0 dqldSo sc-b96d95c2-10 gbwCWN"
+              data-encore-id="type"
+            >
+              Feel the sound.
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <section class="pricing-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="font-bold tracki uppercase text-violet-600"
+              >Pricing</span
+            >
+            <h2 class="text-4xl font-bold lg:text-5xl">
+              Choose your best plan
+            </h2>
+          </div>
+          <div class="pricing-plans">
+            <div class="pricing-plan">
+              <div class="plan-content">
+                <div class="plan-details">
+                  <h4 class="text-2xl font-bold">Basic</h4>
+                  <hr />
+                  <span class="text-6xl font-bold">$29/month</span>
+                </div>
+                <ul class="features-list">
+                  <li>
+                    <span
+                      >Access to a vast library of songs across various
+                      genres.</span
+                    >
+                  </li>
+                  <li>
+                    <span>Create and manage personalized playlists.</span>
+                  </li>
+                  <li>
+                    <span
+                      >Offline listening for a limited number of songs.</span
+                    >
+                  </li>
+                  <li><span>Ad-supported music streaming experience.</span></li>
+                  <li><span>Basic audio quality.</span></li>
+                </ul>
+                <button type="button" class="get-started-btn">
+                  Get Started
+                </button>
+              </div>
+            </div>
+
+            <div class="pricing-plan">
+              <div class="plan-content">
+                <div class="plan-details">
+                  <h4 class="text-2xl font-bold">Standard</h4>
+                  <span class="text-6xl font-bold">$39/month</span>
+                </div>
+                <ul class="features-list">
+                  <li><span>All features from the Basic Plan.</span></li>
+                  <li><span>Ad-free music streaming experience.</span></li>
+                  <li><span>High-quality audio streaming.</span></li>
+                  <li>
+                    <span
+                      >Unlimited offline downloads for a larger number of
+                      songs.</span
+                    >
+                  </li>
+                  <li>
+                    <span
+                      >Enhanced sound quality for a better listening
+                      experience.</span
+                    >
+                  </li>
+                </ul>
+                <button type="button" class="get-started-btn">
+                  Get Started
+                </button>
+              </div>
+            </div>
+
+            <div class="pricing-plan">
+              <div class="plan-content">
+                <div class="plan-details">
+                  <h4 class="text-2xl font-bold">Premium</h4>
+                  <span class="text-6xl font-bold">$59/month</span>
+                </div>
+
+                <ul class="features-list">
+                  <li><span>All features from the Standard Plan.</span></li>
+                  <li>
+                    <span
+                      >Exclusive access to premium content and new
+                      releases.</span
+                    >
+                  </li>
+                  <li>
+                    <span
+                      >Unlimited offline downloads for all available
+                      songs.</span
+                    >
+                  </li>
+                  <li><span>Higher audio quality for audiophiles.</span></li>
+                  <li>
+                    <span>Customizable playlists with advanced features.</span>
+                  </li>
+                  <li>
+                    <span
+                      >Priority customer support for quicker assistance.</span
+                    >
+                  </li>
+                </ul>
+                <button type="button" class="get-started-btn">
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <player></player>
+  </main>
+</div>

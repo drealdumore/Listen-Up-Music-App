@@ -8,6 +8,7 @@ import { CreatePlaylist } from './playlists/create-playlist.component';
 import { PlaylistRouteResolver } from './playlists/playlist-route-resolver.service';
 import { LoginComponent } from './auth/login.component';
 import { SignupComponent } from './auth/signup.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 export const appRoutes: Routes = [
   { path: 'auth/login', component: LoginComponent },
@@ -16,6 +17,7 @@ export const appRoutes: Routes = [
   { path: 'liked-songs', component: LikesComponent },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'playlist/new', component: CreatePlaylist },
+  { path: 'subsription', component: SubscriptionComponent },
 
   {
     path: 'playlist/:id',
