@@ -33,6 +33,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { LikesService } from './shared/likes.service';
 import { LikesList } from './likes/likes-list.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { BillingModalComponent } from './billing-modal/billing-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SubscriptionComponent } from './subscription/subscription.component';
     SignupComponent,
     LikesList,
     SubscriptionComponent,
+    BillingModalComponent,
   ],
   imports: [
     BrowserModule,

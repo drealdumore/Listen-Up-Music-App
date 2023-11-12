@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
   styles: [
     `
       .container {
-        background-color: #2e415a;
+        background-color: #535050;
         height: 100vh;
         color: #fff;
         text-align: center;
@@ -51,7 +51,7 @@ import { Component } from '@angular/core';
         left: 0;
         height: 100%;
         width: 2px;
-        background-color: #7575759c;
+        background-color: #535050;
         transform: scaleX(0);
         transform-origin: right;
         transition: transform 0.4s;
@@ -66,6 +66,47 @@ import { Component } from '@angular/core';
 
       h1 {
         font-size: 4rem;
+      }
+
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      svg text {
+        animation: stroke 5s infinite alternate;
+        stroke-width: 2;
+        stroke: #ffffff;
+        font-size: 100px;
+      }
+      @keyframes stroke {
+        0% {
+          fill: rgba(83, 80, 80, 0);
+          stroke: rgba(255, 255, 255, 1);
+          stroke-dashoffset: 25%;
+          stroke-dasharray: 0 50%;
+          stroke-width: 2;
+        }
+        70% {
+          fill: rgba(83, 80, 80, 0);
+          stroke: rgba(255, 255, 255, 1);
+        }
+        80% {
+          fill: rgba(83, 80, 80, 0);
+          stroke: rgba(255, 255, 255, 1);
+          stroke-width: 3;
+        }
+        100% {
+          fill: rgba(83, 80, 80, 1);
+          stroke: rgba(255, 255, 255, 0);
+          stroke-dashoffset: -25%;
+          stroke-dasharray: 50% 0;
+          stroke-width: 0;
+        }
+      }
+
+      .wrapper {
+        background-color: #535050;
       }
     `,
   ],

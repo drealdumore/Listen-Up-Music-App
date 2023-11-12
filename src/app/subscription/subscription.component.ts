@@ -14,12 +14,8 @@ export class SubscriptionComponent implements OnInit {
   public greeting: string = '';
   public isSidebarOpen = true;
 
-  user: any;
-  userImg: any;
-  userEmail: any;
-  userProfile: boolean = false;
   isAuthenticated: boolean = false;
-  
+
   constructor(
     private appService: AppService,
     private authService: AuthService,
@@ -27,21 +23,9 @@ export class SubscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.playlists = this.appService.getPlaylists();
-    this.greeting = this.getSalutation();
-
     // to check authentication state
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
-    });
-
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      this.user = JSON.parse(storedUser).displayName;
-    }
-
-    this.subscriptionService.getSubscriptionPlans().subscribe((plans) => {
-      this.subscriptionPlans = plans;
     });
   }
 
@@ -58,31 +42,20 @@ export class SubscriptionComponent implements OnInit {
     }
   }
 
-  salute() {
-    const now = new Date();
-    const hours = now.getHours();
-    let salutation;
-    if (hours >= 5 && hours < 12) {
-      // salutation = `Good Morning, ${activeUser.user}`;
-      salutation = `Good Morning`;
-    } else if (hours > 12 && hours < 18) {
-      // salutation = `Good afternoon, ${activeUser.user}`;
-      salutation = `Good afternoon`;
-    } else {
-      // salutation = `Good evening, ${activeUser.user}`;
-      salutation = `Good evening`;
-    }
-    return salutation;
-  }
-
-  getSalutation() {
-    return this.salute();
-  }
-
   subscriptionPlans: any[] = [];
   selectedPlan: any;
 
   onPlanSelected(plan: any): void {
     this.selectedPlan = plan;
+  }
+
+  isModalOpen = false;
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
 }

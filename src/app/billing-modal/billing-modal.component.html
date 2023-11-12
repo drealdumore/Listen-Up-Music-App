@@ -1,0 +1,38 @@
+<!-- <div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <div class="modal-header">
+      <h4 class="modal-title">Choose Billing Date</h4>
+      <button class="close-btn" (click)="closeModal()">X</button>
+    </div>
+    <div class="modal-body">
+      Add your billing date selection content here
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="stopPropagation($event)">
+      <div class="modal-header">
+        <h4 class="modal-title">Choose Billing Date</h4>
+        <button class="close-btn" (click)="closeModal()">X</button>
+      </div>
+      <div class="modal-body">
+        <datepicker [(ngModel)]="selectedDate" [options]="datePickerOptions"></datepicker>
+        <button class="confirm-btn" (click)="confirmDate()">Confirm</button>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="stopPropagation($event)">
+      <div class="modal-header">
+        <h4 class="modal-title">Choose Billing Date</h4>
+        <button class="close-btn" (click)="closeModal()">X</button>
+      </div>
+      <div class="modal-body">
+        <datepicker [(ngModel)]="selectedDate"></datepicker>
+        <button class="confirm-btn" (click)="confirmDate()">Confirm</button>
+      </div>
+    </div>
+  </div>

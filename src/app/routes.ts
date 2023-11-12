@@ -17,7 +17,7 @@ export const appRoutes: Routes = [
   { path: 'liked-songs', component: LikesComponent },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'playlist/new', component: CreatePlaylist },
-  { path: 'subsription', component: SubscriptionComponent },
+  { path: 'subscription', component: SubscriptionComponent },
 
   {
     path: 'playlist/:id',
