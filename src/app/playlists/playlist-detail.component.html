@@ -1,124 +1,23 @@
-<div class="userPage">
-  <navigation></navigation>
-
-  <main class="flex">
-    <div class="sidebar open" [class.open]="isSidebarOpen">
-      <div class="logo-details">
-        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
-      </div>
-      <div class="small">
-        <h2 class="small__p">
-          Create your <br />
-          first playlist
-        </h2>
-        <button [routerLink]="['/playlist/new']" class="small__btn">
-          Create playlist
-        </button>
-      </div>
-      <ul class="nav-list">
-        <li class="navactive" [routerLink]="['/playlist']">
-          <a href="/playlist">
-            <i class="bx bxs-playlist"></i>
-            <span class="links_name">Playlist</span>
-          </a>
-          <span class="tooltip">Playlist</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-paperclip"></i>
-            <span class="links_name">Category</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/liked-songs']">
-          <a href="/liked-songs">
-            <i class="bx bx-heart"></i>
-            <span class="links_name">Likes</span>
-          </a>
-          <span class="tooltip">Liked Songs</span>
-        </li>
-        <li [routerLink]="['/history']">
-          <a href="/history">
-            <i class="bx bx-history"></i>
-            <span class="links_name">History</span>
-          </a>
-          <span class="tooltip">History</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-download"></i>
-            <span class="links_name">Downloads</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-star"></i>
-            <span class="links_name">Favourite</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/subscription']">
-          <a>
-            <i class="bx bx-credit-card"></i>
-            <span class="links_name">Subscription</span>
-          </a>
-          <span class="tooltip">Subsription</span>
-        </li>
-      </ul>
-      <div class="legal">
-        <p>© Copyright by Saint.</p>
-      </div>
+<div class="box">
+  <button class="close__btn" [routerLink]="['/playlist']">
+    <svg class="menu-icon">
+      <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+    </svg>
+  </button>
+  <div class="top__container">
+    <div class="top__fig--container">
+      <svg class="top__fig">
+        <use xlink:href="/assets/img/sprite.svg#icon-music-playlist"></use>
+      </svg>
     </div>
-
-    <div class="home_">
-      <div>
-        <div>
-          <button class="close__btn" [routerLink]="['/playlist']">
-            <svg class="menu-icon">
-              <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
-            </svg>
-          </button>
-          <div class="top__container">
-            <div class="top__fig--container">
-              <svg class="top__fig">
-                <use
-                  xlink:href="/assets/img/sprite.svg#icon-music-playlist"
-                ></use>
-              </svg>
-            </div>
-            <div class="header__container">
-              <p class="abstract">Playlist</p>
-              <h4 class="header__heading">{{ currentPlaylist?.name }}</h4>
-              <p class="abstract">{{ currentPlaylist?.abstract }}</p>
-            </div>
-          </div>
-
-          <!-- <div class="big__play">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z"
-                stroke="#2e415a"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div> -->
-
-          <hr />
-          <ul class="playlist__list" style="padding: 0">
-            <song-list [displaySongs]="currentPlaylist?.songs"></song-list>
-          </ul>
-        </div>
-      </div>
+    <div class="header__container">
+      <p class="abstract">Playlist</p>
+      <h4 class="header__heading">{{ currentPlaylist?.name }}</h4>
+      <p class="abstract">{{ currentPlaylist?.abstract }}</p>
     </div>
-
-    <!-- <player></player> -->
-  </main>
+  </div>
+  <hr />
+  <ul class="playlist__list" style="padding: 0">
+    <song-list [displaySongs]="currentPlaylist?.songs"></song-list>
+  </ul>
 </div>

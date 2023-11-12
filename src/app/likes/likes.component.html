@@ -1,104 +1,23 @@
-<div class="userPage">
-  <navigation></navigation>
-
-  <main class="flex">
-    <div class="sidebar open" [class.open]="isSidebarOpen">
-      <div class="logo-details">
-        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
-      </div>
-      <div class="small">
-        <h2 class="small__p">
-          Create your <br />
-          first playlist
-        </h2>
-        <button [routerLink]="['/playlist/new']" class="small__btn">
-          Create playlist
-        </button>
-      </div>
-      <ul class="nav-list">
-        <li [routerLink]="['/playlist']">
-          <a href="/playlist">
-            <i class="bx bxs-playlist"></i>
-            <span class="links_name">Playlist</span>
-          </a>
-          <span class="tooltip">Playlist</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-paperclip"></i>
-            <span class="links_name">Category</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li class="navactive" [routerLink]="['/liked-songs']">
-          <a href="/liked-songs">
-            <i class="bx bx-heart"></i>
-            <span class="links_name">Likes</span>
-          </a>
-          <span class="tooltip">Liked Songs</span>
-        </li>
-        <li [routerLink]="['/history']">
-          <a href="/history">
-            <i class="bx bx-history"></i>
-            <span class="links_name">History</span>
-          </a>
-          <span class="tooltip">History</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-download"></i>
-            <span class="links_name">Downloads</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-star"></i>
-            <span class="links_name">Favourite</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/subscription']">
-          <a>
-            <i class="bx bx-credit-card"></i>
-            <span class="links_name">Subscription</span>
-          </a>
-          <span class="tooltip">Subsription</span>
-        </li>
-      </ul>
-      <div class="legal">
-        <p>© Copyright by Saint.</p>
-      </div>
+<div class="box">
+  <button class="close__btn" [routerLink]="['/playlist']">
+    <svg class="menu-icon">
+      <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+    </svg>
+  </button>
+  <div class="top__container">
+    <div class="top__fig--container">
+      <svg class="top__fig">
+        <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
+      </svg>
     </div>
-    <div class="home_">
-      <div>
-        <div>
-          <button class="close__btn" [routerLink]="['/playlist']">
-            <svg class="menu-icon">
-              <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
-            </svg>
-          </button>
-          <div class="top__container">
-            <div class="top__fig--container">
-              <svg class="top__fig">
-                <use xlink:href="/assets/img/sprite.svg#icon-heart1"></use>
-              </svg>
-            </div>
-            <div class="header__container">
-              <p>Playlist</p>
-              <h4 class="header__heading">{{ title }}</h4>
-              <p>Songs you love right now</p>
-            </div>
-          </div>
-          <ul class="playlist__list likes__list" style="padding: 0">
-            <hr />
-            <likes-list [songs]="likedSongs"></likes-list>
-          </ul>
-        </div>
-      </div>
+    <div class="header__container">
+      <p>Playlist</p>
+      <h4 class="header__heading">{{ title }}</h4>
+      <p>Songs you love right now</p>
     </div>
-
-    <!-- <player></player> -->
-  </main>
+  </div>
+  <ul class="playlist__list likes__list" style="padding: 0">
+    <hr />
+    <likes-list [songs]="likedSongs"></likes-list>
+  </ul>
 </div>
-

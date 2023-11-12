@@ -1,101 +1,16 @@
-<div class="userPage">
-  <navigation></navigation>
-
-  <main class="flex">
-    <div class="sidebar open" [class.open]="isSidebarOpen">
-      <div class="logo-details">
-        <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
-      </div>
-      <div class="small">
-        <h2 class="small__p">
-          Create your <br />
-          first playlist
-        </h2>
-        <button [routerLink]="['/playlist/new']" class="small__btn">
-          Create playlist
-        </button>
-      </div>
-      <ul class="nav-list">
-        <li class="navactive" [routerLink]="['/playlist']">
-          <a href="/playlist">
-            <i class="bx bxs-playlist"></i>
-            <span class="links_name">Playlist</span>
-          </a>
-          <span class="tooltip">Playlist</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-paperclip"></i>
-            <span class="links_name">Category</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/liked-songs']">
-          <a href="/liked-songs">
-            <i class="bx bx-heart"></i>
-            <span class="links_name">Likes</span>
-          </a>
-          <span class="tooltip">Liked Songs</span>
-        </li>
-        <li [routerLink]="['/history']">
-          <a href="/history">
-            <i class="bx bx-history"></i>
-            <span class="links_name">History</span>
-          </a>
-          <span class="tooltip">History</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-download"></i>
-            <span class="links_name">Downloads</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/404']">
-          <a>
-            <i class="bx bx-star"></i>
-            <span class="links_name">Favourite</span>
-          </a>
-          <span class="tooltip">Not Available</span>
-        </li>
-        <li [routerLink]="['/subscription']">
-          <a>
-            <i class="bx bx-credit-card"></i>
-            <span class="links_name">Subscription</span>
-          </a>
-          <span class="tooltip">Subsription</span>
-        </li>
-      </ul>
-      <div class="legal">
-        <p>© Copyright by Saint.</p>
-      </div>
+<div class="box">
+  <nav class="home__nav" [ngSwitch]="isAuthenticated">
+    <div *ngSwitchCase="false" class="home__greeting">{{ greeting }}</div>
+    <div *ngSwitchCase="true" class="home__greeting">
+      {{ greeting }}, {{ user }}
     </div>
+  </nav>
 
-    <div class="home_">
-      <div>
-        <div>
-          <!-- <nav class="home__nav">
-            <div *ngIf="!isAuthenticated" class="home__greeting">{{ greeting }}</div>
-            <div *ngIf="isAuthenticated" class="home__greeting">{{ greeting }}, {{user}}</div>
-          </nav> -->
-          <nav class="home__nav" [ngSwitch]="isAuthenticated">
-            <div *ngSwitchCase="false" class="home__greeting">{{ greeting }}</div>
-            <div *ngSwitchCase="true" class="home__greeting">{{ greeting }}, {{ user }}</div>
-          </nav>
-          
-          <div>
-            <h2 class="home__heading">Playlists</h2>
-            <div class="feature__grid">
-              <thumbnail
-                *ngFor="let playlist of playlists"
-                [playlist]="playlist"
-              ></thumbnail>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- <player></player> -->
-  </main>
+  <h2 class="home__heading">Playlists</h2>
+  <div class="feature__grid">
+    <thumbnail
+      *ngFor="let playlist of playlists"
+      [playlist]="playlist"
+    ></thumbnail>
+  </div>
 </div>

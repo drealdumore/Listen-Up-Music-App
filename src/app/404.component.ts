@@ -19,14 +19,15 @@ import { Component } from '@angular/core';
   styles: [
     `
       .container {
-        background-color: #535050;
         height: 100vh;
         color: #fff;
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-left: 8%;
       }
+
       p {
         margin-bottom: 2rem;
       }
