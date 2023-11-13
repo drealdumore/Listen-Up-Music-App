@@ -1,7 +1,7 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[scroll]'
+  selector: '[scroll]',
 })
 export class ScrollDirective {
   constructor() {}
@@ -15,7 +15,7 @@ export class ScrollDirective {
     if (window.scrollY >= 75) {
       this.newNav = true;
     } else {
-        this.newNav = false;
+      this.newNav = false;
     }
   }
 }

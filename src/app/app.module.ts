@@ -4,7 +4,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './404.component';
 import { PlayerComponent } from './player/player.component';
@@ -69,12 +69,7 @@ import { BillingModalComponent } from './billing-modal/billing-modal.component';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [
-    AppService,
-    PlaylistRouteResolver,
-    AudioService,
-    LikesService,
-  ],
+  providers: [AppService, PlaylistRouteResolver, LikesService, AudioService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

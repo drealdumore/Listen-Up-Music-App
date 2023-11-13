@@ -2,22 +2,28 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <div class="container">
-      <div>
-        <div class="wrapper">
-          <svg>
-            <text x="50%" y="50%" dy=".35em" text-anchor="middle">404</text>
-          </svg>
+    <div class="box">
+      <div class="container">
+        <div>
+          <div class="wrapper">
+            <svg>
+              <text x="50%" y="50%" dy=".35em" text-anchor="middle">404</text>
+            </svg>
+          </div>
+          <p>Sorry, we are still working on this page😞</p>
+          <a routerLink="/playlist" class="btn-404">
+            <span class="btn-text">Go Back to App</span>
+          </a>
         </div>
-        <p>Sorry, we are still working on this page😞</p>
-        <a routerLink="/playlist" class="btn-404">
-          <span class="btn-text">Go Back to App</span>
-        </a>
       </div>
     </div>
   `,
   styles: [
     `
+      .box {
+        background-color: #535050;
+      }
+      
       .container {
         height: 100vh;
         color: #fff;
@@ -68,7 +74,6 @@ import { Component } from '@angular/core';
       h1 {
         font-size: 4rem;
       }
-
 
       svg {
         width: 100%;

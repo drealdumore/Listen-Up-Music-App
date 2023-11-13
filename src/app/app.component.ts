@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { AppService } from './shared/app.service';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { AuthService } from './shared/auth.service';
-import { IPlaylist } from './shared/app.model';
 
 @Component({
   selector: 'app',
@@ -116,45 +114,34 @@ import { IPlaylist } from './shared/app.model';
 export class AppComponent {
   loading: boolean = false;
 
-  constructor(
-    private router: Router,
-    private appService: AppService,
-    private authService: AuthService
-  ) {
+  constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // this.loading = true;
+      }
       if (event instanceof NavigationEnd) {
+        // this.loading = false;
       }
     });
   }
 
   is404Page(): boolean {
-    return this.router.url === '/404';
+    const currentUrl = this.router.url;
+    return (
+      currentUrl === '/404' ||
+      currentUrl === '/auth/login' ||
+      currentUrl === '/auth/signup'
+    );
   }
 
-  playlists: IPlaylist[] = [];
-  public greeting: string = '';
   public isSidebarOpen = true;
-
-  user: any;
-  userImg: any;
-  userEmail: any;
-  userProfile: boolean = false;
   isAuthenticated: boolean = false;
-  // constructor(
-  //   private appService: AppService,
-  //   private authService: AuthService
-  // ) {}
 
   ngOnInit() {
     // to check authentication state
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
-
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      this.user = JSON.parse(storedUser).displayName;
-    }
   }
 
   toggleSidebar() {

@@ -191,7 +191,7 @@ button {
   background-color: #535050;
   position: sticky;
   top: 0;
-  z-index: 2000;
+  z-index: 2;
 }
 
 .logo {
@@ -303,10 +303,6 @@ button {
 .user__name {
   padding-left: 1.2rem;
   font-size: 1rem;
-}
-
-span {
-  margin-left: 0.2rem;
 }
 
 .small {
@@ -502,17 +498,14 @@ span {
   position: relative;
   min-height: 100vh;
   top: 0;
-  width: calc(100% - 78px);
+  color: #d8d6d6;
+  width: 91%;
   transition: all 0.5s ease;
 }
+
 /* .sidebar.open ~ .home_ {
   width: calc(100% - 250px);
 } */
-
-.home_ {
-  color: #d8d6d6;
-  width: 91%;
-}
 
 .box {
   border-top-left-radius: 15px;
@@ -559,7 +552,7 @@ span {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
-  z-index: 1;
+  z-index: 2;
   transition: all 0.5s;
 }
 
@@ -1078,7 +1071,7 @@ span {
   padding: 2rem;
   width: 25rem;
   border-radius: 5px;
-  height: 18rem;
+  height: max-content;
   z-index: 3;
   position: fixed;
 }
@@ -1159,7 +1152,7 @@ span {
 }
 
 .bn5 {
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem 1.2rem;
   border: none;
   outline: none;
   color: #ddd;
@@ -1169,7 +1162,7 @@ span {
   position: relative;
   z-index: 0;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 13px;
   margin-top: 0.5rem;
 }
 
@@ -2034,6 +2027,7 @@ svg {
   .feature__grid {
     grid-template-columns: repeat(1, 1fr);
     place-items: center;
+    width: 91%;
   }
 
   .display {
@@ -2122,9 +2116,9 @@ svg {
 
   .header {
     overflow: hidden;
-    height: 5rem;
-    flex-direction: column;
+    height: 4rem;
   }
+
   .modal__form input {
     width: 94.5%;
   }
@@ -2183,7 +2177,7 @@ svg {
   }
 
   .sidebar.open {
-    display: none;
+    display: block;
   }
 
   .sidebar.open li a .links_name,
@@ -2194,13 +2188,13 @@ svg {
 
   .navbtns {
     margin-right: 1rem;
-    gap: 3.2rem;
+    gap: 1.5rem;
     position: absolute;
-    top: 2.5rem;
+    right: 0%;
   }
 
   .nb {
-    padding: 0.4rem 0.7rem;
+    padding: 0.6rem 1rem;
   }
 
   .search_ {
@@ -2253,9 +2247,9 @@ svg {
   }
 
   .logo {
-    height: 1.2rem;
-    position: relative;
-    left: -8rem;
+    height: 1.5rem;
+    position: absolute;
+    left: -2rem;
     padding: 0.5rem;
   }
 
@@ -2350,13 +2344,15 @@ svg {
   display: flex;
   flex-wrap: wrap;
   margin: -8px;
+  justify-content: center;
+  align-content: center;
 }
 
 .pricing-plan {
   margin: 0 8px 16px;
   border: 1px solid #a49999;
   border-radius: 7px;
-  width: 31%;
+  width: 300px;
 }
 
 .plan-content {

@@ -1,38 +1,60 @@
-<!-- <div class="modal-overlay" (click)="closeModal()">
+<!-- 
+<div class="modal-overlay" (click)="closeModal()">
   <div class="modal-content" (click)="stopPropagation($event)">
     <div class="modal-header">
       <h4 class="modal-title">Choose Billing Date</h4>
       <button class="close-btn" (click)="closeModal()">X</button>
     </div>
     <div class="modal-body">
-      Add your billing date selection content here
+      <input [(ngModel)]="selectedDate" type="date"  class="custom-date-input"/>
+      
+
+      <button class="confirm-btn" (click)="confirmDate()">Confirm</button>
     </div>
   </div>
 </div> -->
 
-
-<!-- <div class="modal-overlay" (click)="closeModal()">
-    <div class="modal-content" (click)="stopPropagation($event)">
-      <div class="modal-header">
-        <h4 class="modal-title">Choose Billing Date</h4>
-        <button class="close-btn" (click)="closeModal()">X</button>
-      </div>
-      <div class="modal-body">
-        <datepicker [(ngModel)]="selectedDate" [options]="datePickerOptions"></datepicker>
-        <button class="confirm-btn" (click)="confirmDate()">Confirm</button>
-      </div>
-    </div>
-  </div> -->
-
+<div class="create__name--container">
   <div class="modal-overlay" (click)="closeModal()">
-    <div class="modal-content" (click)="stopPropagation($event)">
-      <div class="modal-header">
-        <h4 class="modal-title">Choose Billing Date</h4>
-        <button class="close-btn" (click)="closeModal()">X</button>
+    <div class="create__name" (click)="stopPropagation($event)">
+      <h2 class="create__name--heading">Choose Billing Date</h2>
+      <button class="create__name--close" (click)="closeModal()">
+        &times;
+      </button>
+
+      <div class="create__name--flex">
+        <input
+          [(ngModel)]="selectedDate"
+          type="date"
+          class="custom-date-input"
+          (ngModelChange)="updateSelectedDate()"
+        />
+        <input type="date">
       </div>
-      <div class="modal-body">
-        <datepicker [(ngModel)]="selectedDate"></datepicker>
-        <button class="confirm-btn" (click)="confirmDate()">Confirm</button>
+
+      <div style="display: flex">
+        <label class="input-container">
+          <input type="checkbox" />
+          <svg viewBox="0 0 64 64" height="1em" width="1em">
+            <path
+              d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+              pathLength="575.0541381835938"
+              class="path"
+            ></path>
+          </svg>
+        </label>
+        <p style="font-size: 13px">
+          you will be charged amount on on the {{ selectedDay
+          }}<ng-container [ngSwitch]="getDaySuffix(selectedDay)">
+            <span *ngSwitchCase="'st'">st</span>
+            <span *ngSwitchCase="'nd'">nd</span>
+            <span *ngSwitchCase="'rd'">rd</span>
+            <span *ngSwitchDefault>th</span>
+          </ng-container>
+          of every month.
+        </p>
       </div>
+      <button class="bn5" (click)="confirmDate()">Confirm</button>
     </div>
   </div>
+</div>
