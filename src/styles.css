@@ -539,7 +539,7 @@ button {
   width: 20rem;
   background-color: #f3f3f3;
   padding: 3rem 2.5rem;
-  z-index: 2;
+  z-index: 3;
   border-radius: 7px;
 }
 
@@ -634,7 +634,7 @@ button {
 
 .su:hover {
   text-decoration: underline;
-  color: #2e415a;
+  color: #ffffffbf;
 }
 
 .btn--close-modal {
