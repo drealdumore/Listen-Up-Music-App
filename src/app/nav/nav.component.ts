@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -40,19 +34,15 @@ export class NavComponent {
     private authService: AuthService,
     private appService: AppService,
     private toastr: ToastrService,
-    private renderer: Renderer2
-  ) {}
+  ) {
+    this.checkScreenWidth();
+  }
 
   ngOnInit(): void {
     // to check authentication state
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
-
-    // to get user displayname and img from their email
-    //   const user = this.authService.getUser();
-    //   this.user = user?.displayName;
-    //   this.userImg = user?.photoURL;
 
     // to get user display name and img from their email
     const storedUser = localStorage.getItem('user');
@@ -201,24 +191,29 @@ export class NavComponent {
       this.isVisible = true;
     }, 100);
   }
+
+  isHidden = false;
+
+  hideUser() {
+    this.isHidden = true;
+  }
+
+  showUser() {
+    this.isHidden = false;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth(): void {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 320 && screenWidth <= 480) {
+      this.isHidden = false;
+    } else {
+      this.isHidden = true;
+    }
+  }
 }
-
-// To remove the display if clicked out element
-//need much: only that the element must have the elemenntref
-// @ViewChild('searchElement', { static: false }) searchElement!: ElementRef;
-// // E no return false, i just tire.
-// @HostListener('document:click', ['$event'])
-// handleClick(event: Event) {
-//   if (!this.searchElement.nativeElement.contains(event.target)) {
-//     this.searched = false;
-//   }
-// }
-
-// // Testing the setstyle of the renderer2 elementref
-// someMethod() {
-//   this.renderer.setStyle(
-//     this.searchElement.nativeElement,
-//     'background-color',
-//     'blue'
-//   );
-// }

@@ -1,4 +1,9 @@
 <div class="box">
+  <button class="close__btn" [routerLink]="['/playlist']">
+    <svg class="menu-icon">
+      <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
+    </svg>
+  </button>
   <h2 class="premium__header">Why Subscribe?</h2>
   <ul class="premium__list">
     <li class="premium__item">
@@ -226,7 +231,7 @@
   <section class="pricing-section">
     <div class="container">
       <div class="section-header">
-        <span class="font-bold">Pricing</span>
+        <span>Pricing</span>
         <h2>Choose your best plan</h2>
       </div>
       <div class="pricing-plans">

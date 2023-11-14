@@ -1,0 +1,122 @@
+<navigation *ngIf="!is404Page(); else noElement"></navigation>
+
+<main class="flex">
+  <div
+    class="sidebar open"
+    *ngIf="!is404Page(); else noElement"
+    [class.open]="isSidebarOpen"
+    [ngStyle]="{ display: isSidebarOpen ? 'block' : 'none' }"
+    [ngStyle]="{ display: shouldDisplayBlock() ? 'block' : 'block' }"
+  >
+    <div class="logo-details">
+      <i
+        class="bx bx-x hamburger"
+        (click)="toggleSidebar()"
+        style="font-size: 2.8rem"
+      ></i>
+    </div>
+    <div class="small">
+      <h2 class="small__p">
+        Create your <br />
+        first playlist
+      </h2>
+      <button
+        [routerLinkActive]="'navactive'"
+        (click)="navigateAndHideSidebar('/playlist/new')"
+        [routerLink]="['/playlist/new']"
+        class="small__btn"
+      >
+        Create playlist
+      </button>
+    </div>
+    <ul class="nav-list">
+      <li
+        [routerLinkActive]="'navactive'"
+        [routerLink]="['/playlist']"
+        (click)="navigateAndHideSidebar('/playlist')"
+      >
+        <a href="/playlist">
+          <i class="bx bxs-playlist"></i>
+          <span class="links_name">Playlist</span>
+        </a>
+        <span class="tooltip">Playlist</span>
+      </li>
+      <li [routerLink]="['/404']" (click)="navigateAndHideSidebar('/404')">
+        <a>
+          <i class="bx bx-paperclip"></i>
+          <span class="links_name">Category</span>
+        </a>
+        <span class="tooltip">Not Available</span>
+      </li>
+      <li
+        [routerLinkActive]="'navactive'"
+        [routerLink]="['/liked-songs']"
+        (click)="navigateAndHideSidebar('/liked-songs')"
+      >
+        <a href="/liked-songs">
+          <i class="bx bx-heart"></i>
+          <span class="links_name">Likes</span>
+        </a>
+        <span class="tooltip">Liked Songs</span>
+      </li>
+      <li
+        [routerLinkActive]="'navactive'"
+        [routerLink]="['/history']"
+        (click)="navigateAndHideSidebar('/history')"
+      >
+        <a href="/history">
+          <i class="bx bx-history"></i>
+          <span class="links_name">History</span>
+        </a>
+        <span class="tooltip">History</span>
+      </li>
+      <li [routerLink]="['/404']" (click)="navigateAndHideSidebar('/404')">
+        <a>
+          <i class="bx bx-download"></i>
+          <span class="links_name">Downloads</span>
+        </a>
+        <span class="tooltip">Not Available</span>
+      </li>
+      <li [routerLink]="['/404']" (click)="navigateAndHideSidebar('/404')">
+        <a>
+          <i class="bx bx-star"></i>
+          <span class="links_name">Favourite</span>
+        </a>
+        <span class="tooltip">Not Available</span>
+      </li>
+      <li
+        [routerLinkActive]="'navactive'"
+        [routerLink]="['/subscription']"
+        (click)="navigateAndHideSidebar('/subscription')"
+      >
+        <a>
+          <i class="bx bx-credit-card"></i>
+          <span class="links_name">Subscription</span>
+        </a>
+        <span class="tooltip">Subsription</span>
+      </li>
+    </ul>
+    <div class="legal">
+      <p>© Copyright by Saint.</p>
+    </div>
+  </div>
+
+  <!-- <div [ngStyle]="{ display: isSidebarOpen ? 'none' : 'block' }" [ngStyle]="{ display: window.innerWidth > 769 ? 'block' : 'block' }" class="home_"  class="home_"> -->
+    <div [ngStyle]="{ display: isSidebarOpen ? 'none' : 'block' }" [ngStyle]="{ display: shouldDisplayBlock() ? 'block' : 'none' }" class="home_">
+  <!-- <div
+    [ngStyle]="{ display: shouldDisplayHome() ? 'block' : 'none' }"
+    class="home_"
+  > -->
+    <i
+      class="bx bx-menu hamburger burger"
+      (click)="toggleSidebar()"
+      *ngIf="!is404Page(); else noElement"
+    ></i>
+
+    <router-outlet></router-outlet>
+    <ng-container *ngIf="!is404Page(); else noElement">
+      <player></player>
+    </ng-container>
+    <ng-template #noElement></ng-template>
+  </div>
+</main>

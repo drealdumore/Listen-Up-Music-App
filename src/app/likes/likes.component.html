@@ -18,6 +18,12 @@
   </div>
   <ul class="playlist__list likes__list" style="padding: 0">
     <hr />
-    <likes-list [songs]="likedSongs"></likes-list>
+    <ng-template #likedSongsContent>
+      <likes-list [songs]="likedSongs"></likes-list>
+    </ng-template>
+
+    <h2 *ngIf="likedSongs.length === 0; else likedSongsContent">
+      You have not liked any song.
+    </h2>
   </ul>
 </div>

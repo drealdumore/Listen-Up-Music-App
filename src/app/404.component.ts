@@ -23,7 +23,16 @@ import { Component } from '@angular/core';
       .box {
         background-color: #535050;
       }
-      
+
+      @media only screen and (min-width: 320px) and (max-width: 480px) {
+        .box {
+          width: 91%;
+        }
+        .container {
+          padding-left: 0;
+        }
+      }
+
       .container {
         height: 100vh;
         color: #fff;

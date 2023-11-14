@@ -9,12 +9,17 @@
         maxlength="16"
         class="search__input"
         placeholder="Search"
+        
       />
+      <!-- (focus)="hideUser()"
+        (blur)="showUser()" -->
       <button class="search__btn">&rarr;</button>
     </form>
 
     <nav class="user-nav">
-      <div class="user" (click)="visible()">
+      
+      
+      <div class="user" (click)="visible()" [hidden]="isHidden">
         <!-- <div *ngIf="!userProfile; else usersImg"> -->
         <div *ngIf="!userImg; else usersImg">
           <img class="user__img--icon" src="/assets/img/profile.svg" />
@@ -158,7 +163,9 @@
     </div>
 
     <div *ngIf="searched" class="search_">
-      <button class="remove__search" (click)="this.searched = false">&times;</button>
+      <button class="remove__search" (click)="this.searched = false">
+        &times;
+      </button>
       <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
       <ul class="search__list">
         <li
