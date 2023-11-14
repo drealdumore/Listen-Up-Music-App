@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IPlaylist } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { AuthService } from '../shared/auth.service';
-import { SubscriptionService } from '../shared/subscription.service';
 
 @Component({
   selector: 'subscription',
@@ -18,8 +17,7 @@ export class SubscriptionComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private authService: AuthService,
-    private subscriptionService: SubscriptionService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {

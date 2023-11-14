@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'billing-modal',
   templateUrl: './billing-modal.component.html',
   styleUrls: ['./billing-modal.component.css'],
 })
-
 export class BillingModalComponent {
   @Output() closeModalEvent = new EventEmitter();
   selectedDate: Date = new Date();
   selectedDay: string;
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     this.selectedDate = new Date();
     this.selectedDay = this.selectedDate.getDate().toString();
   }
@@ -19,8 +19,11 @@ export class BillingModalComponent {
   confirmDate(): void {
     this.selectedDate = new Date(this.selectedDate);
     this.selectedDay = this.selectedDate.getDate().toString();
+    this.toastr.success('Date has been sucessfully set!');
 
-    // this.closeModal();
+    setTimeout(() => {
+      this.closeModal();
+    }, 500);
   }
 
   updateSelectedDate(): void {

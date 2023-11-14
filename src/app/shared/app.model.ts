@@ -15,3 +15,10 @@ export interface ISongs {
   img: string;
   path: string;
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  billingDate: number; 
+}

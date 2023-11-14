@@ -9,7 +9,6 @@
         maxlength="16"
         class="search__input"
         placeholder="Search"
-        
       />
       <!-- (focus)="hideUser()"
         (blur)="showUser()" -->
@@ -17,10 +16,8 @@
     </form>
 
     <nav class="user-nav">
-      
-      
-      <div class="user" (click)="visible()" [hidden]="isHidden">
-        <!-- <div *ngIf="!userProfile; else usersImg"> -->
+      <!-- <div class="user" (click)="visible()" [hidden]="isHidden"> -->
+      <div class="user" (click)="visible()">
         <div *ngIf="!userImg; else usersImg">
           <img class="user__img--icon" src="/assets/img/profile.svg" />
         </div>

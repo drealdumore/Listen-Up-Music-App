@@ -2166,8 +2166,8 @@ svg {
     width: 72%;
   }
 
-  .sidebar.open ~ .home_,
-  .sidebar.open ~ .box {
+  .sidebar ~ .home_,
+  .sidebar ~ .box {
     width: 100%;
   }
 
@@ -2184,8 +2184,9 @@ svg {
     margin: 0;
   }
 
-  .sidebar.open {
+  .sidebar {
     display: block;
+    width: 10%;
   }
 
   .playing {
@@ -2203,6 +2204,19 @@ svg {
 
   .heart-icon {
     display: none;
+  }
+
+  .sidebar li a .links_name,
+  .sidebar .legal,
+  .sidebar .small {
+    opacity: 1;
+    pointer-events: auto;
+    display: none;
+    z-index: 1;
+  }
+
+  .sidebar li .tooltip {
+    display: block;
   }
 }
 
@@ -2245,7 +2259,7 @@ svg {
   }
 
   .playing {
-    height: 75vh;
+    height: auto;
     padding: 0 1rem;
     width: 82%;
   }
