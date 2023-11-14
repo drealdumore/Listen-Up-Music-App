@@ -7,6 +7,8 @@
     [class.open]="isSidebarOpen"
     [ngStyle]="{ display: isSidebarOpen ? 'block' : 'none' }"
     [ngStyle]="{ display: shouldDisplayBlock() ? 'block' : 'block' }"
+    [ngStyle]="{ display: shouldHideNav() ? 'none' : 'block' }"
+    [ngStyle]="{ display: shouldDisplayHome() ? 'none' : 'block' }"
   >
     <div class="logo-details">
       <i
@@ -101,12 +103,13 @@
     </div>
   </div>
 
-  <!-- <div [ngStyle]="{ display: isSidebarOpen ? 'none' : 'block' }" [ngStyle]="{ display: window.innerWidth > 769 ? 'block' : 'block' }" class="home_"  class="home_"> -->
-    <div [ngStyle]="{ display: isSidebarOpen ? 'none' : 'block' }" [ngStyle]="{ display: shouldDisplayBlock() ? 'block' : 'none' }" class="home_">
-  <!-- <div
-    [ngStyle]="{ display: shouldDisplayHome() ? 'block' : 'none' }"
+  <div
     class="home_"
-  > -->
+    [ngStyle]="{ display: isSidebarOpen ? 'none' : 'block' }"
+    [ngStyle]="{ display: shouldDisplayBlock() ? 'block' : 'none' }"
+    [ngStyle]="{ display: shouldHideNav() ? 'block' : 'none' }"
+    [ngStyle]="{ display: shouldDisplayHome() ? 'block' : 'none' }"
+  >
     <i
       class="bx bx-menu hamburger burger"
       (click)="toggleSidebar()"

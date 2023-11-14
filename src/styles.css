@@ -2076,8 +2076,6 @@ svg {
     place-items: center;
   }
 
-
-
   .search {
     flex: none;
     width: 20rem;
@@ -2214,7 +2212,6 @@ svg {
     place-items: center;
     width: 91%;
   }
-
 
   .display {
     padding: 1.5rem 1rem;
@@ -2491,33 +2488,13 @@ svg {
     font-size: 17px;
   }
 
-  /* if */
-
-  /* .flex {
-    flex-direction: column;
-  } */
-
-  /* .sidebar .nav-list {
-    display: flex;
-  } */
-
-  /* .sidebar.open {
-    display: block;
-  } */
-
-  /* .sidebar.open li a .links_name,
-  .sidebar.open .legal,
-  .sidebar.open .small {
-    display: none;
-  } */
-
-  .sidebar.open ~ .home_,
-  .sidebar.open ~ .box {
+  .sidebar ~ .home_,
+  .sidebar ~ .box {
     width: 100%;
     display: none;
   }
 
-  .sidebar.open {
+  .sidebar {
     width: 100%;
     padding-right: 0.6rem;
   }

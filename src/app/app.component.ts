@@ -9,11 +9,7 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   isSidebarOpen = false;
 
-  constructor(private router: Router, private authService: AuthService) {
-    if (window.innerWidth > 769) {
-      this.isSidebarOpen = true;
-    }
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   is404Page(): boolean {
     const currentUrl = this.router.url;
@@ -43,6 +39,19 @@ export class AppComponent {
   }
 
   shouldDisplayBlock(): boolean {
-    return typeof window !== 'undefined' && window.innerWidth > 745;
+    return window.innerWidth > 745;
   }
+
+  shouldHideNav(): boolean {
+    return (
+      typeof window !== 'undefined' &&
+      window.innerWidth >= 481 &&
+      window.innerWidth <= 744
+    );
+  }
+
+  shouldDisplayHome(): boolean {
+    return typeof window !== 'undefined' && window.innerWidth >= 320 && window.innerWidth <= 480;
+  }
+  
 }
