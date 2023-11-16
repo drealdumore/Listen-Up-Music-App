@@ -2221,7 +2221,8 @@ svg {
   }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 480px) {
+/* @media only screen and (min-width: 320px) and (max-width: 480px) { */
+@media only screen and (max-width: 480px) {
   .feature__grid {
     grid-template-columns: repeat(1, 1fr);
     place-items: center;
@@ -2432,7 +2433,7 @@ svg {
   }
 
   .logo {
-    height: 1.5rem;
+    height: 2.5%;
     position: absolute;
     left: -2rem;
     padding: 0.5rem;
