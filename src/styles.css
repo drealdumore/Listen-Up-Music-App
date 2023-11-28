@@ -733,6 +733,7 @@ button {
   border: 1px solid transparent;
   transition: all 0.6s;
   width: 16rem;
+  cursor: pointer;
 }
 
 .feature:hover {
@@ -1259,6 +1260,7 @@ button {
   list-style: none;
   position: relative;
   padding: 0.3rem;
+  cursor: pointer;
 }
 
 .search__li::before {
