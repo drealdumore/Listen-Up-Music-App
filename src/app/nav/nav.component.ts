@@ -1,10 +1,11 @@
-import { Component, HostListener, Renderer2 } from '@angular/core';
+import { Component, HostListener, Renderer2, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { FormControl } from '@angular/forms';
+import { SpotifyService } from '../shared/spotifyservice.service';
 
 @Component({
   selector: 'navigation',
@@ -22,12 +23,15 @@ export class NavComponent {
   userImg: any;
   userEmail: any;
   userProfile: boolean = false;
-  isAuthenticated: boolean = false;
+  cated: boolean = false;
 
   searchTerm: string = '';
   foundSongs: ISongs[] = [];
   noSearch: boolean = false;
   selectedSongId: string | null = null;
+  isAuthenticated: boolean = false;
+
+private spotifyService = inject(SpotifyService)
 
   constructor(
     private router: Router,
@@ -58,6 +62,7 @@ export class NavComponent {
       this.userProfile = true;
     }
     this.newNickname.setValue(this.user);
+
   }
 
   newNickname: FormControl = new FormControl('');
@@ -80,8 +85,11 @@ export class NavComponent {
 
   // function to search for songs
   searchSongs() {
-    this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
+    this.spotifyService.search(this.searchTerm, 'track').subscribe((songs) => {
+    // this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
       this.foundSongs = songs;
+      console.log(songs);
+      
       this.searched = true;
       if (this.foundSongs.length === 0) {
         this.noSearch = true;
@@ -89,6 +97,7 @@ export class NavComponent {
         this.noSearch = false;
       }
     });
+    
   }
 
   // when clicked to navigate to the playlist with the seacrh song
