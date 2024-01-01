@@ -1,11 +1,25 @@
 <li *ngFor="let song of displaySongs">
   <a class="playlist__link">
     <figure class="playlist__fig">
-      <img [src]="song?.img" [alt]="song?.title" />
+      <img
+        [src]="song?.track?.album.images[0].url"
+        [alt]="song?.track?.album?.name"
+      />
     </figure>
     <div class="playlist__data">
-      <h4 class="playlist__name">{{ song.title }}</h4>
+      <h4 class="playlist__name">{{ song?.track?.album?.name }}</h4>
       <p class="playlist__artist">{{ song.artist }}</p>
+      <span class="artists">
+        <p
+          class="playlist__artist"
+          *ngFor="let artist of song?.track?.album.artists; let last = last"
+        >
+          <a [href]="artist.external_urls.spotify" target="_blank">{{
+            artist.name
+          }}</a>
+          <span *ngIf="!last">, </span>
+        </p>
+      </span>
     </div>
   </a>
   <!-- <div class="list__icon">

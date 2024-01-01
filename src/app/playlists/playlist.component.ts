@@ -60,10 +60,11 @@ export class PlaylistComponent implements OnInit {
           console.log(this.playlists);
         },
         (error) => {
-          console.error('Error during search:', error);
+          console.error('Error:', error);
         }
       );
   }
+
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -83,14 +84,11 @@ export class PlaylistComponent implements OnInit {
     const hours = now.getHours();
     let salutation;
     if (hours >= 5 && hours < 12) {
-      // salutation = `Good Morning, ${activeUser.user}`;
       salutation = `Good Morning`;
     } else if (hours > 12 && hours < 18) {
-      // salutation = `Good afternoon, ${activeUser.user}`;
-      salutation = `Good afternoon`;
+      salutation = `Good Afternoon`;
     } else {
-      // salutation = `Good evening, ${activeUser.user}`;
-      salutation = `Good evening`;
+      salutation = `Good Evening`;
     }
     return salutation;
   }

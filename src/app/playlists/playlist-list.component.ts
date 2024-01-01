@@ -9,7 +9,7 @@ import { LikesService } from '../shared/likes.service';
   templateUrl: './playlist-list.component.html',
 })
 export class PlaylistList implements OnInit {
-  @Input() displaySongs: ISongs[] = [];
+  @Input() displaySongs: any[] = [];
 
   public currentSong!: ISongs;
   public isplayed: boolean = false;

@@ -13,11 +13,11 @@
     <div class="header__container">
       <p class="abstract">Playlist</p>
       <h4 class="header__heading">{{ currentPlaylist?.name }}</h4>
-      <p class="abstract">{{ currentPlaylist?.abstract }}</p>
+      <p class="abstract">{{ currentPlaylist?.description }}</p>
     </div>
   </div>
   <hr />
   <ul class="playlist__list" style="padding: 0">
-    <song-list [displaySongs]="currentPlaylist?.songs"></song-list>
+    <song-list [displaySongs]="playlistSongs"></song-list>
   </ul>
 </div>

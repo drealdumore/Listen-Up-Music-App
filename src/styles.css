@@ -1317,12 +1317,28 @@ button {
   text-transform: capitalize;
 }
 
+.artists {
+  display: flex;
+  gap: 5px;
+}
+
 .search__artist,
 .playlist__artist {
   margin: 0;
   color: #d8d6d6;
   text-transform: capitalize;
   font-size: 13px;
+}
+
+.playlist__artist a {
+  text-decoration: none;
+  color: #f3f3f3;
+  transition: all 0.4s ease;
+}
+
+.playlist__artist a:hover {
+  text-decoration: underline;
+  color: #c2d8e3;
 }
 
 .search__data-p {
