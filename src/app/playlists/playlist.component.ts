@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IPlaylist } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { AuthService } from '../shared/auth.service';
+import { SpotifyService } from '../shared/spotifyservice.service';
+import { mergeMap } from 'rxjs';
 
 @Component({
   templateUrl: './playlist.component.html',
@@ -16,13 +18,17 @@ export class PlaylistComponent implements OnInit {
   userEmail: any;
   userProfile: boolean = false;
   isAuthenticated: boolean = false;
+
+  private spotifyService = inject(SpotifyService);
+  allPlaylists: any;
+
   constructor(
     private appService: AppService,
     private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.playlists = this.appService.getPlaylists();
+    // this.playlists = this.appService.getPlaylists();
     this.greeting = this.getSalutation();
 
     // to check authentication state
@@ -34,6 +40,29 @@ export class PlaylistComponent implements OnInit {
     if (storedUser) {
       this.user = JSON.parse(storedUser).displayName;
     }
+
+    this.displayPlaylist()
+  }
+
+  displayPlaylist() {
+    this.spotifyService
+      .getToken()
+      .pipe(
+        mergeMap((tokenResponse) => {
+          const token = tokenResponse.access_token;
+          return this.spotifyService.getPlaylists(token);
+        })
+      )
+      .subscribe(
+        (songs) => {
+          this.allPlaylists = songs.playlists.items;
+          this.playlists = this.allPlaylists.slice(0, 12);
+          console.log(this.playlists);
+        },
+        (error) => {
+          console.error('Error during search:', error);
+        }
+      );
   }
 
   toggleSidebar() {

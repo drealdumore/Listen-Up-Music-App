@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -48,14 +47,28 @@ export class SpotifyService {
   }
 
   searchMusic(str: string, type: string, token: string): Observable<any> {
-    this.searchUrl =
-      `${this.url}/search?query=${str}&offset=0&limit=50&type=${type}&market=US`;
+    this.searchUrl = `${this.url}/search?query=${str}&offset=0&limit=50&type=${type}&market=US`;
 
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
 
     return this.http.get(this.searchUrl, { headers }).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  getPlaylists(token: string): Observable<any> {
+    this.AlbumsUrl = `${this.url}/browse/featured-playlists?country=NG&timestamp=2024-01-01T16%3A34%3A32&offset=0&limit=20`;
+    // this.AlbumsUrl = `${this.url}/browse/featured-playlists&limit=50`;
+
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+
+    return this.http.get(this.AlbumsUrl, { headers }).pipe(
       map((res: any) => {
         return res;
       })
@@ -75,6 +88,8 @@ export class SpotifyService {
       })
     );
   }
+
+  
 
   getAlbums(artistId: string, token: string): Observable<any> {
     this.AlbumsUrl = `${this.url}/artists/${artistId}/albums/?query=&limit=50`;
