@@ -159,47 +159,11 @@
       </div>
     </div>
 
-    <div *ngIf="searched" class="search_">
-      <button class="remove__search" (click)="this.searched = false">
-        &times;
-      </button>
-      <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
-      <ul class="search__list">
-        <li
-          class="search__li"
-          *ngFor="let song of foundSongs"
-          (click)="navigateToPlaylist(song.id)"
-          (click)="selectedSongId = song.id"
-        >
-          <a class="search__link">
-            <figure class="search__fig">
-              <img [src]="song.img" alt="{{ song.title }}" />
-            </figure>
-            <div class="search__data">
-              <p
-                style="
-                  font-size: 12px;
-                  padding-bottom: 4px;
-                  margin: 0;
-                  color: #c1bcbc;
-                "
-              >
-                {{ song.playlist_name }}
-              </p>
-              <h4 class="search__name">
-                {{ song.title }}
-              </h4>
-              <p class="search__artist">{{ song.artist }}</p>
-            </div>
-          </a>
-        </li>
-
-        <div *ngIf="noSearch" class="nosearch">
-          <h1>Your search result doesnt exist</h1>
-          <p>No results found for '{{ searchTerm }}'.</p>
-        </div>
-      </ul>
-    </div>
+    <searchmodal
+      *ngIf="searched"
+      [foundSongs]="foundSongs"
+      [searched]="searched"
+    ></searchmodal>
   </ng-container>
 
   <div *ngIf="!isAuthenticated" class="navbtns">

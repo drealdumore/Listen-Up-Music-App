@@ -35,6 +35,7 @@ import { LikesService } from './shared/likes.service';
 import { LikesList } from './likes/likes-list.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { BillingModalComponent } from './billing-modal/billing-modal.component';
+import { SearchmodalComponent } from './searchmodal/searchmodal.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BillingModalComponent } from './billing-modal/billing-modal.component';
     LikesList,
     SubscriptionComponent,
     BillingModalComponent,
+    SearchmodalComponent,
   ],
   imports: [
     BrowserModule,

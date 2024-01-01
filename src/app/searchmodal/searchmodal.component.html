@@ -1,0 +1,74 @@
+<!-- <div class="search_">
+  <button class="remove__search" (click)="this.searched = false">
+    &times;
+  </button>
+  <h4 class="feature__heading">Search Result for '{{ searchTerm }}'</h4>
+  <ul class="search__list">
+    <li
+      class="search__li"
+      *ngFor="let song of foundSongs"
+      (click)="navigateToPlaylist(song.id)"
+      (click)="selectedSongId = song.id"
+    >
+      <a class="search__link">
+        <figure class="search__fig">
+          <img [src]="song.img" alt="{{ song.title }}" />
+        </figure>
+        <div class="search__data">
+          <p
+            class="search__data-p"
+          >
+            {{ song.playlist_name }}
+          </p>
+          <h4 class="search__name">
+            {{ song.title }}
+          </h4>
+          <p class="search__artist">{{ song.artist }}</p>
+        </div>
+      </a>
+    </li>
+
+    <div *ngIf="noSearch" class="nosearch">
+      <h1>Your search result doesnt exist</h1>
+      <p>No results found for '{{ searchTerm }}'.</p>
+    </div>
+  </ul>
+</div> -->
+
+<div class="search_">
+  <button class="remove__search" (click)="this.searched = false">
+    &times;
+  </button>
+  <h4 class="feature__heading" *ngIf="noSearch">Search Result for '{{ searchTerm }}'</h4>
+  <h4 class="feature__heading" *ngIf="foundSongs.length > 0">Songs</h4>
+  <ul class="search__list">
+    <li
+      class="search__li"
+      *ngFor="let song of foundSongs"
+      (click)="navigateToPlaylist(song.id)"
+      (click)="selectedSongId = song.id"
+    >
+      <a class="search__link">
+        <figure class="search__fig">
+          <img [src]="song.album.images[0].url" alt="{{ song.name }}" />
+        </figure>
+        <div class="search__data">
+          <p class="search__data-p">
+            {{ song.album.name }}
+          </p>
+          <h4 class="search__name">
+            {{ song.name }}
+          </h4>
+          <p class="search__artist">
+            {{ song?.album?.artists[0]?.name}}
+          </p>
+        </div>
+      </a>
+    </li>
+
+    <div *ngIf="noSearch" class="nosearch">
+      <h1>Your search result doesnt exist</h1>
+      <p>No results found for '{{ searchTerm }}'.</p>
+    </div>
+  </ul>
+</div>

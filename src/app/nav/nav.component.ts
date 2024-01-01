@@ -6,6 +6,7 @@ import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { FormControl } from '@angular/forms';
 import { SpotifyService } from '../shared/spotifyservice.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'navigation',
@@ -31,13 +32,13 @@ export class NavComponent {
   selectedSongId: string | null = null;
   isAuthenticated: boolean = false;
 
-private spotifyService = inject(SpotifyService)
+  private spotifyService = inject(SpotifyService);
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private appService: AppService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
     this.checkScreenWidth();
   }
@@ -62,7 +63,6 @@ private spotifyService = inject(SpotifyService)
       this.userProfile = true;
     }
     this.newNickname.setValue(this.user);
-
   }
 
   newNickname: FormControl = new FormControl('');
@@ -83,31 +83,54 @@ private spotifyService = inject(SpotifyService)
     }
   }
 
-  // function to search for songs
   searchSongs() {
-    this.spotifyService.search(this.searchTerm, 'track').subscribe((songs) => {
-    // this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
-      this.foundSongs = songs;
-      console.log(songs);
-      
-      this.searched = true;
-      if (this.foundSongs.length === 0) {
-        this.noSearch = true;
-      } else {
-        this.noSearch = false;
-      }
-    });
-    
+    this.spotifyService
+      .getToken()
+      .pipe(
+        mergeMap((tokenResponse) => {
+          const token = tokenResponse.access_token;
+          return this.spotifyService.searchMusic(
+            this.searchTerm,
+            'track',
+            token
+          );
+        })
+      )
+      .subscribe(
+        (songs) => {
+          this.foundSongs = songs.tracks.items;
+          console.log(this.foundSongs);
+
+          this.searched = true;
+          this.noSearch = this.foundSongs.length === 0;
+        },
+        (error) => {
+          console.error('Error during search:', error);
+        }
+      );
   }
 
+  
+  // function to search for songs
+  // searchSongs() {
+  //   this.spotifyService.search(this.searchTerm, 'track').subscribe((songs) => {
+  //   // this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
+  //     this.foundSongs = songs;
+  //     console.log(songs);
+
+  //     this.searched = true;
+  //     if (this.foundSongs.length === 0) {
+  //       this.noSearch = true;
+  //     } else {
+  //       this.noSearch = false;
+  //     }
+  //   });
+
+  // }
+
+
   // when clicked to navigate to the playlist with the seacrh song
-  navigateToPlaylist(songId: string): void {
-    this.router.navigate(['/playlist', songId]);
-    setTimeout(() => {
-      this.searched = false;
-      this.selectedSongId = null;
-    }, 500);
-  }
+  
 
   goToSignUp() {
     this.router.navigate(['/auth/signup']);
@@ -226,3 +249,4 @@ private spotifyService = inject(SpotifyService)
     }
   }
 }
+

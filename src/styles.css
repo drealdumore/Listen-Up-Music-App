@@ -1235,7 +1235,7 @@ button {
 .search_ {
   position: absolute;
   top: 4rem;
-  height: 12rem;
+  height: 20rem;
   overflow-y: scroll;
   left: 19.5rem;
   width: 34%;
@@ -1322,6 +1322,14 @@ button {
   margin: 0;
   color: #d8d6d6;
   text-transform: capitalize;
+  font-size: 13px;
+}
+
+.search__data-p {
+  font-size: 12px;
+  padding-bottom: 4px;
+  margin: 0;
+  color: #c1bcbc;
 }
 
 .display {
