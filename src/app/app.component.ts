@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
+import { LoaderService } from './shared/loader.service';
 
 @Component({
   selector: 'app',
@@ -8,8 +9,9 @@ import { AuthService } from './shared/auth.service';
 })
 export class AppComponent {
   isSidebarOpen = false;
+  showLoader$ = this.loaderService.loadingAction$;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private loaderService: LoaderService) {
     this.checkWidth();
   }
 

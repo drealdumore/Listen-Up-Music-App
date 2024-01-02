@@ -4,20 +4,21 @@
       <use xlink:href="/assets/img/sprite.svg#icon-circle-left"></use>
     </svg>
   </button>
+
   <div class="top__container">
-    <div class="top__fig--container">
-      <svg class="top__fig">
-        <use xlink:href="/assets/img/sprite.svg#icon-music-playlist"></use>
-      </svg>
-    </div>
+    <img
+      [src]="currentPlaylist.images[0].url"
+      [alt]="currentPlaylist.name"
+      class="top__fig"
+    />
     <div class="header__container">
       <p class="abstract">Playlist</p>
       <h4 class="header__heading">{{ currentPlaylist?.name }}</h4>
-      <p class="abstract">{{ currentPlaylist?.description }}</p>
+      <!-- <p class="abstract">{{ currentPlaylist?.description }}</p> -->
     </div>
   </div>
   <hr />
-  <ul class="playlist__list" style="padding: 0">
+  <ul class="playlist__list">
     <song-list [displaySongs]="playlistSongs"></song-list>
   </ul>
 </div>

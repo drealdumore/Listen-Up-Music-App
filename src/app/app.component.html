@@ -1,5 +1,4 @@
 <navigation *ngIf="!is404Page(); else noElement"></navigation>
-
 <main class="flex">
   <div
     class="sidebar"
@@ -110,6 +109,9 @@
       (click)="toggleSidebar()"
       *ngIf="!is404Page(); else noElement"
     ></i>
+    <div *ngIf="showLoader$ | async as showLoader">
+      <load *ngIf="showLoader"></load>
+    </div>
 
     <router-outlet></router-outlet>
 

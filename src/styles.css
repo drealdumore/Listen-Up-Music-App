@@ -719,13 +719,13 @@ button {
 .feature__grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
   grid-row-gap: 2rem;
   place-items: center;
 }
 
-.feature {
+/* .feature {
   height: 22rem;
   border-radius: 5%;
   background-color: #5e687544;
@@ -734,12 +734,12 @@ button {
   transition: all 0.6s;
   width: 16rem;
   cursor: pointer;
-}
+} */
 
 .feature:hover {
   border: 1px solid #fff;
 }
-
+/* 
 .feature__img {
   width: 17rem;
   height: 14rem;
@@ -759,6 +759,40 @@ button {
 .feature__p {
   font-size: 1rem;
   color: #dfd9d9;
+} */
+
+.feature {
+  background-color: #5e687544;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.6s;
+  cursor: pointer;
+  width: 19rem;
+  display: flex;
+  height: auto;
+  border-radius: 9px;
+  min-height: 7.5rem;
+}
+
+.feature__img {
+  width: 8rem;
+  height: auto;
+  border-radius: 11px;
+}
+
+.feature__p {
+  font-size: 0.8rem;
+}
+
+.feature__heading {
+  font-size: 1.1rem;
+}
+.feature__block {
+  padding: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .player {
@@ -1023,6 +1057,12 @@ button {
   align-items: center;
 }
 
+.playlist__list {
+  overflow-y: scroll;
+  height: 30rem;
+  padding: 0;
+}
+
 .playlist__list li {
   padding: 0.1rem 1.2rem;
   display: flex;
@@ -1038,6 +1078,11 @@ button {
   border-radius: 9px;
 }
 
+.header__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .view-icons {
   display: flex;
   /* gap: 2rem; */
@@ -1069,10 +1114,12 @@ button {
   align-items: center;
   width: 15rem;
 }
+
 .top__fig {
   fill: #d8d6d6;
-  height: 4rem;
-  width: 4rem;
+  height: auto;
+  width: 10rem;
+  border-radius: 5px;
 }
 
 .header__heading {
