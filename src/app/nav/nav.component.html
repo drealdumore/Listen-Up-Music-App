@@ -1,22 +1,18 @@
 <header class="header" scroll>
   <img src="/assets/img/logo.png" alt="" class="logo" />
   <ng-container *ngIf="isAuthenticated">
-    <form id="search" class="search" (ngSubmit)="searchSongs()">
+    <form id="search" class="search" [formGroup]="searchInput">
       <input
         type="search"
-        [(ngModel)]="searchTerm"
-        name="searchTerm"
-        maxlength="16"
+        formControlName="input"
+        maxlength="23"
         class="search__input"
         placeholder="Search"
       />
-      <!-- (focus)="hideUser()"
-        (blur)="showUser()" -->
       <button class="search__btn">&rarr;</button>
     </form>
 
     <nav class="user-nav">
-      <!-- <div class="user" (click)="visible()" [hidden]="isHidden"> -->
       <div class="user" (click)="visible()">
         <div *ngIf="!userImg; else usersImg">
           <img class="user__img--icon" src="/assets/img/profile.svg" />
@@ -159,11 +155,16 @@
       </div>
     </div>
 
-    <searchmodal
+      
+      <searchmodal [searchTerm]="input" (filterClick)="searchSongs($event)" ></searchmodal>
+    
+    <!-- <searchmodal
       *ngIf="searched"
       [foundSongs]="foundSongs"
       [searched]="searched"
-    ></searchmodal>
+      (filterClick)="searchSongs($event)"
+      [searchTerm]="input"
+    ></searchmodal> -->
   </ng-container>
 
   <div *ngIf="!isAuthenticated" class="navbtns">

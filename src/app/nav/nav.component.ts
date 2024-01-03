@@ -1,30 +1,39 @@
-import { Component, HostListener, Renderer2, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Output,
+  inject,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SpotifyService } from '../shared/spotifyservice.service';
-import { mergeMap } from 'rxjs/operators';
+import { debounceTime, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'navigation',
   templateUrl: './nav.component.html',
 })
 export class NavComponent {
+  input: string = '';
+
   searched: boolean = false;
   isVisible: boolean = false;
   displayLogout: boolean = false;
   displayProfile: boolean = false;
   displaySetting: boolean = false;
   displaySupport: boolean = false;
-
-  user: any;
-  userImg: any;
-  userEmail: any;
   userProfile: boolean = false;
-  cated: boolean = false;
+
+  searchInput!: FormGroup;
+
+  user: string = '';
+  userImg: string = '';
+  userEmail: string = '';
 
   searchTerm: string = '';
   foundSongs: ISongs[] = [];
@@ -33,6 +42,7 @@ export class NavComponent {
   isAuthenticated: boolean = false;
 
   private spotifyService = inject(SpotifyService);
+  private fb = inject(FormBuilder);
 
   constructor(
     private router: Router,
@@ -41,6 +51,19 @@ export class NavComponent {
     private toastr: ToastrService
   ) {
     this.checkScreenWidth();
+
+    this.searchInput = this.fb.group({
+      input: [''],
+    });
+
+    this.input = this.searchInput.get('input')?.value;
+
+    this.searchInput
+      .get('input')
+      ?.valueChanges.pipe(debounceTime(100))
+      .subscribe(() => {
+        this.searchSongs('track');
+      });
   }
 
   ngOnInit(): void {
@@ -64,7 +87,6 @@ export class NavComponent {
     }
     this.newNickname.setValue(this.user);
   }
-
   newNickname: FormControl = new FormControl('');
 
   setNickname() {
@@ -83,25 +105,24 @@ export class NavComponent {
     }
   }
 
-  searchSongs() {
+  searchSongs(filterTerm: string) {
     this.spotifyService
       .getToken()
       .pipe(
         mergeMap((tokenResponse) => {
           const token = tokenResponse.access_token;
-          return this.spotifyService.searchMusic(
-            this.searchTerm,
-            'track',
-            token
-          );
+          const searchTerm = this.searchInput.get('input')?.value;
+          return this.spotifyService.searchMusic(searchTerm, filterTerm, token);
         })
       )
       .subscribe(
         (songs) => {
-          this.foundSongs = songs.tracks.items;
-          console.log(this.foundSongs);
-
+          this.foundSongs = songs[`${filterTerm}s`]?.items || [];
           this.searched = true;
+          console.log(
+            '🚀 ~ file: nav.component.ts:115 ~ NavComponent ~ searchSongs ~ this.foundSongs:',
+            this.foundSongs
+          );
           this.noSearch = this.foundSongs.length === 0;
         },
         (error) => {
@@ -109,28 +130,6 @@ export class NavComponent {
         }
       );
   }
-
-  
-  // function to search for songs
-  // searchSongs() {
-  //   this.spotifyService.search(this.searchTerm, 'track').subscribe((songs) => {
-  //   // this.appService.searchSongs(this.searchTerm).subscribe((songs) => {
-  //     this.foundSongs = songs;
-  //     console.log(songs);
-
-  //     this.searched = true;
-  //     if (this.foundSongs.length === 0) {
-  //       this.noSearch = true;
-  //     } else {
-  //       this.noSearch = false;
-  //     }
-  //   });
-
-  // }
-
-
-  // when clicked to navigate to the playlist with the seacrh song
-  
 
   goToSignUp() {
     this.router.navigate(['/auth/signup']);
@@ -249,4 +248,5 @@ export class NavComponent {
     }
   }
 }
+
 

@@ -57,19 +57,6 @@ export class SpotifyService {
     );
   }
 
-  getPlaylist(playlist_id:string, token: string): Observable<any> {
-    this.getUrl = `${this.url}/playlists/${playlist_id}`;
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + token,
-    });
-
-    return this.http.get(this.getUrl, { headers }).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
-  }
-
   getPlaylists(token: string): Observable<any> {
     this.getUrl = `${this.url}/browse/featured-playlists?country=NG&timestamp=2024-01-01T16%3A34%3A32&offset=0&limit=20`;
     const headers = new HttpHeaders({
@@ -83,7 +70,20 @@ export class SpotifyService {
     );
   }
 
-  getPlaylistsItems(playlist_id:string, token: string): Observable<any> {
+  getPlaylist(playlist_id: string, token: string): Observable<any> {
+    this.getUrl = `${this.url}/playlists/${playlist_id}`;
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+
+    return this.http.get(this.getUrl, { headers }).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  getPlaylistsItems(playlist_id: string, token: string): Observable<any> {
     this.getUrl = `${this.url}/playlists/${playlist_id}/tracks`;
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
@@ -98,7 +98,6 @@ export class SpotifyService {
 
   getArtist(id: string, token: string): Observable<any> {
     this.ArtistUrl = `${this.url}/artists/${id}`;
-    // this.ArtistUrl = 'https://api.spotify.com/v1/artists/' + id;
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
@@ -112,10 +111,6 @@ export class SpotifyService {
 
   getAlbums(artistId: string, token: string): Observable<any> {
     this.getUrl = `${this.url}/artists/${artistId}/albums/?query=&limit=50`;
-    // this.getUrl =
-    //   'https://api.spotify.com/v1/artists/' +
-    //   artistId +
-    //   '/albums/?query=&limit=50';
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });
@@ -129,7 +124,6 @@ export class SpotifyService {
 
   getAlbum(id: string, token: string): Observable<any> {
     this.getUrl = `${this.url}/albums/${id}`;
-    // this.AlbumUrl = 'https://api.spotify.com/v1/albums/' + id;
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token,
     });

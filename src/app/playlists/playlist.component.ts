@@ -3,7 +3,8 @@ import { IPlaylist } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { AuthService } from '../shared/auth.service';
 import { SpotifyService } from '../shared/spotifyservice.service';
-import { mergeMap } from 'rxjs';
+import { finalize, mergeMap, tap } from 'rxjs';
+import { LoaderService } from '../shared/loader.service';
 
 @Component({
   templateUrl: './playlist.component.html',
@@ -24,11 +25,11 @@ export class PlaylistComponent implements OnInit {
 
   constructor(
     private appService: AppService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {
-    // this.playlists = this.appService.getPlaylists();
     this.greeting = this.getSalutation();
 
     // to check authentication state
@@ -40,14 +41,19 @@ export class PlaylistComponent implements OnInit {
     if (storedUser) {
       this.user = JSON.parse(storedUser).displayName;
     }
+    this.loaderService.showLoader();
 
-    this.displayPlaylist()
+    this.displayPlaylist();
   }
 
   displayPlaylist() {
     this.spotifyService
       .getToken()
       .pipe(
+        // finalize(() => this.loaderService.hideLoader()),
+        tap((data) => {
+          this.loaderService.hideLoader();
+        }),
         mergeMap((tokenResponse) => {
           const token = tokenResponse.access_token;
           return this.spotifyService.getPlaylists(token);
@@ -57,14 +63,12 @@ export class PlaylistComponent implements OnInit {
         (songs) => {
           this.allPlaylists = songs.playlists.items;
           this.playlists = this.allPlaylists.slice(0, 12);
-          console.log(this.playlists);
         },
         (error) => {
           console.error('Error:', error);
         }
       );
   }
-
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;

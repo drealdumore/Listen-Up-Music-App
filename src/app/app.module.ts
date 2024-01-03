@@ -37,6 +37,7 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { BillingModalComponent } from './billing-modal/billing-modal.component';
 import { SearchmodalComponent } from './searchmodal/searchmodal.component';
 import { LoaderComponent } from './loader/loader.component';
+import { LoaderSubComponent } from './loader-sub/loader-sub.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { LoaderComponent } from './loader/loader.component';
     BillingModalComponent,
     SearchmodalComponent,
     LoaderComponent,
+    LoaderSubComponent,
   ],
   imports: [
     BrowserModule,
