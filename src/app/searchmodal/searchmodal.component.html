@@ -1,13 +1,13 @@
 <div class="search_">
   <button class="remove__search" (click)="this.searched = false">
-    &times;
+    <i class='bx bx-x'></i>
   </button>
 
   <div class="filter__search">
     <button
       (click)="searchSongs('track')"
       [ngStyle]="{
-        'background-color': filterTerm === 'track' ? '#535050' : ''
+        'background-color': activeFilter === 'track' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       song
@@ -15,7 +15,7 @@
     <button
       (click)="searchSongs('artist')"
       [ngStyle]="{
-        'background-color': filterTerm === 'artist' ? '#535050' : ''
+        'background-color': activeFilter === 'artist' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       artist
@@ -23,7 +23,7 @@
     <button
       (click)="searchSongs('playlist')"
       [ngStyle]="{
-        'background-color': filterTerm === 'playlist' ? '#535050' : ''
+        'background-color': activeFilter === 'playlist' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       playlists
@@ -31,14 +31,15 @@
     <button
       (click)="searchSongs('album')"
       [ngStyle]="{
-        'background-color': filterTerm === 'album' ? '#535050' : ''
+        'background-color': activeFilter === 'album' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       album
     </button>
   </div>
 
-  <ng-container [ngSwitch]="filterTerm">
+
+  <ng-container [ngSwitch]="activeFilter">
     <ng-container *ngSwitchCase="'track'">
       <ul class="search__list">
         <li
@@ -49,7 +50,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song.album.images[0].url" alt="{{ song.name }}" />
+              <img [src]="song?.album?.images[0]?.url" alt="{{ song.name }}" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -60,7 +61,7 @@
               </h4>
               <span class="artists">
                 <p
-                  class="playlist__artist"
+                  class="search__artist"
                   *ngFor="let artist of song?.album?.artists; let last = last"
                 >
                   <a [href]="artist.external_urls.spotify" target="_blank">{{
@@ -85,7 +86,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song.images[0].url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -113,7 +114,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song.images[0].url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -141,7 +142,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song.images[0].url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -152,7 +153,7 @@
               </h4>
               <span class="artists">
                 <p
-                  class="playlist__artist"
+                  class="search__artist"
                   *ngFor="let artist of song?.artists; let last = last"
                 >
                   <a [href]="artist.external_urls.spotify" target="_blank">{{
@@ -163,31 +164,7 @@
               </span>
             </div>
           </a>
-          <!-- 
-          <a class="search__link">
-            <figure class="search__fig">
-              <img [src]="song.album.images[0].url" alt="{{ song.name }}" />
-            </figure>
-            <div class="search__data">
-              <p class="search__data-p">
-                {{ song.album.name }}
-              </p>
-              <h4 class="search__name">
-                {{ song.name }}
-              </h4>
-              <span class="artists">
-                <p
-                  class="search__artist"
-                  *ngFor="let artist of song?.album?.artists; let last = last"
-                >
-                  <a [href]="artist.external_urls.spotify" target="_blank">{{
-                    artist.name
-                  }}</a>
-                  <span *ngIf="!last">, </span>
-                </p>
-              </span>
-            </div>
-          </a> -->
+          
         </li>
       </ul>
     </ng-container>
@@ -199,5 +176,8 @@
     <p>No results found for '{{ searchTerm }}'.</p>
   </div>
 
-  <loader-sub *ngIf="showLoader$ | async"></loader-sub>
+
+  <div *ngIf="showLoader$ | async as showLoader">
+    <loader-sub *ngIf="showLoader"></loader-sub>
+  </div>
 </div>

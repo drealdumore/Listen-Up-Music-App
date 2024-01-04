@@ -27,6 +27,7 @@ export class PlaylistComponent implements OnInit {
     private appService: AppService,
     private authService: AuthService,
     private loaderService: LoaderService
+    
   ) {}
 
   ngOnInit() {

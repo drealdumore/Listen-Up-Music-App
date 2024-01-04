@@ -155,16 +155,14 @@
       </div>
     </div>
 
-      
-      <searchmodal [searchTerm]="input" (filterClick)="searchSongs($event)" ></searchmodal>
-    
-    <!-- <searchmodal
+    <searchmodal
       *ngIf="searched"
-      [foundSongs]="foundSongs"
       [searched]="searched"
+      [activeFilter]="activeFilter"
+      [foundSongs]="foundSongs"
       (filterClick)="searchSongs($event)"
       [searchTerm]="input"
-    ></searchmodal> -->
+    ></searchmodal>
   </ng-container>
 
   <div *ngIf="!isAuthenticated" class="navbtns">

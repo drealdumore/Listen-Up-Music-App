@@ -12,7 +12,9 @@ import { ISongs } from '../shared/app.model';
 import { AppService } from '../shared/app.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SpotifyService } from '../shared/spotifyservice.service';
-import { debounceTime, mergeMap } from 'rxjs/operators';
+import { debounceTime, mergeMap, tap } from 'rxjs/operators';
+import { LoaderService } from '../shared/loader.service';
+import { LoaderSubService } from '../shared/loader-sub.service';
 
 @Component({
   selector: 'navigation',
@@ -20,6 +22,7 @@ import { debounceTime, mergeMap } from 'rxjs/operators';
 })
 export class NavComponent {
   input: string = '';
+  activeFilter: string = '';
 
   searched: boolean = false;
   isVisible: boolean = false;
@@ -42,6 +45,7 @@ export class NavComponent {
   isAuthenticated: boolean = false;
 
   private spotifyService = inject(SpotifyService);
+  private loaderService = inject(LoaderSubService);
   private fb = inject(FormBuilder);
 
   constructor(
@@ -60,7 +64,7 @@ export class NavComponent {
 
     this.searchInput
       .get('input')
-      ?.valueChanges.pipe(debounceTime(100))
+      ?.valueChanges.pipe(debounceTime(10))
       .subscribe(() => {
         this.searchSongs('track');
       });
@@ -93,7 +97,7 @@ export class NavComponent {
     const newNickname = this.newNickname.value.trim();
     if (newNickname !== '') {
       this.authService.setDisplayName(newNickname);
-    }
+    };
     this.hideProfile();
   }
 
@@ -106,9 +110,13 @@ export class NavComponent {
   }
 
   searchSongs(filterTerm: string) {
+    this.activeFilter = filterTerm;
     this.spotifyService
       .getToken()
       .pipe(
+        tap((data) => {
+          this.loaderService.hideLoader();
+        }),
         mergeMap((tokenResponse) => {
           const token = tokenResponse.access_token;
           const searchTerm = this.searchInput.get('input')?.value;
@@ -119,10 +127,6 @@ export class NavComponent {
         (songs) => {
           this.foundSongs = songs[`${filterTerm}s`]?.items || [];
           this.searched = true;
-          console.log(
-            '🚀 ~ file: nav.component.ts:115 ~ NavComponent ~ searchSongs ~ this.foundSongs:',
-            this.foundSongs
-          );
           this.noSearch = this.foundSongs.length === 0;
         },
         (error) => {
@@ -248,5 +252,3 @@ export class NavComponent {
     }
   }
 }
-
-
