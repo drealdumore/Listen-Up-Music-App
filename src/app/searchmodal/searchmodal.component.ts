@@ -18,7 +18,7 @@ import { LoaderSubService } from '../shared/loader-sub.service';
 })
 export class SearchmodalComponent implements OnInit {
   @Input() foundSongs: any[] = [];
-  @Input() searched: boolean = false;
+  @Input() searched: boolean = true;
   @Input() searchTerm: string = '';
   @Input() activeFilter: string = '';
 

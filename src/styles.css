@@ -486,7 +486,6 @@ button {
   z-index: 1;
 }
 
-
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i {
   transition: all 0.5s ease;
@@ -508,7 +507,6 @@ button {
   width: 91%;
   transition: all 0.5s ease;
 }
-
 
 .box {
   border-top-left-radius: 15px;
@@ -707,11 +705,9 @@ button {
   place-items: center;
 }
 
-
 .feature:hover {
   border: 1px solid #fff;
 }
-
 
 .feature {
   background-color: #5e687544;
@@ -1315,7 +1311,8 @@ button {
   text-transform: capitalize;
 }
 
-.artists {
+.artists,
+.genres {
   display: flex;
   gap: 5px;
 }
@@ -1752,12 +1749,12 @@ svg {
   border: none;
   background: none;
 }
-.remove__search i{
+.remove__search i {
   font-size: 2.3rem;
   color: rgba(255, 255, 255, 0.2);
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
-.remove__search i:hover{
+.remove__search i:hover {
   font-size: 2.3rem;
   color: rgba(255, 255, 255, 0.35);
 }
@@ -2360,7 +2357,6 @@ svg {
 
   .user {
     margin-right: 0.5rem;
-    
   }
 
   .user__img {

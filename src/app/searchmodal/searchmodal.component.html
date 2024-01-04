@@ -1,13 +1,14 @@
 <div class="search_">
   <button class="remove__search" (click)="this.searched = false">
-    <i class='bx bx-x'></i>
+    <i class="bx bx-x"></i>
   </button>
 
   <div class="filter__search">
     <button
       (click)="searchSongs('track')"
       [ngStyle]="{
-        'background-color': activeFilter === 'track' ? 'rgba(255, 255, 255, 0.35)' : ''
+        'background-color':
+          activeFilter === 'track' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       song
@@ -15,7 +16,8 @@
     <button
       (click)="searchSongs('artist')"
       [ngStyle]="{
-        'background-color': activeFilter === 'artist' ? 'rgba(255, 255, 255, 0.35)' : ''
+        'background-color':
+          activeFilter === 'artist' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       artist
@@ -23,7 +25,8 @@
     <button
       (click)="searchSongs('playlist')"
       [ngStyle]="{
-        'background-color': activeFilter === 'playlist' ? 'rgba(255, 255, 255, 0.35)' : ''
+        'background-color':
+          activeFilter === 'playlist' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       playlists
@@ -31,13 +34,13 @@
     <button
       (click)="searchSongs('album')"
       [ngStyle]="{
-        'background-color': activeFilter === 'album' ? 'rgba(255, 255, 255, 0.35)' : ''
+        'background-color':
+          activeFilter === 'album' ? 'rgba(255, 255, 255, 0.35)' : ''
       }"
     >
       album
     </button>
   </div>
-
 
   <ng-container [ngSwitch]="activeFilter">
     <ng-container *ngSwitchCase="'track'">
@@ -50,7 +53,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song?.album?.images[0]?.url" alt="{{ song.name }}" />
+              <img [src]="song?.album?.images[0]?.url" [alt]="song.name" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -86,7 +89,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" [alt]="song?.name" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -95,9 +98,7 @@
               <h4 class="search__name">
                 {{ song.name }}
               </h4>
-              <p class="search__artist" *ngFor="let genre of song.genres">
-                {{ genre }}
-              </p>
+              
             </div>
           </a>
         </li>
@@ -114,7 +115,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" [alt]="song?.name" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -142,7 +143,7 @@
         >
           <a class="search__link">
             <figure class="search__fig">
-              <img [src]="song?.images[0]?.url" alt="{{ song.name }}" />
+              <img [src]="song?.images[0]?.url" [alt]="song?.name" />
             </figure>
             <div class="search__data">
               <p class="search__data-p">
@@ -164,7 +165,6 @@
               </span>
             </div>
           </a>
-          
         </li>
       </ul>
     </ng-container>
@@ -175,7 +175,6 @@
     <h1>Your search result doesnt exist</h1>
     <p>No results found for '{{ searchTerm }}'.</p>
   </div>
-
 
   <div *ngIf="showLoader$ | async as showLoader">
     <loader-sub *ngIf="showLoader"></loader-sub>
